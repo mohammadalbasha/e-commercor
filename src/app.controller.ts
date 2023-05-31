@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 import { classToPlain, classToPlainFromExist } from 'class-transformer';
 
@@ -15,5 +15,11 @@ export class AppController {
   @Get('')
   getHello(): string {
     return this.appService.getHello();
+  }
+
+  @Post('')
+  hello(@Body() data) {
+    console.log(data);
+    return data;
   }
 }

@@ -60,6 +60,10 @@ export class CreateStoreDto {
   @IsString()
   description: string;
 
+  @IsOptional()
+  @IsString()
+  country: string;
+
   @IsBoolean()
   @IsDefined()
   isMarket: boolean;

@@ -49,6 +49,9 @@ export class Store extends BaseModel {
   @Prop({ required: true })
   description: string;
 
+  @Prop()
+  country: string;
+
   @Prop({ default: false })
   isMarket: boolean;
 
