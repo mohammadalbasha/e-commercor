@@ -74,6 +74,11 @@ __decorate([
     __metadata("design:type", String)
 ], CreateStoreDto.prototype, "description", void 0);
 __decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateStoreDto.prototype, "country", void 0);
+__decorate([
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsDefined)(),
     __metadata("design:type", Boolean)

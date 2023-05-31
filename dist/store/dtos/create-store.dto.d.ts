@@ -12,6 +12,7 @@ export declare class CreateStoreDto {
     seller: CreateSellerDto;
     businessType: string;
     description: string;
+    country: string;
     isMarket: boolean;
     marketAddress: string;
     marketName: string;

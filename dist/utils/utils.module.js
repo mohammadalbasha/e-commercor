@@ -26,7 +26,6 @@ UtilsModule = __decorate([
             mongoose_1.MongooseModule.forRootAsync({
                 useFactory: async (configService) => ({
                     uri: configService.get('mongo').production_url,
-                    useNewUrlParser: true,
                     connectionFactory: (connection) => {
                         return connection;
                     },

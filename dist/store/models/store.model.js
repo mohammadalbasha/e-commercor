@@ -74,6 +74,10 @@ __decorate([
     __metadata("design:type", String)
 ], Store.prototype, "description", void 0);
 __decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Store.prototype, "country", void 0);
+__decorate([
     (0, mongoose_1.Prop)({ default: false }),
     __metadata("design:type", Boolean)
 ], Store.prototype, "isMarket", void 0);

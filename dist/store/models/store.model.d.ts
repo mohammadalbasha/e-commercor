@@ -39,6 +39,7 @@ export declare class Store extends BaseModel {
     seller: Seller;
     businessType: string;
     description: string;
+    country: string;
     isMarket: boolean;
     marketAddress: string;
     marketName: string;

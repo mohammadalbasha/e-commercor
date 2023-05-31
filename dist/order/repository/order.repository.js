@@ -21,7 +21,6 @@ let OrderRepository = class OrderRepository {
         this.order = order;
     }
     async create(data, session) {
-        console.log(data);
         const order = await this.order.create([Object.assign({}, data)], { session: session });
         return order;
     }
