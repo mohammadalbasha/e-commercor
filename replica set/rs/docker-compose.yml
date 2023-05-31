@@ -1,0 +1,16 @@
+
+version: '3'
+
+services:
+  mongo1:
+    image: mongo
+    container_name: mongo1
+    restart: always
+    ports:
+      - "2701:27017"
+    networks:
+      common.network:
+
+networks:
+  common.network:
+    driver: bridge

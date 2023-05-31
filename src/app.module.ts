@@ -1,0 +1,29 @@
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { SharedModule } from './shared/shared.module';
+import { UtilsModule } from './utils/utils.module';
+import { StoreModule } from './store/store.module';
+import { AuthenticationModule } from './authentication/authentication.module';
+import { PaypalModule } from './paypal/paypal.module';
+
+import { CustomerModule } from './customer/customer.module';
+import { ProductModule } from './product/product.module';
+import { CategoryModule } from './category/category.module';
+import { OrderModule } from './order/order.module';
+
+@Module({
+  imports: [
+    SharedModule,
+    UtilsModule,
+    StoreModule,
+    AuthenticationModule,
+    CustomerModule,
+    ProductModule,
+    CategoryModule,
+    OrderModule,
+  ],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule {}
