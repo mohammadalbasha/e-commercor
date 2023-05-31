@@ -1,0 +1,1 @@
+{"version":3,"file":"base.model.js","sourceRoot":"","sources":["../../../src/shared/models/base.model.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,+CAA+D;AAGxD,IAAM,SAAS,GAAf,MAAM,SAAS;CASrB,CAAA;AAFC;IAAC,IAAA,eAAI,EAAC,EAAE,OAAO,EAAE,IAAI,EAAE,CAAC;;2CACL;AARR,SAAS;IADrB,IAAA,iBAAM,EAAC,EAAE,EAAE,EAAE,IAAI,EAAE,UAAU,EAAE,IAAI,EAAE,CAAC;GAC1B,SAAS,CASrB;AATY,8BAAS"}
