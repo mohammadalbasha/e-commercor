@@ -1,6 +1,7 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseInterceptors } from '@nestjs/common';
 import { AppService } from './app.service';
 import { classToPlain, classToPlainFromExist } from 'class-transformer';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller()
 export class AppController {
@@ -18,6 +19,7 @@ export class AppController {
   }
 
   @Post('')
+  @UseInterceptors(FileInterceptor)
   hello(@Body() data) {
     console.log(data);
     return data;
