@@ -80,7 +80,7 @@ __decorate([
 ], CreateStoreDto.prototype, "country", void 0);
 __decorate([
     (0, class_validator_1.IsBoolean)(),
-    (0, class_validator_1.IsDefined)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Boolean)
 ], CreateStoreDto.prototype, "isMarket", void 0);
 __decorate([

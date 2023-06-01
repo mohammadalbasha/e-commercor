@@ -25,7 +25,6 @@ let StoreSellerController = class StoreSellerController {
         this.storeService = storeService;
     }
     create(input) {
-        console.log(input);
         return this.storeService.create(input);
     }
     getStore(sellerId) {
