@@ -25,6 +25,7 @@ export class StoreSellerController {
   @Post()
   create(@Body() input: CreateStoreDto) {
     console.log(input);
+
     return this.storeService.create(input);
   }
 
