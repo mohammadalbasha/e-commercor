@@ -65,7 +65,7 @@ export class CreateStoreDto {
   country: string;
 
   @IsBoolean()
-  @IsDefined()
+  @IsOptional()
   isMarket: boolean;
 
   @IsString()

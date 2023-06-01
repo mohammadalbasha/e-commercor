@@ -24,8 +24,6 @@ export class StoreSellerController {
   @UseInterceptors(MongooseClassSerializerInterceptor(Store))
   @Post()
   create(@Body() input: CreateStoreDto) {
-    console.log(input);
-
     return this.storeService.create(input);
   }
 
