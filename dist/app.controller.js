@@ -16,7 +16,6 @@ exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
 const app_service_1 = require("./app.service");
 const class_transformer_1 = require("class-transformer");
-const platform_express_1 = require("@nestjs/platform-express");
 let AppController = class AppController {
     constructor(appService) {
         this.appService = appService;
@@ -42,7 +41,6 @@ __decorate([
 ], AppController.prototype, "getHello", null);
 __decorate([
     (0, common_1.Post)(''),
-    (0, common_1.UseInterceptors)(platform_express_1.FileInterceptor),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
