@@ -10,10 +10,11 @@ export class ProductSellerController {
   constructor(private productService: ProductService) {}
 
   @Post()
-  create(
-    @Body() data: Omit<CreateProductDto, 'storeId'>,
-    @GetSellerStoreId() storeId: string,
-  ) {
+  // create(
+  //   @Body() data: Omit<CreateProductDto, 'storeId'>,
+  //   @GetSellerStoreId() storeId: string,
+  // )
+  create(@Body() data: CreateProductDto, @GetSellerStoreId() storeId: string) {
     return this.productService.create({
       ...data,
       storeId,

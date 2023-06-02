@@ -16,7 +16,6 @@ export class ProductService {
     // be aware of this _doc
     const productPropertiesKeys = Object.keys(productProperties._doc);
     const productDataKeys = Object.keys(productData);
-    console.log(productPropertiesKeys);
     for (let key of productDataKeys) {
       if (!productPropertiesKeys.includes(key)) {
         throw new BadRequestException(

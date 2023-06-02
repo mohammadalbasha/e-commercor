@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CategorySchema = exports.Category = exports.ProductProperties = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
+const mongoose_2 = require("mongoose");
 const common_1 = require("../../shared/constants/common");
 const base_model_1 = require("../../shared/models/base.model");
 const PropRef_decorator_1 = require("../../shared/models/decorators/mongoose/PropRef.decorator");
@@ -19,15 +20,15 @@ let ProductProperties = class ProductProperties {
 };
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
-    __metadata("design:type", String)
+    __metadata("design:type", mongoose_2.default.Schema.Types.Mixed)
 ], ProductProperties.prototype, "name", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
-    __metadata("design:type", String)
+    __metadata("design:type", mongoose_2.default.Schema.Types.Mixed)
 ], ProductProperties.prototype, "price", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
-    __metadata("design:type", String)
+    __metadata("design:type", mongoose_2.default.Schema.Types.Mixed)
 ], ProductProperties.prototype, "count", void 0);
 ProductProperties = __decorate([
     (0, mongoose_1.Schema)(common_1.defaultSchemaOptions)

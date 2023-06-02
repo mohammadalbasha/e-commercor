@@ -13,7 +13,6 @@ exports.CreateProductDto = void 0;
 const class_validator_1 = require("class-validator");
 const category_model_1 = require("../../category/models/category.model");
 const isRef_validator_1 = require("../../shared/validation/isRef.validator");
-const store_model_1 = require("../../store/models/store.model");
 class CreateProductDto {
 }
 __decorate([
@@ -32,12 +31,6 @@ __decorate([
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], CreateProductDto.prototype, "count", void 0);
-__decorate([
-    (0, class_validator_1.Validate)(isRef_validator_1.IsRef, [store_model_1.Store]),
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsDefined)(),
-    __metadata("design:type", String)
-], CreateProductDto.prototype, "storeId", void 0);
 __decorate([
     (0, class_validator_1.Validate)(isRef_validator_1.IsRef, [category_model_1.Category]),
     (0, class_validator_1.IsString)(),

@@ -2,9 +2,9 @@ import mongoose from 'mongoose';
 import { BaseModel } from 'src/shared/models/base.model';
 import { Store } from 'src/store/models/store.model';
 export declare class ProductProperties {
-    name: string;
-    price: string;
-    count: string;
+    name: mongoose.Schema.Types.Mixed;
+    price: mongoose.Schema.Types.Mixed;
+    count: mongoose.Schema.Types.Mixed;
 }
 export declare class Category extends BaseModel {
     name: string;

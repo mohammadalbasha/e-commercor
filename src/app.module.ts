@@ -11,6 +11,9 @@ import { CustomerModule } from './customer/customer.module';
 import { ProductModule } from './product/product.module';
 import { CategoryModule } from './category/category.module';
 import { OrderModule } from './order/order.module';
+import { UniqueMulti } from './shared/validation/uniqueMulti.validator';
+import { Unique } from './shared/validation/unique.validator';
+import { IsRef } from './shared/validation/isRef.validator';
 
 @Module({
   imports: [
@@ -24,6 +27,14 @@ import { OrderModule } from './order/order.module';
     OrderModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+
+    // Validators (using AppModule as Container for Validations)
+    // those better to be in shared module
+    Unique,
+    UniqueMulti,
+    IsRef,
+  ],
 })
 export class AppModule {}

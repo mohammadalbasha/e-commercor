@@ -12,15 +12,15 @@ import { Store } from 'src/store/models/store.model';
 @Schema(defaultSchemaOptions)
 export class ProductProperties {
   @Prop({ required: true })
-  name: string;
+  name: mongoose.Schema.Types.Mixed;
 
   // the object will be like {name: "text", price: "number", count: "number"}
 
   @Prop({ required: true })
-  price: string;
+  price: mongoose.Schema.Types.Mixed;
 
   @Prop({ required: true })
-  count: string;
+  count: mongoose.Schema.Types.Mixed;
 }
 
 @Schema(defaultSchemaOptions)

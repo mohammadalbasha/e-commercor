@@ -13,9 +13,6 @@ const all_exceptions_filter_1 = require("./filters/all-exceptions.filter");
 const config_1 = require("@nestjs/config");
 const module_options_1 = require("./configs/module-options");
 const logger_module_1 = require("./logger/logger.module");
-const unique_validator_1 = require("./validation/unique.validator");
-const uniqueMulti_validator_1 = require("./validation/uniqueMulti.validator");
-const isRef_old_validator_1 = require("./validation/isRef-old.validator");
 const get_store_middleware_1 = require("./current-store/get-store.middleware");
 const store_module_1 = require("../store/store.module");
 let SharedModule = class SharedModule {
@@ -38,9 +35,6 @@ SharedModule = __decorate([
                 provide: core_1.APP_FILTER,
                 useClass: all_exceptions_filter_1.AllExceptionsFilter,
             },
-            unique_validator_1.Unique,
-            uniqueMulti_validator_1.UniqueMulti,
-            isRef_old_validator_1.IsRef,
         ],
     })
 ], SharedModule);

@@ -16,6 +16,7 @@ exports.ProductSellerController = void 0;
 const common_1 = require("@nestjs/common");
 const get_seller_store_id_decorator_1 = require("../../../authentication/decorators/get-seller-store-id.decorator");
 const guards_1 = require("../../../authentication/sellers/guards");
+const create_product_dto_1 = require("../../dtos/create-product.dto");
 const product_service_1 = require("../../services/product.service");
 let ProductSellerController = class ProductSellerController {
     constructor(productService) {
@@ -30,7 +31,7 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __param(1, (0, get_seller_store_id_decorator_1.GetSellerStoreId)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:paramtypes", [create_product_dto_1.CreateProductDto, String]),
     __metadata("design:returntype", void 0)
 ], ProductSellerController.prototype, "create", null);
 ProductSellerController = __decorate([

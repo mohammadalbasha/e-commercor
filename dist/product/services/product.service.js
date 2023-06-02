@@ -33,7 +33,6 @@ let ProductService = class ProductService {
         const { storeId, categoryId } = data, productData = __rest(data, ["storeId", "categoryId"]);
         const productPropertiesKeys = Object.keys(productProperties._doc);
         const productDataKeys = Object.keys(productData);
-        console.log(productPropertiesKeys);
         for (let key of productDataKeys) {
             if (!productPropertiesKeys.includes(key)) {
                 throw new common_1.BadRequestException(`${key} is invalid property for this product`);

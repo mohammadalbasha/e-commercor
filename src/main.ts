@@ -9,6 +9,7 @@ import {
   NestConfig,
   ValidationPipeOptionsConfig,
 } from './shared/configs/config.interface';
+import { useContainer } from 'class-validator';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -22,6 +23,11 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe(validationPipeOptions));
   app.use(RequestIdMiddleware);
+
+  useContainer(app.select(AppModule), {
+    fallbackOnErrors: true,
+    fallback: true,
+  }); // for custom validators like unique
 
   if (corsConfig.enabled) app.enableCors();
 

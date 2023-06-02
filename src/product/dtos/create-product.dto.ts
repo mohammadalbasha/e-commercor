@@ -24,9 +24,10 @@ export class CreateProductDto {
   @IsNumber()
   count: number;
 
-  @Validate(IsRef, [Store])
-  @IsString()
-  @IsDefined()
+  // @Validate(IsRef, [Store])
+  // @IsString()
+  // @IsDefined()
+  // this would be find depending on seller
   storeId: string;
 
   @Validate(IsRef, [Category])

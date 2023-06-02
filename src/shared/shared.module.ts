@@ -25,10 +25,6 @@ import { StoreModule } from 'src/store/store.module';
       provide: APP_FILTER,
       useClass: AllExceptionsFilter,
     },
-
-    Unique,
-    UniqueMulti,
-    IsRef,
   ],
 })
 export class SharedModule {

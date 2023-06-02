@@ -18,6 +18,9 @@ const customer_module_1 = require("./customer/customer.module");
 const product_module_1 = require("./product/product.module");
 const category_module_1 = require("./category/category.module");
 const order_module_1 = require("./order/order.module");
+const uniqueMulti_validator_1 = require("./shared/validation/uniqueMulti.validator");
+const unique_validator_1 = require("./shared/validation/unique.validator");
+const isRef_validator_1 = require("./shared/validation/isRef.validator");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -33,7 +36,12 @@ AppModule = __decorate([
             order_module_1.OrderModule,
         ],
         controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
+        providers: [
+            app_service_1.AppService,
+            unique_validator_1.Unique,
+            uniqueMulti_validator_1.UniqueMulti,
+            isRef_validator_1.IsRef,
+        ],
     })
 ], AppModule);
 exports.AppModule = AppModule;
