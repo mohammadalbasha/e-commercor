@@ -19,6 +19,7 @@ let AtSellerGuard = class AtSellerGuard extends (0, passport_1.AuthGuard)('jwt-s
         this.reflector = reflector;
     }
     canActivate(context) {
+        console.log(context.switchToHttp().getRequest().body);
         const isPublic = this.reflector.getAllAndOverride('isPublic', [
             context.getHandler(),
             context.getClass(),

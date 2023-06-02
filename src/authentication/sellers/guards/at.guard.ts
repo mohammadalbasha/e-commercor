@@ -9,6 +9,7 @@ export class AtSellerGuard extends AuthGuard('jwt-seller') {
   }
 
   canActivate(context: ExecutionContext) {
+    console.log(context.switchToHttp().getRequest().body);
     const isPublic = this.reflector.getAllAndOverride('isPublic', [
       context.getHandler(),
       context.getClass(),
