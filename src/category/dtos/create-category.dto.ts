@@ -22,8 +22,8 @@ export class ProductProperties {
   @IsDefined()
   price: any;
 
-  @IsDefined()
-  count: any;
+  // @IsDefined()
+  // count: any;
 }
 
 export class CreateCategoryDto {

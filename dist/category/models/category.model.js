@@ -27,7 +27,7 @@ __decorate([
     __metadata("design:type", mongoose_2.default.Schema.Types.Mixed)
 ], ProductProperties.prototype, "price", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ required: true }),
+    (0, mongoose_1.Prop)({ required: true, default: 0 }),
     __metadata("design:type", mongoose_2.default.Schema.Types.Mixed)
 ], ProductProperties.prototype, "count", void 0);
 ProductProperties = __decorate([

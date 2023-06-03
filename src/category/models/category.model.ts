@@ -19,7 +19,7 @@ export class ProductProperties {
   @Prop({ required: true })
   price: mongoose.Schema.Types.Mixed;
 
-  @Prop({ required: true })
+  @Prop({ required: true, default: 0 })
   count: mongoose.Schema.Types.Mixed;
 }
 

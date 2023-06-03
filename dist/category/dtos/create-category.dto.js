@@ -22,10 +22,6 @@ __decorate([
     (0, class_validator_1.IsDefined)(),
     __metadata("design:type", Object)
 ], ProductProperties.prototype, "price", void 0);
-__decorate([
-    (0, class_validator_1.IsDefined)(),
-    __metadata("design:type", Object)
-], ProductProperties.prototype, "count", void 0);
 exports.ProductProperties = ProductProperties;
 class CreateCategoryDto {
 }
