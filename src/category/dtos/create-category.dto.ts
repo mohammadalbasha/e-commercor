@@ -32,10 +32,10 @@ export class CreateCategoryDto {
   @Max(100)
   name: string;
 
-  @Validate(IsRef, [Store])
-  @IsString()
-  @IsDefined()
-  @IsNotEmpty()
+  // @Validate(IsRef, [Store])
+  // @IsString()
+  // @IsDefined()
+  // @IsNotEmpty()
   storeId: string;
 
   @IsDefined()

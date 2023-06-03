@@ -11,7 +11,9 @@ export class CategorySellerController {
 
   @Post()
   create(
-    @Body() data: Omit<CreateCategoryDto, 'storeId'>,
+    // @Body() data: Omit<CreateCategoryDto, 'storeId'>,
+    // dto validations will be missed if we use Omit
+    @Body() data: CreateCategoryDto,
     @GetSellerStoreId() storeId: string,
   ) {
     return this.categoryService.create({
