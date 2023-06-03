@@ -28,6 +28,9 @@ let CategorySellerController = class CategorySellerController {
     list(storeId) {
         return this.categoryService.findByStoreId(storeId);
     }
+    listOne(categoryId) {
+        return this.categoryService.findById(categoryId);
+    }
 };
 __decorate([
     (0, common_1.Post)(),
@@ -44,6 +47,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], CategorySellerController.prototype, "list", null);
+__decorate([
+    (0, common_1.Get)('/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], CategorySellerController.prototype, "listOne", null);
 CategorySellerController = __decorate([
     (0, common_1.UseGuards)(guards_1.AtSellerGuard),
     (0, common_1.Controller)('/seller/categories'),

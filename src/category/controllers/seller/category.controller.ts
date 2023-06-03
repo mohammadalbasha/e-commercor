@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { GetSellerStoreId } from 'src/authentication/decorators/get-seller-store-id.decorator';
 import { AtSellerGuard } from 'src/authentication/sellers/guards';
 import { CreateCategoryDto } from 'src/category/dtos/create-category.dto';
@@ -25,5 +25,9 @@ export class CategorySellerController {
   @Get()
   list(@GetSellerStoreId() storeId: string) {
     return this.categoryService.findByStoreId(storeId);
+  }
+  @Get('/:id')
+  listOne(@Param('id') categoryId) {
+    return this.categoryService.findById(categoryId);
   }
 }
