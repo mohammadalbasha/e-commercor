@@ -12,8 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateCategoryDto = exports.ProductProperties = void 0;
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
-const isRef_validator_1 = require("../../shared/validation/isRef.validator");
-const store_model_1 = require("../../store/models/store.model");
 class ProductProperties {
 }
 __decorate([
@@ -38,13 +36,6 @@ __decorate([
     (0, class_validator_1.Max)(100),
     __metadata("design:type", String)
 ], CreateCategoryDto.prototype, "name", void 0);
-__decorate([
-    (0, class_validator_1.Validate)(isRef_validator_1.IsRef, [store_model_1.Store]),
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsDefined)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], CreateCategoryDto.prototype, "storeId", void 0);
 __decorate([
     (0, class_validator_1.IsDefined)(),
     (0, class_validator_1.IsString)(),
