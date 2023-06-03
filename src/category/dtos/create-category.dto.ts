@@ -8,6 +8,7 @@ import {
   IsOptional,
   IsString,
   Max,
+  MaxLength,
   Validate,
   ValidateNested,
 } from 'class-validator';
@@ -29,7 +30,7 @@ export class CreateCategoryDto {
   @IsDefined()
   @IsString()
   @IsNotEmpty()
-  @Max(100)
+  @MaxLength(100)
   name: string;
 
   // @Validate(IsRef, [Store])
@@ -41,7 +42,7 @@ export class CreateCategoryDto {
   @IsDefined()
   @IsString()
   @IsNotEmpty()
-  @Max(100)
+  @MaxLength(300)
   description: string;
 
   @IsOptional()
