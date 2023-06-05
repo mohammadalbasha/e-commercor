@@ -24,7 +24,6 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
-import { StreamableFile } from '@nestjs/common';
 import { MediaFile } from './file.model';
 import { MediaFileService } from './file.service';
 export declare class FileController {
@@ -33,5 +32,4 @@ export declare class FileController {
     uploadPublicFile(file: Express.Multer.File): Promise<Express.Multer.File | (import("mongoose").Document<unknown, {}, MediaFile & Document> & Omit<MediaFile & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>)>;
-    downloadFile(res: any, id: string): Promise<StreamableFile>;
 }

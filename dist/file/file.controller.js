@@ -15,14 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FileController = void 0;
 const common_1 = require("@nestjs/common");
 const platform_express_1 = require("@nestjs/platform-express");
-const fs_1 = require("fs");
-const path_1 = require("path");
-const process_1 = require("process");
 const file_filter_1 = require("./file.filter");
 const file_service_1 = require("./file.service");
-const uuid_1 = require("uuid");
-const multer_1 = require("multer");
-const common_2 = require("@nestjs/common");
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 cloudinary.config({
@@ -37,12 +31,6 @@ const cloudinaryStorage = new CloudinaryStorage({
         public_id: (req, file) => Date.now() + file.originalname,
     },
 });
-const localStorage = (0, multer_1.diskStorage)({
-    destination: process_1.env.PublicLocalStoragePath || './public',
-    filename: (req, file, cb) => {
-        cb(null, `${(0, uuid_1.v4)()}${(0, path_1.extname)(file.originalname)}`);
-    },
-});
 let FileController = class FileController {
     constructor(mediaFileService) {
         this.mediaFileService = mediaFileService;
@@ -53,27 +41,6 @@ let FileController = class FileController {
         return file;
         const mediaFile = this.mediaFileService.saveFile(file);
         return mediaFile;
-    }
-    async downloadFile(res, id) {
-        try {
-            const mediaFile = await this.mediaFileService.findById(id);
-            console.log(mediaFile);
-            if (!mediaFile)
-                throw new common_1.NotFoundException();
-            console.log(mediaFile);
-            if (!(0, fs_1.existsSync)(mediaFile.path)) {
-                throw new common_1.NotFoundException();
-            }
-            res.set({
-                'Content-Type': mediaFile.mimeType,
-                'Content-Disposition': 'attachment; filename="' + mediaFile.originalName + '"',
-            });
-            const file = (0, fs_1.createReadStream)((0, path_1.join)(process.cwd(), mediaFile.path));
-            return new common_1.StreamableFile(file);
-        }
-        catch (err) {
-            throw new common_1.NotFoundException();
-        }
     }
 };
 __decorate([
@@ -101,14 +68,6 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], FileController.prototype, "uploadPublicFile", null);
-__decorate([
-    (0, common_1.Get)('file/:id'),
-    __param(0, (0, common_2.Response)({ passthrough: true })),
-    __param(1, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, String]),
-    __metadata("design:returntype", Promise)
-], FileController.prototype, "downloadFile", null);
 FileController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [file_service_1.MediaFileService])

@@ -46,12 +46,12 @@ const cloudinaryStorage = new CloudinaryStorage({
   },
 });
 
-const localStorage = diskStorage({
-  destination: env.PublicLocalStoragePath || './public',
-  filename: (req: any, file: any, cb: any) => {
-    cb(null, `${uuid()}${extname(file.originalname)}`);
-  },
-});
+// const localStorage = diskStorage({
+//   destination: env.PublicLocalStoragePath || './public',
+//   filename: (req: any, file: any, cb: any) => {
+//     cb(null, `${uuid()}${extname(file.originalname)}`);
+//   },
+// });
 
 @Controller()
 export class FileController {
@@ -91,30 +91,30 @@ export class FileController {
     return mediaFile;
   }
 
-  @Get('file/:id')
-  async downloadFile(
-    @Response({ passthrough: true }) res,
-    @Param('id') id: string,
-  ) {
-    try {
-      const mediaFile = await this.mediaFileService.findById(id);
-      console.log(mediaFile);
-      if (!mediaFile) throw new NotFoundException();
-      console.log(mediaFile);
-      if (!existsSync(mediaFile.path)) {
-        throw new NotFoundException();
-      }
+  // @Get('file/:id')
+  // async downloadFile(
+  //   @Response({ passthrough: true }) res,
+  //   @Param('id') id: string,
+  // ) {
+  //   try {
+  //     const mediaFile = await this.mediaFileService.findById(id);
+  //     console.log(mediaFile);
+  //     if (!mediaFile) throw new NotFoundException();
+  //     console.log(mediaFile);
+  //     if (!existsSync(mediaFile.path)) {
+  //       throw new NotFoundException();
+  //     }
 
-      res.set({
-        'Content-Type': mediaFile.mimeType,
-        'Content-Disposition':
-          'attachment; filename="' + mediaFile.originalName + '"',
-      });
+  //     res.set({
+  //       'Content-Type': mediaFile.mimeType,
+  //       'Content-Disposition':
+  //         'attachment; filename="' + mediaFile.originalName + '"',
+  //     });
 
-      const file = createReadStream(join(process.cwd(), mediaFile.path));
-      return new StreamableFile(file);
-    } catch (err) {
-      throw new NotFoundException();
-    }
-  }
+  //     const file = createReadStream(join(process.cwd(), mediaFile.path));
+  //     return new StreamableFile(file);
+  //   } catch (err) {
+  //     throw new NotFoundException();
+  //   }
+  // }
 }
