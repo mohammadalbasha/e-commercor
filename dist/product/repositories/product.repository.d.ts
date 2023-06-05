@@ -23,4 +23,12 @@ export declare class ProductRepository {
     }, session: any): Promise<mongoose.Document<unknown, {}, Product & Document> & Omit<Product & Document & {
         _id: mongoose.Types.ObjectId;
     }, never>>;
+    find(categoryId: any, filters: any, page: any, limit: any): Promise<{
+        items: (mongoose.Document<unknown, {}, Product & Document> & Omit<Product & Document & {
+            _id: mongoose.Types.ObjectId;
+        }, never>)[];
+        totalPages: number;
+        currentPage: any;
+        totalItems: number;
+    }>;
 }

@@ -34,13 +34,15 @@ export class OrderController {
     return this.orderService.purchaseProduct(data as CreateOrderDto, store);
   }
 
-  @Public()
-  @Get('/:storeId/:orderId')
-  captureOrder(
-    @Param('storeId') storeId: string,
-    @Param('orderId') orderId: string,
-    @Query('token') token: string,
-  ) {
-    return this.orderService.captureOrder(storeId, orderId, token);
-  }
+  // TODO:
+  // refactor this path
+  // @Public()
+  // @Get('/:storeId/:orderId')
+  // captureOrder(
+  //   @Param('storeId') storeId: string,
+  //   @Param('orderId') orderId: string,
+  //   @Query('token') token: string,
+  // ) {
+  //   return this.orderService.captureOrder(storeId, orderId, token);
+  // }
 }

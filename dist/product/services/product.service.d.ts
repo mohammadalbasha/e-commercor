@@ -31,6 +31,7 @@ export declare class ProductService {
     private categroyService;
     constructor(productRepo: ProductRepository, categroyService: CategoryService);
     validateProductData(productProperties: any, data: CreateProductDto): void;
+    convertFilters(filters: any): {};
     create(data: CreateProductDto): Promise<import("mongoose").Document<unknown, {}, import("../models/product.model").Product & Document> & Omit<import("../models/product.model").Product & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;
@@ -49,4 +50,12 @@ export declare class ProductService {
     findById(productId: string, session?: any): Promise<import("mongoose").Document<unknown, {}, import("../models/product.model").Product & Document> & Omit<import("../models/product.model").Product & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;
+    find(categoryId: any, filters: any, page: any, limit: any): Promise<{
+        items: (import("mongoose").Document<unknown, {}, import("../models/product.model").Product & Document> & Omit<import("../models/product.model").Product & Document & {
+            _id: import("mongoose").Types.ObjectId;
+        }, never>)[];
+        totalPages: number;
+        currentPage: any;
+        totalItems: number;
+    }>;
 }

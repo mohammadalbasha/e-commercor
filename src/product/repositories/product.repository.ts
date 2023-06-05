@@ -1,6 +1,6 @@
 import { InjectModel, InjectConnection } from '@nestjs/mongoose';
 import { classToPlain, plainToClass } from 'class-transformer';
-import mongoose from 'mongoose';
+import mongoose, { mongo } from 'mongoose';
 import { Product, ProductDocument } from 'src/product/models/product.model';
 import { CreateProductDto } from '../dtos/create-product.dto';
 
@@ -54,5 +54,24 @@ export class ProductRepository {
       // {session: options.session, new: true}
       { session: session, new: true },
     );
+  }
+
+  async find(categoryId, filters, page, limit) {
+    const skip = (page - 1) * limit;
+    filters['categoryId'] = new mongoose.Types.ObjectId(categoryId);
+
+    const items = await this.product
+      .find(filters)
+      .skip(skip)
+      .limit(limit)
+      .exec();
+    const count = await this.product.countDocuments(filters).exec();
+
+    return {
+      items,
+      totalPages: Math.ceil(count / limit),
+      currentPage: page,
+      totalItems: count,
+    };
   }
 }

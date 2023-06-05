@@ -21,6 +21,7 @@ const order_module_1 = require("./order/order.module");
 const uniqueMulti_validator_1 = require("./shared/validation/uniqueMulti.validator");
 const unique_validator_1 = require("./shared/validation/unique.validator");
 const isRef_validator_1 = require("./shared/validation/isRef.validator");
+const file_module_1 = require("./file/file.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -34,6 +35,7 @@ AppModule = __decorate([
             product_module_1.ProductModule,
             category_module_1.CategoryModule,
             order_module_1.OrderModule,
+            file_module_1.MediaFileModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [

@@ -14,6 +14,7 @@ import { OrderModule } from './order/order.module';
 import { UniqueMulti } from './shared/validation/uniqueMulti.validator';
 import { Unique } from './shared/validation/unique.validator';
 import { IsRef } from './shared/validation/isRef.validator';
+import { MediaFileModule } from './file/file.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { IsRef } from './shared/validation/isRef.validator';
     ProductModule,
     CategoryModule,
     OrderModule,
+    MediaFileModule,
   ],
   controllers: [AppController],
   providers: [

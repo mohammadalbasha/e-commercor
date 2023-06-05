@@ -24,6 +24,7 @@ exports.ProductService = void 0;
 const common_1 = require("@nestjs/common");
 const product_repository_1 = require("../repositories/product.repository");
 const category_service_1 = require("../../category/services/category.service");
+const filter_helper_1 = require("../../shared/mongoose/helperFunctions/filter.helper");
 let ProductService = class ProductService {
     constructor(productRepo, categroyService) {
         this.productRepo = productRepo;
@@ -39,6 +40,23 @@ let ProductService = class ProductService {
             }
         }
     }
+    convertFilters(filters) {
+        const output = {};
+        for (const key in filters) {
+            let [type, name] = key.split(/(?=[A-Z])/);
+            if (type != 'min' && type != 'max') {
+                output[key] = filters[key];
+                continue;
+            }
+            name = name.toLowerCase();
+            const value = filters[key];
+            if (!output[name]) {
+                output[name] = {};
+            }
+            output[name][type] = value;
+        }
+        return output;
+    }
     async create(data) {
         const categoryId = data.categoryId;
         const category = await this.categroyService.findById(categoryId);
@@ -53,6 +71,13 @@ let ProductService = class ProductService {
     }
     async findById(productId, session) {
         return this.productRepo.findById(productId, session);
+    }
+    async find(categoryId, filters, page, limit) {
+        if (filters) {
+            filters = this.convertFilters(filters);
+            filters = (0, filter_helper_1.filterToMongo)(filters);
+        }
+        return this.productRepo.find(categoryId, filters || {}, page, limit);
     }
 };
 ProductService = __decorate([

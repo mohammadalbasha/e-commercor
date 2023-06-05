@@ -19,7 +19,7 @@ let SharedModule = class SharedModule {
     configure(consumer) {
         consumer
             .apply(get_store_middleware_1.GetStoreMiddleware)
-            .exclude('seller/(.*)')
+            .exclude('seller/(.*)', 'file/(.*)')
             .forRoutes('/:storeId/*');
     }
 };

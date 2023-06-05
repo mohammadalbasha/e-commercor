@@ -44,6 +44,22 @@ let ProductRepository = class ProductRepository {
             version: filter.version,
         }, { $inc: { count: 1, version: 1 } }, { session: session, new: true });
     }
+    async find(categoryId, filters, page, limit) {
+        const skip = (page - 1) * limit;
+        filters['categoryId'] = new mongoose_2.default.Types.ObjectId(categoryId);
+        const items = await this.product
+            .find(filters)
+            .skip(skip)
+            .limit(limit)
+            .exec();
+        const count = await this.product.countDocuments(filters).exec();
+        return {
+            items,
+            totalPages: Math.ceil(count / limit),
+            currentPage: page,
+            totalItems: count,
+        };
+    }
 };
 ProductRepository = __decorate([
     __param(0, (0, mongoose_1.InjectModel)(product_model_1.Product.name)),

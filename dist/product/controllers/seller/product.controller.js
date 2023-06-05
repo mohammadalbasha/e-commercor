@@ -11,6 +11,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductSellerController = void 0;
 const common_1 = require("@nestjs/common");
@@ -25,6 +36,12 @@ let ProductSellerController = class ProductSellerController {
     create(data, storeId) {
         return this.productService.create(Object.assign(Object.assign({}, data), { storeId }));
     }
+    async listAll(categoryId, requestQuery) {
+        let { page, limit } = requestQuery, filters = __rest(requestQuery, ["page", "limit"]);
+        page = page || 1;
+        limit = limit || 10;
+        return this.productService.find(categoryId, filters, page, limit);
+    }
 };
 __decorate([
     (0, common_1.Post)(),
@@ -34,6 +51,14 @@ __decorate([
     __metadata("design:paramtypes", [create_product_dto_1.CreateProductDto, String]),
     __metadata("design:returntype", void 0)
 ], ProductSellerController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)('/:categoryId'),
+    __param(0, (0, common_1.Param)('categoryId')),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], ProductSellerController.prototype, "listAll", null);
 ProductSellerController = __decorate([
     (0, common_1.UseGuards)(guards_1.AtSellerGuard),
     (0, common_1.Controller)('/seller/products'),

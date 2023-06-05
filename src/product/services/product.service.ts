@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { ProductRepository } from '../repositories/product.repository';
 import { CreateProductDto } from '../dtos/create-product.dto';
 import { CategoryService } from 'src/category/services/category.service';
+import { filterToMongo } from 'src/shared/mongoose/helperFunctions/filter.helper';
 
 @Injectable()
 export class ProductService {
@@ -23,15 +24,35 @@ export class ProductService {
         );
       }
     }
-
     // another syntax
-
     /*
     const isValid = productDataKeys.every((key) => {
       return productPropertiesKeys.includes(key)
     })
     */
   }
+
+  // {maxPrice = 100, minPrice = 30, name = "kaka"}
+
+  convertFilters(filters) {
+    const output = {};
+    for (const key in filters) {
+      let [type, name] = key.split(/(?=[A-Z])/);
+      if (type != 'min' && type != 'max') {
+        output[key] = filters[key];
+        continue;
+      }
+      name = name.toLowerCase();
+      const value = filters[key];
+      if (!output[name]) {
+        output[name] = {};
+      }
+      output[name][type] = value;
+    }
+
+    return output;
+  }
+
   async create(data: CreateProductDto) {
     const categoryId = data.categoryId;
     const category = await this.categroyService.findById(categoryId);
@@ -56,5 +77,14 @@ export class ProductService {
 
   async findById(productId: string, session?) {
     return this.productRepo.findById(productId, session);
+  }
+
+  async find(categoryId, filters, page, limit) {
+    //const category = await this.categroyService.findById(categoryId);
+    if (filters) {
+      filters = this.convertFilters(filters);
+      filters = filterToMongo(filters);
+    }
+    return this.productRepo.find(categoryId, filters || {}, page, limit);
   }
 }

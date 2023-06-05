@@ -1,19 +1,16 @@
-// import { Module } from '@nestjs/common';
-// import { ModelsModule } from 'src/modules/models.module';
-// import { FileController } from './file.controller';
-// import { MediaFileResolver } from './file.resolver';
-// import { MediaFileService } from './file.service';
+import { Module } from '@nestjs/common';
+import { FileController } from './file.controller';
+import { MediaFileService } from './file.service';
+import { MongooseModule } from '@nestjs/mongoose';
+import { MediaFile, MediaFileSchema } from './file.model';
 
-// @Module({
-//     imports: [
-//         ModelsModule,
-//     ],
-//     controllers: [
-//         FileController,
-//     ],
-//     providers: [
-//         MediaFileService,
-//         MediaFileResolver,
-//     ]
-// })
-// export class MediaFileModule {}
+@Module({
+  imports: [
+    MongooseModule.forFeature([
+      { name: MediaFile.name, schema: MediaFileSchema },
+    ]),
+  ],
+  controllers: [FileController],
+  providers: [MediaFileService],
+})
+export class MediaFileModule {}
