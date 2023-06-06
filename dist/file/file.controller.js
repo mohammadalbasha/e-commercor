@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FileController = void 0;
 const common_1 = require("@nestjs/common");
 const platform_express_1 = require("@nestjs/platform-express");
-const file_filter_1 = require("./file.filter");
 const file_service_1 = require("./file.service");
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
@@ -50,18 +49,6 @@ __decorate([
             fieldSize: 100000,
         },
         storage: cloudinaryStorage,
-        fileFilter: (0, file_filter_1.fileFilter)([
-            'rtf',
-            'pdf',
-            'doc',
-            'docx',
-            'txt',
-            'png',
-            'jpg',
-            'jpeg',
-            'gif',
-            'ico',
-        ], 10000000),
     })),
     __param(0, (0, common_1.UploadedFile)()),
     __metadata("design:type", Function),
