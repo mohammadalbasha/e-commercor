@@ -12,22 +12,9 @@ import { AtSellerGuard } from 'src/authentication/sellers/guards';
 import { CreateProductDto } from 'src/product/dtos/create-product.dto';
 import { ProductService } from 'src/product/services/product.service';
 
-@UseGuards(AtSellerGuard)
-@Controller('/seller/:categoryId/products')
-export class ProductSellerController {
+@Controller('/:storeId/:categoryId/products')
+export class ProductCustomerController {
   constructor(private productService: ProductService) {}
-
-  @Post()
-  // create(
-  //   @Body() data: Omit<CreateProductDto, 'storeId'>,
-  //   @GetSellerStoreId() storeId: string,
-  // )
-  create(@Body() data: CreateProductDto, @GetSellerStoreId() storeId: string) {
-    return this.productService.create({
-      ...data,
-      storeId,
-    });
-  }
 
   @Get()
   async listAll(

@@ -35,6 +35,8 @@ let ProductService = class ProductService {
         const productPropertiesKeys = Object.keys(productProperties._doc);
         const productDataKeys = Object.keys(productData);
         for (let key of productDataKeys) {
+            if (key == 'tag')
+                continue;
             if (!productPropertiesKeys.includes(key)) {
                 throw new common_1.BadRequestException(`${key} is invalid property for this product`);
             }

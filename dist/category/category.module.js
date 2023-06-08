@@ -13,6 +13,7 @@ const category_controller_1 = require("./controllers/seller/category.controller"
 const category_repository_1 = require("./repositories/category.repository");
 const mongoose_1 = require("@nestjs/mongoose");
 const category_model_1 = require("./models/category.model");
+const category_controller_2 = require("./controllers/customer/category.controller");
 let CategoryModule = class CategoryModule {
 };
 CategoryModule = __decorate([
@@ -23,7 +24,7 @@ CategoryModule = __decorate([
             ]),
         ],
         providers: [category_service_1.CategoryService, category_repository_1.CategoryRepository],
-        controllers: [category_controller_1.CategorySellerController],
+        controllers: [category_controller_1.CategorySellerController, category_controller_2.CategoryCustomerController],
         exports: [category_service_1.CategoryService],
     })
 ], CategoryModule);

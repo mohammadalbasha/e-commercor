@@ -23,18 +23,12 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProductSellerController = void 0;
+exports.ProductCustomerController = void 0;
 const common_1 = require("@nestjs/common");
-const get_seller_store_id_decorator_1 = require("../../../authentication/decorators/get-seller-store-id.decorator");
-const guards_1 = require("../../../authentication/sellers/guards");
-const create_product_dto_1 = require("../../dtos/create-product.dto");
 const product_service_1 = require("../../services/product.service");
-let ProductSellerController = class ProductSellerController {
+let ProductCustomerController = class ProductCustomerController {
     constructor(productService) {
         this.productService = productService;
-    }
-    create(data, storeId) {
-        return this.productService.create(Object.assign(Object.assign({}, data), { storeId }));
     }
     async listAll(categoryId, requestQuery) {
         let { page, limit } = requestQuery, filters = __rest(requestQuery, ["page", "limit"]);
@@ -47,32 +41,23 @@ let ProductSellerController = class ProductSellerController {
     }
 };
 __decorate([
-    (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
-    __param(1, (0, get_seller_store_id_decorator_1.GetSellerStoreId)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_product_dto_1.CreateProductDto, String]),
-    __metadata("design:returntype", void 0)
-], ProductSellerController.prototype, "create", null);
-__decorate([
     (0, common_1.Get)(),
     __param(0, (0, common_1.Param)('categoryId')),
     __param(1, (0, common_1.Query)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", Promise)
-], ProductSellerController.prototype, "listAll", null);
+], ProductCustomerController.prototype, "listAll", null);
 __decorate([
     (0, common_1.Get)('/:productId'),
     __param(0, (0, common_1.Param)('productId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], ProductSellerController.prototype, "listOne", null);
-ProductSellerController = __decorate([
-    (0, common_1.UseGuards)(guards_1.AtSellerGuard),
-    (0, common_1.Controller)('/seller/:categoryId/products'),
+], ProductCustomerController.prototype, "listOne", null);
+ProductCustomerController = __decorate([
+    (0, common_1.Controller)('/:storeId/:categoryId/products'),
     __metadata("design:paramtypes", [product_service_1.ProductService])
-], ProductSellerController);
-exports.ProductSellerController = ProductSellerController;
+], ProductCustomerController);
+exports.ProductCustomerController = ProductCustomerController;
 //# sourceMappingURL=product.controller.js.map

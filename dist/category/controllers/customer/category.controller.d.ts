@@ -23,23 +23,15 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
-import { CreateProductDto } from 'src/product/dtos/create-product.dto';
-import { ProductService } from 'src/product/services/product.service';
-export declare class ProductSellerController {
-    private productService;
-    constructor(productService: ProductService);
-    create(data: CreateProductDto, storeId: string): Promise<import("mongoose").Document<unknown, {}, import("../../models/product.model").Product & Document> & Omit<import("../../models/product.model").Product & Document & {
+import { CategoryService } from 'src/category/services/category.service';
+import { Store } from 'src/store/models/store.model';
+export declare class CategoryCustomerController {
+    private categoryService;
+    constructor(categoryService: CategoryService);
+    list(store: Store): Promise<(import("mongoose").Document<unknown, {}, import("../../models/category.model").Category & Document> & Omit<import("../../models/category.model").Category & Document & {
         _id: import("mongoose").Types.ObjectId;
-    }, never>>;
-    listAll(categoryId: string, requestQuery: any): Promise<{
-        items: (import("mongoose").Document<unknown, {}, import("../../models/product.model").Product & Document> & Omit<import("../../models/product.model").Product & Document & {
-            _id: import("mongoose").Types.ObjectId;
-        }, never>)[];
-        totalPages: number;
-        currentPage: any;
-        totalItems: number;
-    }>;
-    listOne(productId: string): Promise<import("mongoose").Document<unknown, {}, import("../../models/product.model").Product & Document> & Omit<import("../../models/product.model").Product & Document & {
+    }, never>)[]>;
+    listOne(categoryId: any): Promise<import("mongoose").Document<unknown, {}, import("../../models/category.model").Category & Document> & Omit<import("../../models/category.model").Category & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;
 }

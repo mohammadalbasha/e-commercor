@@ -46,7 +46,7 @@ __decorate([
     (0, common_1.Post)('file/upload'),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         limits: {
-            fieldSize: 100000,
+            fileSize: 1000000,
         },
         storage: cloudinaryStorage,
     })),

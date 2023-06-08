@@ -62,9 +62,24 @@ export class FileController {
     FileInterceptor('file', {
       limits: {
         //fileSize: +env.MaxPublicFileUploadSize,
-        fieldSize: 100000,
+        fileSize: 1000000,
       },
       storage: cloudinaryStorage,
+      // fileFilter: fileFilter(
+      //   [
+      //     'rtf',
+      //     'pdf',
+      //     'doc',
+      //     'docx',
+      //     'txt',
+      //     'png',
+      //     'jpg',
+      //     'jpeg',
+      //     'gif',
+      //     'ico',
+      //   ],
+      //   10000000,
+      // ),
     }),
   )
   async uploadPublicFile(@UploadedFile() file: Express.Multer.File) {
