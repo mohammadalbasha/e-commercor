@@ -26,13 +26,18 @@
 import { CreateStoreDto } from '../../dtos/create-store.dto';
 import { StoreService } from '../../services/store.service';
 import { Store } from '../../models/store.model';
+import { AuthSellerService } from 'src/authentication/sellers/services/auth-seller.service';
 export declare class StoreSellerController {
     private storeService;
-    constructor(storeService: StoreService);
-    create(input: CreateStoreDto): Promise<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
-        _id: import("mongoose").Types.ObjectId;
-    }, never>>;
+    private authService;
+    constructor(storeService: StoreService, authService: AuthSellerService);
+    create(input: CreateStoreDto): Promise<import("../../../authentication/types").Tokens>;
     getStore(sellerId: string): Promise<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;
+    addLandingPage(body: any, sellerId: string): import("mongoose").Query<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>, import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>, {}, Store & Document>;
 }

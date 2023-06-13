@@ -42,6 +42,9 @@ export class Order extends BaseModel {
   customerId?: string;
   @PropObject(Customer)
   customer?: Customer;
+
+  @Prop({ required: true, default: false })
+  isCaptured: boolean;
 }
 
 export type OrderDocument = Order & Document;

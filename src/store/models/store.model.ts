@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Exclude, Type } from 'class-transformer';
+import mongoose from 'mongoose';
 import { defaultSchemaOptions } from 'src/shared/constants/common';
 import { BaseModel } from 'src/shared/models/base.model';
 
@@ -32,7 +33,7 @@ export class Seller extends BaseModel {
 
 @Schema(defaultSchemaOptions)
 export class Store extends BaseModel {
-  @Prop({ index: true })
+  @Prop({ index: true, required: true, unique: true })
   name: string;
 
   @Prop()
@@ -63,6 +64,9 @@ export class Store extends BaseModel {
 
   @Prop()
   marketVerifications: string;
+
+  @Prop()
+  landingPage: mongoose.Schema.Types.Mixed;
 
   //   @PropEnum(Gender)
   //   gender?: Gender;

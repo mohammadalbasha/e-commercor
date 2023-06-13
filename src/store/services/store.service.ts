@@ -44,6 +44,10 @@ export class StoreService {
     return this.storeRepo.findById(storeId);
   }
 
+  findByName(storeName: string) {
+    return this.storeRepo.findByName(storeName);
+  }
+
   findByIdAndUpdate(storeId: string, data: Partial<Store>) {
     return this.storeRepo.findByIdAndUpdate(storeId, data);
   }
@@ -66,5 +70,11 @@ export class StoreService {
 
   findSellerByIdAndUpdate(sellerId: string, data: Partial<Seller>) {
     return this.storeRepo.findSellerByIdAndUpdate(sellerId, data);
+  }
+
+  addLandingPage(sellerId, data) {
+    return this.storeRepo.findBySellerIdAndUpdate(sellerId, {
+      landingPage: data,
+    });
   }
 }

@@ -48,6 +48,9 @@ let StoreService = class StoreService {
     findById(storeId) {
         return this.storeRepo.findById(storeId);
     }
+    findByName(storeName) {
+        return this.storeRepo.findByName(storeName);
+    }
     findByIdAndUpdate(storeId, data) {
         return this.storeRepo.findByIdAndUpdate(storeId, data);
     }
@@ -65,6 +68,11 @@ let StoreService = class StoreService {
     }
     findSellerByIdAndUpdate(sellerId, data) {
         return this.storeRepo.findSellerByIdAndUpdate(sellerId, data);
+    }
+    addLandingPage(sellerId, data) {
+        return this.storeRepo.findBySellerIdAndUpdate(sellerId, {
+            landingPage: data,
+        });
     }
 };
 StoreService = __decorate([

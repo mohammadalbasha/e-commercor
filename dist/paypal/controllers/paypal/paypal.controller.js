@@ -14,6 +14,8 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PaypalController = void 0;
 const common_1 = require("@nestjs/common");
+const get_seller_store_id_decorator_1 = require("../../../authentication/decorators/get-seller-store-id.decorator");
+const guards_1 = require("../../../authentication/sellers/guards");
 const paypal_service_1 = require("../../services/paypal.service");
 let PaypalController = class PaypalController {
     constructor(paypalService) {
@@ -28,8 +30,9 @@ let PaypalController = class PaypalController {
     }
 };
 __decorate([
-    (0, common_1.Get)('setup-merchant/:storeId'),
-    __param(0, (0, common_1.Param)('storeId')),
+    (0, common_1.UseGuards)(guards_1.AtSellerGuard),
+    (0, common_1.Get)('setup-merchant'),
+    __param(0, (0, get_seller_store_id_decorator_1.GetSellerStoreId)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)

@@ -52,6 +52,11 @@ export declare class StoreService {
     }, never>, import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>, {}, Store & Document>;
+    findByName(storeName: string): import("mongoose").Query<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>, import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>, {}, Store & Document>;
     findByIdAndUpdate(storeId: string, data: Partial<Store>): import("mongoose").Query<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>, import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
@@ -62,4 +67,9 @@ export declare class StoreService {
     findSellerByEmail(email: string): Promise<Seller>;
     findSellerAndUpdate(filter: Partial<Seller>, data: Partial<Seller>): Promise<void>;
     findSellerByIdAndUpdate(sellerId: string, data: Partial<Seller>): Promise<import("mongodb").UpdateResult>;
+    addLandingPage(sellerId: any, data: any): import("mongoose").Query<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>, import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>, {}, Store & Document>;
 }

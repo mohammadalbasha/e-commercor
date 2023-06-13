@@ -66,7 +66,24 @@ let OrderService = class OrderService {
     }
     async captureOrder(storeId, orderId, token) {
         const isCaptured = await this.paypalService.captureOrder(token);
+        await this.orderRepo.updateOne({ id: orderId }, { isCaptured: true });
         return isCaptured;
+    }
+    async cancelOrder(storeId, orderId) {
+        const order = await this.orderRepo.findById(orderId);
+        const session = await this.connection.startSession();
+        session.startTransaction();
+        try {
+            const product = await this.productService.findById(order.productId);
+            await this.productService.increamentCount({ productId: product.id, version: product.version }, session);
+            await session.commitTransaction();
+        }
+        catch (_a) {
+            await session.abortTransaction();
+        }
+        finally {
+            session.endSession();
+        }
     }
 };
 OrderService = __decorate([

@@ -1,10 +1,15 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 import { classToPlain, classToPlainFromExist } from 'class-transformer';
+import { ConfigService } from '@nestjs/config';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {
+  constructor(
+    private readonly appService: AppService,
+    private con: ConfigService,
+  ) {
+    console.log(con.get('mongo').production_url);
     const data = {
       name: 'string',
       price: 'number',

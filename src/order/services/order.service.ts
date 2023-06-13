@@ -97,8 +97,33 @@ export class OrderService {
 
   async captureOrder(storeId: string, orderId: string, token: string) {
     const isCaptured = await this.paypalService.captureOrder(token);
+    await this.orderRepo.updateOne({ id: orderId }, { isCaptured: true });
     return isCaptured;
+
     // TODO:
     // update order
+  }
+
+  async cancelOrder(storeId: string, orderId: string) {
+    // TODO:
+    // update order
+    const order = await this.orderRepo.findById(orderId);
+    const session = await this.connection.startSession();
+    session.startTransaction();
+
+    // TODO:
+    // re execute five times
+    try {
+      const product = await this.productService.findById(order.productId);
+      await this.productService.increamentCount(
+        { productId: product.id, version: product.version },
+        session,
+      );
+      await session.commitTransaction();
+    } catch {
+      await session.abortTransaction();
+    } finally {
+      session.endSession();
+    }
   }
 }

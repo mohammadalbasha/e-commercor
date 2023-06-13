@@ -10,16 +10,19 @@ export class CategorySellerController {
   constructor(private categoryService: CategoryService) {}
 
   @Post()
-  create(
+  async create(
     // @Body() data: Omit<CreateCategoryDto, 'storeId'>,
     // dto validations will be missed if we use Omit
     @Body() data: CreateCategoryDto,
     @GetSellerStoreId() storeId: string,
   ) {
-    return this.categoryService.create({
+    const category = await this.categoryService.create({
       ...data,
       storeId,
     });
+
+    //return category;
+    return 'category created successfully';
   }
 
   @Get()

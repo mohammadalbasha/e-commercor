@@ -28,11 +28,22 @@ export declare class StoreRepository {
     }, never>, mongoose.Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: mongoose.Types.ObjectId;
     }, never>, {}, Store & Document>;
+    findByName(storeName: string): mongoose.Query<mongoose.Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+        _id: mongoose.Types.ObjectId;
+    }, never>, mongoose.Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+        _id: mongoose.Types.ObjectId;
+    }, never>, {}, Store & Document>;
     findByIdAndUpdate(storeId: string, data: Partial<Store>): mongoose.Query<mongoose.Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: mongoose.Types.ObjectId;
     }, never>, mongoose.Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: mongoose.Types.ObjectId;
     }, never>, {}, Store & Document>;
+    findBySellerIdAndUpdate(sellerId: string, data: Partial<Store>): mongoose.Query<mongoose.Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+        _id: mongoose.Types.ObjectId;
+    }, never>, mongoose.Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+        _id: mongoose.Types.ObjectId;
+    }, never>, {}, Store & Document>;
+    async: any;
     findBySellerId(sellerId: string): Promise<mongoose.Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: mongoose.Types.ObjectId;
     }, never>>;

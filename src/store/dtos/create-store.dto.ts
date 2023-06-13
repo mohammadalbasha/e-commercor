@@ -12,12 +12,16 @@ import {
   ValidateNested,
 } from 'class-validator';
 import { MatchPassword } from 'src/authentication/decorators/validation/matchPassword.decorator';
+import { Unique } from 'src/shared/validation/unique.validator';
+import { Store } from '../models/store.model';
 
 export class CreateSellerDto {
+  @Validate(Unique, [Store, 'seller.name'])
   @IsString()
   @IsDefined()
   name: string;
 
+  @Validate(Unique, [Store, 'seller.email'])
   @IsEmail()
   @IsDefined()
   email: string;
@@ -29,6 +33,7 @@ export class CreateSellerDto {
   @Validate(MatchPassword)
   confirmPassword: string;
 
+  @Validate(Unique, [Store, 'seller.phoneNumber'])
   @IsString()
   @IsDefined()
   phoneNumber: string;
@@ -43,6 +48,7 @@ export class CreateSellerDto {
 }
 
 export class CreateStoreDto {
+  @Validate(Unique, [Store, 'name'])
   @IsString()
   @IsDefined()
   name: string;

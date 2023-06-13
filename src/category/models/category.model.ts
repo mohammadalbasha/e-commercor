@@ -47,6 +47,9 @@ export class Category extends BaseModel {
 
   @Prop({ type: ProductProperties })
   productProperties: ProductProperties;
+
+  @Prop()
+  cart: mongoose.Schema.Types.Mixed;
 }
 
 export type CategoryDocument = Category & Document;

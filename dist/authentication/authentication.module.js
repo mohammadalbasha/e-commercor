@@ -32,7 +32,7 @@ AuthenticationModule = __decorate([
             jwt_1.JwtService,
             auth_customer_service_1.AuthCustomerService,
         ],
-        exports: [password_service_1.PasswordService],
+        exports: [password_service_1.PasswordService, auth_seller_service_1.AuthSellerService],
         imports: [(0, common_1.forwardRef)(() => store_module_1.StoreModule), (0, common_1.forwardRef)(() => customer_module_1.CustomerModule)],
         controllers: [auth_seller_controller_1.AuthSellerController, auth_customer_controller_1.AuthCustomerController],
     })

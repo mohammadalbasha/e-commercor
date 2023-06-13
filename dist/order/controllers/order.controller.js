@@ -27,9 +27,15 @@ let OrderController = class OrderController {
         data = Object.assign(Object.assign({}, data), { storeId: store.id, customerId: user.sub });
         return this.orderService.purchaseProduct(data, store);
     }
+    captureOrder(storeId, orderId, token) {
+        return this.orderService.captureOrder(storeId, orderId, token);
+    }
+    cancelOrder(storeId, orderId, token) {
+        return this.orderService.cancelOrder(storeId, orderId);
+    }
 };
 __decorate([
-    (0, common_1.Post)(':storeId/order'),
+    (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, current_store_decorator_1.GetCurrentStore)()),
     __param(2, (0, decorators_1.GetCurrentUser)()),
@@ -37,9 +43,29 @@ __decorate([
     __metadata("design:paramtypes", [Object, store_model_1.Store, Object]),
     __metadata("design:returntype", void 0)
 ], OrderController.prototype, "creataOrder", null);
+__decorate([
+    (0, decorators_1.Public)(),
+    (0, common_1.Get)('/captue/:orderId'),
+    __param(0, (0, common_1.Param)('storeId')),
+    __param(1, (0, common_1.Param)('orderId')),
+    __param(2, (0, common_1.Query)('token')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, String]),
+    __metadata("design:returntype", void 0)
+], OrderController.prototype, "captureOrder", null);
+__decorate([
+    (0, decorators_1.Public)(),
+    (0, common_1.Get)('/captue/cancel/:orderId'),
+    __param(0, (0, common_1.Param)('storeId')),
+    __param(1, (0, common_1.Param)('orderId')),
+    __param(2, (0, common_1.Query)('token')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, String]),
+    __metadata("design:returntype", void 0)
+], OrderController.prototype, "cancelOrder", null);
 OrderController = __decorate([
     (0, common_1.UseGuards)(guards_1.AtCustomerGuard),
-    (0, common_1.Controller)(''),
+    (0, common_1.Controller)(':storeId/order'),
     __metadata("design:paramtypes", [order_service_1.OrderService])
 ], OrderController);
 exports.OrderController = OrderController;

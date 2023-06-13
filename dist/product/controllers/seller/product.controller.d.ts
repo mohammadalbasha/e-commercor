@@ -28,9 +28,7 @@ import { ProductService } from 'src/product/services/product.service';
 export declare class ProductSellerController {
     private productService;
     constructor(productService: ProductService);
-    create(data: CreateProductDto, storeId: string): Promise<import("mongoose").Document<unknown, {}, import("../../models/product.model").Product & Document> & Omit<import("../../models/product.model").Product & Document & {
-        _id: import("mongoose").Types.ObjectId;
-    }, never>>;
+    create(data: CreateProductDto, storeId: string): Promise<string>;
     listAll(categoryId: string, requestQuery: any): Promise<{
         items: (import("mongoose").Document<unknown, {}, import("../../models/product.model").Product & Document> & Omit<import("../../models/product.model").Product & Document & {
             _id: import("mongoose").Types.ObjectId;

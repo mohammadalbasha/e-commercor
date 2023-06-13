@@ -16,11 +16,11 @@ import { User } from 'src/authorization/casl/user.model';
 import { AtCustomerGuard } from 'src/authentication/customers/guards';
 
 @UseGuards(AtCustomerGuard)
-@Controller('')
+@Controller(':storeId/order')
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
-  @Post(':storeId/order')
+  @Post()
   creataOrder(
     @Body() data: Omit<CreateOrderDto, 'userId' | 'storeId'>,
     @GetCurrentStore() store: Store,
@@ -36,13 +36,23 @@ export class OrderController {
 
   // TODO:
   // refactor this path
-  // @Public()
-  // @Get('/:storeId/:orderId')
-  // captureOrder(
-  //   @Param('storeId') storeId: string,
-  //   @Param('orderId') orderId: string,
-  //   @Query('token') token: string,
-  // ) {
-  //   return this.orderService.captureOrder(storeId, orderId, token);
-  // }
+  @Public()
+  @Get('/captue/:orderId')
+  captureOrder(
+    @Param('storeId') storeId: string,
+    @Param('orderId') orderId: string,
+    @Query('token') token: string,
+  ) {
+    return this.orderService.captureOrder(storeId, orderId, token);
+  }
+
+  @Public()
+  @Get('/captue/cancel/:orderId')
+  cancelOrder(
+    @Param('storeId') storeId: string,
+    @Param('orderId') orderId: string,
+    @Query('token') token: string,
+  ) {
+    return this.orderService.cancelOrder(storeId, orderId);
+  }
 }

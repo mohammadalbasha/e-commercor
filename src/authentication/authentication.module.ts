@@ -21,7 +21,7 @@ import { AtCustomerStrategy, RtCustomerStrategy } from './customers/strategies';
     JwtService,
     AuthCustomerService,
   ],
-  exports: [PasswordService],
+  exports: [PasswordService, AuthSellerService],
   imports: [forwardRef(() => StoreModule), forwardRef(() => CustomerModule)],
   controllers: [AuthSellerController, AuthCustomerController],
 })

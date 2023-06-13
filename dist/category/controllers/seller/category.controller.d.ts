@@ -28,9 +28,7 @@ import { CategoryService } from 'src/category/services/category.service';
 export declare class CategorySellerController {
     private categoryService;
     constructor(categoryService: CategoryService);
-    create(data: CreateCategoryDto, storeId: string): Promise<import("mongoose").Document<unknown, {}, import("../../models/category.model").Category & Document> & Omit<import("../../models/category.model").Category & Document & {
-        _id: import("mongoose").Types.ObjectId;
-    }, never>>;
+    create(data: CreateCategoryDto, storeId: string): Promise<string>;
     list(storeId: string): Promise<(import("mongoose").Document<unknown, {}, import("../../models/category.model").Category & Document> & Omit<import("../../models/category.model").Category & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>)[]>;

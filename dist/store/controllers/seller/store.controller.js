@@ -20,15 +20,24 @@ const decorators_1 = require("../../../authentication/decorators");
 const guards_1 = require("../../../authentication/sellers/guards");
 const mongooseClassSerializer_interceptor_1 = require("../../../shared/mongoose/interceptors/mongooseClassSerializer.interceptor");
 const store_model_1 = require("../../models/store.model");
+const auth_seller_service_1 = require("../../../authentication/sellers/services/auth-seller.service");
 let StoreSellerController = class StoreSellerController {
-    constructor(storeService) {
+    constructor(storeService, authService) {
         this.storeService = storeService;
+        this.authService = authService;
     }
-    create(input) {
-        return this.storeService.create(input);
+    async create(input) {
+        const store = await this.storeService.create(input);
+        return this.authService.login({
+            email: input.seller.email,
+            password: input.seller.password,
+        });
     }
     getStore(sellerId) {
         return this.storeService.findBySellerId(sellerId);
+    }
+    addLandingPage(body, sellerId) {
+        return this.storeService.addLandingPage(sellerId, body);
     }
 };
 __decorate([
@@ -38,7 +47,7 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_store_dto_1.CreateStoreDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], StoreSellerController.prototype, "create", null);
 __decorate([
     (0, common_1.UseInterceptors)((0, mongooseClassSerializer_interceptor_1.default)(store_model_1.Store)),
@@ -48,10 +57,19 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], StoreSellerController.prototype, "getStore", null);
+__decorate([
+    (0, common_1.Post)('/landing-page'),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, decorators_1.GetCurrentUserId)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", void 0)
+], StoreSellerController.prototype, "addLandingPage", null);
 StoreSellerController = __decorate([
     (0, common_1.UseGuards)(guards_1.AtSellerGuard),
     (0, common_1.Controller)('/seller/store'),
-    __metadata("design:paramtypes", [store_service_1.StoreService])
+    __metadata("design:paramtypes", [store_service_1.StoreService,
+        auth_seller_service_1.AuthSellerService])
 ], StoreSellerController);
 exports.StoreSellerController = StoreSellerController;
 //# sourceMappingURL=store.controller.js.map

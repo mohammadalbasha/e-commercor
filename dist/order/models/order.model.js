@@ -63,6 +63,10 @@ __decorate([
     (0, PropRef_decorator_1.PropObject)(customer_model_1.Customer),
     __metadata("design:type", customer_model_1.Customer)
 ], Order.prototype, "customer", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: true, default: false }),
+    __metadata("design:type", Boolean)
+], Order.prototype, "isCaptured", void 0);
 Order = __decorate([
     (0, mongoose_1.Schema)(common_1.defaultSchemaOptions)
 ], Order);

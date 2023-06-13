@@ -12,4 +12,5 @@ export declare class OrderService {
     constructor(connection: mongoose.Connection, productService: ProductService, orderRepo: OrderRepository, paypalService: PaypalService);
     purchaseProduct(data: CreateOrderDto, store: Store): Promise<any>;
     captureOrder(storeId: string, orderId: string, token: string): Promise<any>;
+    cancelOrder(storeId: string, orderId: string): Promise<void>;
 }

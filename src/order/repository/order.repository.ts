@@ -13,4 +13,12 @@ export class OrderRepository {
     const order = await this.order.create([{ ...data }], { session: session });
     return order;
   }
+
+  updateOne(filter: Partial<Order>, data: Partial<Order>) {
+    return this.order.updateOne(filter, data);
+  }
+
+  findById(id: string) {
+    return this.order.findById(id);
+  }
 }

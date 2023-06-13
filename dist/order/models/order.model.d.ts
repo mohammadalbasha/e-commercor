@@ -39,6 +39,7 @@ export declare class Order extends BaseModel {
     product?: Product;
     customerId?: string;
     customer?: Customer;
+    isCaptured: boolean;
 }
 export type OrderDocument = Order & Document;
 export declare const OrderSchema: import("mongoose").Schema<Order, import("mongoose").Model<Order, any, any, any, import("mongoose").Document<unknown, any, Order> & Omit<Order & {

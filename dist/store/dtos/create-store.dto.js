@@ -13,14 +13,18 @@ exports.CreateStoreDto = exports.CreateSellerDto = void 0;
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
 const matchPassword_decorator_1 = require("../../authentication/decorators/validation/matchPassword.decorator");
+const unique_validator_1 = require("../../shared/validation/unique.validator");
+const store_model_1 = require("../models/store.model");
 class CreateSellerDto {
 }
 __decorate([
+    (0, class_validator_1.Validate)(unique_validator_1.Unique, [store_model_1.Store, 'seller.name']),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsDefined)(),
     __metadata("design:type", String)
 ], CreateSellerDto.prototype, "name", void 0);
 __decorate([
+    (0, class_validator_1.Validate)(unique_validator_1.Unique, [store_model_1.Store, 'seller.email']),
     (0, class_validator_1.IsEmail)(),
     (0, class_validator_1.IsDefined)(),
     __metadata("design:type", String)
@@ -35,6 +39,7 @@ __decorate([
     __metadata("design:type", String)
 ], CreateSellerDto.prototype, "confirmPassword", void 0);
 __decorate([
+    (0, class_validator_1.Validate)(unique_validator_1.Unique, [store_model_1.Store, 'seller.phoneNumber']),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsDefined)(),
     __metadata("design:type", String)
@@ -53,6 +58,7 @@ exports.CreateSellerDto = CreateSellerDto;
 class CreateStoreDto {
 }
 __decorate([
+    (0, class_validator_1.Validate)(unique_validator_1.Unique, [store_model_1.Store, 'name']),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsDefined)(),
     __metadata("design:type", String)

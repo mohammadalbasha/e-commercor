@@ -22,11 +22,16 @@ export class ProductSellerController {
   //   @Body() data: Omit<CreateProductDto, 'storeId'>,
   //   @GetSellerStoreId() storeId: string,
   // )
-  create(@Body() data: CreateProductDto, @GetSellerStoreId() storeId: string) {
-    return this.productService.create({
+  async create(
+    @Body() data: CreateProductDto,
+    @GetSellerStoreId() storeId: string,
+  ) {
+    const product = await this.productService.create({
       ...data,
       storeId,
     });
+    // return product;
+    return 'product added successfully';
   }
 
   @Get()

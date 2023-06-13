@@ -24,6 +24,12 @@ let OrderRepository = class OrderRepository {
         const order = await this.order.create([Object.assign({}, data)], { session: session });
         return order;
     }
+    updateOne(filter, data) {
+        return this.order.updateOne(filter, data);
+    }
+    findById(id) {
+        return this.order.findById(id);
+    }
 };
 OrderRepository = __decorate([
     __param(0, (0, mongoose_2.InjectModel)(order_model_1.Order.name)),

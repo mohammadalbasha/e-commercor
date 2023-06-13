@@ -15,6 +15,7 @@ export declare class Category extends BaseModel {
     storeId: string;
     store: Store;
     productProperties: ProductProperties;
+    cart: mongoose.Schema.Types.Mixed;
 }
 export type CategoryDocument = Category & Document;
 export declare const CategorySchema: mongoose.Schema<Category, mongoose.Model<Category, any, any, any, mongoose.Document<unknown, any, Category> & Omit<Category & {

@@ -16,9 +16,12 @@ exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
 const app_service_1 = require("./app.service");
 const class_transformer_1 = require("class-transformer");
+const config_1 = require("@nestjs/config");
 let AppController = class AppController {
-    constructor(appService) {
+    constructor(appService, con) {
         this.appService = appService;
+        this.con = con;
+        console.log(con.get('mongo').production_url);
         const data = {
             name: 'string',
             price: 'number',
@@ -48,7 +51,8 @@ __decorate([
 ], AppController.prototype, "hello", null);
 AppController = __decorate([
     (0, common_1.Controller)(),
-    __metadata("design:paramtypes", [app_service_1.AppService])
+    __metadata("design:paramtypes", [app_service_1.AppService,
+        config_1.ConfigService])
 ], AppController);
 exports.AppController = AppController;
 //# sourceMappingURL=app.controller.js.map

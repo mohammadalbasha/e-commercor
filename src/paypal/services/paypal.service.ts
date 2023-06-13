@@ -236,9 +236,9 @@ export class PaypalService {
 
                 user_action: 'PAY_NOW',
 
-                return_url: `http://localhost:3000/${storeId}/${orderId}`,
+                return_url: `http://localhost:3000/${storeId}/order/capture/${orderId}`,
 
-                cancel_url: 'https://example.com/cancelUrl',
+                cancel_url: `http://localhost:3000/${storeId}/order/capture/cancel/${orderId}`,
               },
             },
           },

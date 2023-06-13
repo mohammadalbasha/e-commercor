@@ -25,12 +25,12 @@ let AuthSellerService = class AuthSellerService {
     }
     async login(data) {
         const seller = await this.storeService.findSellerByEmail(data.email);
-        const store = await this.storeService.findBySellerId(seller.id);
         if (!seller)
-            throw new common_1.ForbiddenException('Access Denied');
+            throw new common_1.ForbiddenException('no seller found with this email');
+        const store = await this.storeService.findBySellerId(seller.id);
         const passwordMatches = await this.passwordService.validatePassword(data.password, seller.password);
         if (!passwordMatches)
-            throw new common_1.ForbiddenException('Access Denied');
+            throw new common_1.ForbiddenException('password incorrect');
         const tokens = await this.getTokens(seller.id, seller.email, store.id);
         await this.updateRtHash(seller.id, tokens.refresh_token);
         return tokens;

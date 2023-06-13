@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.StoreSchema = exports.Store = exports.Seller = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const class_transformer_1 = require("class-transformer");
+const mongoose_2 = require("mongoose");
 const common_1 = require("../../shared/constants/common");
 const base_model_1 = require("../../shared/models/base.model");
 let Seller = class Seller extends base_model_1.BaseModel {
@@ -53,7 +54,7 @@ exports.Seller = Seller;
 let Store = class Store extends base_model_1.BaseModel {
 };
 __decorate([
-    (0, mongoose_1.Prop)({ index: true }),
+    (0, mongoose_1.Prop)({ index: true, required: true, unique: true }),
     __metadata("design:type", String)
 ], Store.prototype, "name", void 0);
 __decorate([
@@ -93,6 +94,10 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], Store.prototype, "marketVerifications", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", mongoose_2.default.Schema.Types.Mixed)
+], Store.prototype, "landingPage", void 0);
 Store = __decorate([
     (0, mongoose_1.Schema)(common_1.defaultSchemaOptions)
 ], Store);

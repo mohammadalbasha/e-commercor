@@ -23,17 +23,19 @@ export class AuthSellerService {
   async login(data: LoginDto): Promise<Tokens> {
     // TODO:
     // refactoring
-    const seller = await this.storeService.findSellerByEmail(data.email);
-    const store = await this.storeService.findBySellerId(seller.id);
 
-    if (!seller) throw new ForbiddenException('Access Denied');
+    const seller = await this.storeService.findSellerByEmail(data.email);
+    if (!seller)
+      throw new ForbiddenException('no seller found with this email');
+
+    const store = await this.storeService.findBySellerId(seller.id);
 
     const passwordMatches = await this.passwordService.validatePassword(
       data.password,
       seller.password,
     );
 
-    if (!passwordMatches) throw new ForbiddenException('Access Denied');
+    if (!passwordMatches) throw new ForbiddenException('password incorrect');
 
     const tokens = await this.getTokens(seller.id, seller.email, store.id);
 

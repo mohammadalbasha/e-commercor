@@ -22,8 +22,9 @@ let CategorySellerController = class CategorySellerController {
     constructor(categoryService) {
         this.categoryService = categoryService;
     }
-    create(data, storeId) {
-        return this.categoryService.create(Object.assign(Object.assign({}, data), { storeId }));
+    async create(data, storeId) {
+        const category = await this.categoryService.create(Object.assign(Object.assign({}, data), { storeId }));
+        return 'category created successfully';
     }
     list(storeId) {
         return this.categoryService.findByStoreId(storeId);
@@ -38,7 +39,7 @@ __decorate([
     __param(1, (0, get_seller_store_id_decorator_1.GetSellerStoreId)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_category_dto_1.CreateCategoryDto, String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], CategorySellerController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),

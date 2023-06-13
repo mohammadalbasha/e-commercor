@@ -42,10 +42,19 @@ export class StoreRepository {
     return this.store.findById(storeId);
   }
 
+  findByName(storeName: string) {
+    return this.store.findOne({ name: storeName });
+  }
+
   findByIdAndUpdate(storeId: string, data: Partial<Store>) {
     return this.store.findByIdAndUpdate(storeId, { ...data });
   }
 
+  findBySellerIdAndUpdate(sellerId: string, data: Partial<Store>) {
+    return this.store.findOneAndUpdate({ 'seller._id': sellerId }, { ...data });
+  }
+
+  async;
   async findBySellerId(sellerId: string) {
     const store = await this.store.findOne({
       'seller._id': sellerId,

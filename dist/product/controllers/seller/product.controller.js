@@ -33,8 +33,9 @@ let ProductSellerController = class ProductSellerController {
     constructor(productService) {
         this.productService = productService;
     }
-    create(data, storeId) {
-        return this.productService.create(Object.assign(Object.assign({}, data), { storeId }));
+    async create(data, storeId) {
+        const product = await this.productService.create(Object.assign(Object.assign({}, data), { storeId }));
+        return 'product added successfully';
     }
     async listAll(categoryId, requestQuery) {
         let { page, limit } = requestQuery, filters = __rest(requestQuery, ["page", "limit"]);
@@ -52,7 +53,7 @@ __decorate([
     __param(1, (0, get_seller_store_id_decorator_1.GetSellerStoreId)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_product_dto_1.CreateProductDto, String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ProductSellerController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
