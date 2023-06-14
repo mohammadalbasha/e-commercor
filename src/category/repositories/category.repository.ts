@@ -28,7 +28,7 @@ export class CategoryRepository {
 
   // TODO:
   // make a filter type decorator and filter dto
-  findAll(filter: Partial<Category>) {
+  async findAll(filter: Partial<Category>) {
     return this.category.find({
       ...filter,
     });

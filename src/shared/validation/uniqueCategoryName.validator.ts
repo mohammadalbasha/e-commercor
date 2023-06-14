@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, ExecutionContext } from '@nestjs/common';
 import { InjectConnection } from '@nestjs/mongoose';
 import {
   ValidationArguments,
@@ -7,7 +7,8 @@ import {
 } from 'class-validator';
 import { Connection } from 'mongoose';
 import { BaseModel } from '../models/base.model';
-import { GetSellerStoreId } from 'src/authentication/decorators/get-seller-store-id.decorator';
+import { ClsService } from 'nestjs-cls';
+import { MyClsStore } from '../cls/cls.interface';
 
 interface UniqueMultiValidationArguments<E> extends ValidationArguments {
   // constraints: [
@@ -17,22 +18,24 @@ interface UniqueMultiValidationArguments<E> extends ValidationArguments {
   constraints: [typeof BaseModel, string, string];
 }
 
-@ValidatorConstraint({ name: 'uniqueMulti', async: true })
+@ValidatorConstraint({ name: 'uniqueCategoryName', async: true })
 @Injectable()
-export class UniqueMulti implements ValidatorConstraintInterface {
-  constructor(@InjectConnection() private connection: Connection) {}
+export class UniqueCategoryName implements ValidatorConstraintInterface {
+  constructor(
+    @InjectConnection() private connection: Connection,
+    private readonly cls: ClsService<MyClsStore>,
+  ) {}
 
   public async validate<E>(
     value: string,
     args: UniqueMultiValidationArguments<E>,
   ) {
     const [Model, ...columns] = args.constraints;
-
-    let where = {};
+    const storeId = this.cls.get('req')?.user?.storeId;
+    let where = { storeId };
     if ('id' in args.object) {
       where = Object.assign(where, { _id: { $ne: args.object['id'] } });
     }
-
     if (args.object) {
       columns.forEach((column) => {
         where = Object.assign(where, {

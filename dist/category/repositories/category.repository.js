@@ -34,7 +34,7 @@ let CategoryRepository = class CategoryRepository {
         });
         return categories;
     }
-    findAll(filter) {
+    async findAll(filter) {
         return this.category.find(Object.assign({}, filter));
     }
     findOne(filter) {

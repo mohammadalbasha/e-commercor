@@ -15,9 +15,19 @@ import { UniqueMulti } from './shared/validation/uniqueMulti.validator';
 import { Unique } from './shared/validation/unique.validator';
 import { IsRef } from './shared/validation/isRef.validator';
 import { MediaFileModule } from './file/file.module';
+import { UniqueCategoryName } from './shared/validation/uniqueCategoryName.validator';
+import { ClsModule } from 'nestjs-cls';
 
 @Module({
   imports: [
+    ClsModule.forRoot({
+      middleware: {
+        mount: true,
+        setup: (cls, req) => {
+          cls.set('req', req);
+        },
+      },
+    }),
     SharedModule,
     UtilsModule,
     StoreModule,
@@ -36,6 +46,7 @@ import { MediaFileModule } from './file/file.module';
     // those better to be in shared module
     Unique,
     UniqueMulti,
+    UniqueCategoryName,
     IsRef,
   ],
 })

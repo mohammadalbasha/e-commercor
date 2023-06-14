@@ -60,7 +60,7 @@ export declare class ProductService {
         _id: import("mongoose").Types.ObjectId;
         __v?: any;
         $locals: Record<string, unknown>;
-        $op: "remove" | "validate" | "save";
+        $op: "save" | "validate" | "remove";
         $where: Record<string, unknown>;
         baseModelName?: string;
         collection: import("mongoose").Collection<import("bson").Document>;
@@ -77,13 +77,16 @@ export declare class ProductService {
         }> & Required<{
             _id: unknown;
         }>, never>>;
-        close: () => void;
-        name: string;
-        count: number;
+        storeId: string;
         normalize: () => void;
-        isActive?: boolean;
+        name: string;
+        price: number;
+        isSale: boolean;
+        saleValue: number;
+        store: import("../../store/models/store.model").Store;
         createdAt?: Date;
         updatedAt?: Date;
+        isActive?: boolean;
         URL: string;
         alinkColor: string;
         all: HTMLAllCollection;
@@ -140,6 +143,7 @@ export declare class ProductService {
         captureEvents: () => void;
         caretRangeFromPoint: (x: number, y: number) => Range;
         clear: () => void;
+        close: () => void;
         createAttribute: (localName: string) => Attr;
         createAttributeNS: (namespace: string, qualifiedName: string) => Attr;
         createCDATASection: (data: string) => CDATASection;
@@ -436,11 +440,7 @@ export declare class ProductService {
         createExpression: (expression: string, resolver?: XPathNSResolver) => XPathExpression;
         createNSResolver: (nodeResolver: Node) => XPathNSResolver;
         evaluate: (expression: string, contextNode: Node, resolver?: XPathNSResolver, type?: number, result?: XPathResult) => XPathResult;
-        storeId: string;
-        store: import("../../store/models/store.model").Store;
-        price: number;
-        isSale: boolean;
-        saleValue: number;
+        count: number;
         categoryId: string;
         category: import("../../category/models/category.model").Category;
         version: number;

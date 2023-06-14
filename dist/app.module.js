@@ -22,11 +22,21 @@ const uniqueMulti_validator_1 = require("./shared/validation/uniqueMulti.validat
 const unique_validator_1 = require("./shared/validation/unique.validator");
 const isRef_validator_1 = require("./shared/validation/isRef.validator");
 const file_module_1 = require("./file/file.module");
+const uniqueCategoryName_validator_1 = require("./shared/validation/uniqueCategoryName.validator");
+const nestjs_cls_1 = require("nestjs-cls");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            nestjs_cls_1.ClsModule.forRoot({
+                middleware: {
+                    mount: true,
+                    setup: (cls, req) => {
+                        cls.set('req', req);
+                    },
+                },
+            }),
             shared_module_1.SharedModule,
             utils_module_1.UtilsModule,
             store_module_1.StoreModule,
@@ -42,6 +52,7 @@ AppModule = __decorate([
             app_service_1.AppService,
             unique_validator_1.Unique,
             uniqueMulti_validator_1.UniqueMulti,
+            uniqueCategoryName_validator_1.UniqueCategoryName,
             isRef_validator_1.IsRef,
         ],
     })

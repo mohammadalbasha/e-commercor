@@ -1,28 +1,3 @@
-/// <reference types="mongoose/types/aggregate" />
-/// <reference types="mongoose/types/callback" />
-/// <reference types="mongoose/types/collection" />
-/// <reference types="mongoose/types/connection" />
-/// <reference types="mongoose/types/cursor" />
-/// <reference types="mongoose/types/document" />
-/// <reference types="mongoose/types/error" />
-/// <reference types="mongoose/types/expressions" />
-/// <reference types="mongoose/types/helpers" />
-/// <reference types="mongoose/types/middlewares" />
-/// <reference types="mongoose/types/indexes" />
-/// <reference types="mongoose/types/models" />
-/// <reference types="mongoose/types/mongooseoptions" />
-/// <reference types="mongoose/types/pipelinestage" />
-/// <reference types="mongoose/types/populate" />
-/// <reference types="mongoose/types/query" />
-/// <reference types="mongoose/types/schemaoptions" />
-/// <reference types="mongoose/types/schematypes" />
-/// <reference types="mongoose/types/session" />
-/// <reference types="mongoose/types/types" />
-/// <reference types="mongoose/types/utility" />
-/// <reference types="mongoose/types/validation" />
-/// <reference types="mongoose/types/virtuals" />
-/// <reference types="mongoose" />
-/// <reference types="mongoose/types/inferschematype" />
 import { ProductService } from 'src/product/services/product.service';
 export declare class ProductCustomerController {
     private productService;
@@ -44,7 +19,7 @@ export declare class ProductCustomerController {
         _id: import("mongoose").Types.ObjectId;
         __v?: any;
         $locals: Record<string, unknown>;
-        $op: "remove" | "validate" | "save";
+        $op: "save" | "validate" | "remove";
         $where: Record<string, unknown>;
         baseModelName?: string;
         collection: import("mongoose").Collection<import("bson").Document>;
@@ -61,13 +36,16 @@ export declare class ProductCustomerController {
         }> & Required<{
             _id: unknown;
         }>, never>>;
-        close: () => void;
-        name: string;
-        count: number;
+        storeId: string;
         normalize: () => void;
-        isActive?: boolean;
+        name: string;
+        price: number;
+        isSale: boolean;
+        saleValue: number;
+        store: import("../../../store/models/store.model").Store;
         createdAt?: Date;
         updatedAt?: Date;
+        isActive?: boolean;
         URL: string;
         alinkColor: string;
         all: HTMLAllCollection;
@@ -124,6 +102,7 @@ export declare class ProductCustomerController {
         captureEvents: () => void;
         caretRangeFromPoint: (x: number, y: number) => Range;
         clear: () => void;
+        close: () => void;
         createAttribute: (localName: string) => Attr;
         createAttributeNS: (namespace: string, qualifiedName: string) => Attr;
         createCDATASection: (data: string) => CDATASection;
@@ -420,11 +399,7 @@ export declare class ProductCustomerController {
         createExpression: (expression: string, resolver?: XPathNSResolver) => XPathExpression;
         createNSResolver: (nodeResolver: Node) => XPathNSResolver;
         evaluate: (expression: string, contextNode: Node, resolver?: XPathNSResolver, type?: number, result?: XPathResult) => XPathResult;
-        storeId: string;
-        store: import("../../../store/models/store.model").Store;
-        price: number;
-        isSale: boolean;
-        saleValue: number;
+        count: number;
         categoryId: string;
         category: import("../../../category/models/category.model").Category;
         version: number;

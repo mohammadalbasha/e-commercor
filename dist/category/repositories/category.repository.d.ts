@@ -13,11 +13,9 @@ export declare class CategoryRepository {
     findByStoreId(storeId: string): Promise<(mongoose.Document<unknown, {}, Category & Document> & Omit<Category & Document & {
         _id: mongoose.Types.ObjectId;
     }, never>)[]>;
-    findAll(filter: Partial<Category>): mongoose.Query<(mongoose.Document<unknown, {}, Category & Document> & Omit<Category & Document & {
+    findAll(filter: Partial<Category>): Promise<(mongoose.Document<unknown, {}, Category & Document> & Omit<Category & Document & {
         _id: mongoose.Types.ObjectId;
-    }, never>)[], mongoose.Document<unknown, {}, Category & Document> & Omit<Category & Document & {
-        _id: mongoose.Types.ObjectId;
-    }, never>, {}, Category & Document>;
+    }, never>)[]>;
     findOne(filter: Partial<Category>): mongoose.Query<mongoose.Document<unknown, {}, Category & Document> & Omit<Category & Document & {
         _id: mongoose.Types.ObjectId;
     }, never>, mongoose.Document<unknown, {}, Category & Document> & Omit<Category & Document & {
