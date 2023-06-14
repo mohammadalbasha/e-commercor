@@ -1,3 +1,28 @@
+/// <reference types="mongoose/types/aggregate" />
+/// <reference types="mongoose/types/callback" />
+/// <reference types="mongoose/types/collection" />
+/// <reference types="mongoose/types/connection" />
+/// <reference types="mongoose/types/cursor" />
+/// <reference types="mongoose/types/document" />
+/// <reference types="mongoose/types/error" />
+/// <reference types="mongoose/types/expressions" />
+/// <reference types="mongoose/types/helpers" />
+/// <reference types="mongoose/types/middlewares" />
+/// <reference types="mongoose/types/indexes" />
+/// <reference types="mongoose/types/models" />
+/// <reference types="mongoose/types/mongooseoptions" />
+/// <reference types="mongoose/types/pipelinestage" />
+/// <reference types="mongoose/types/populate" />
+/// <reference types="mongoose/types/query" />
+/// <reference types="mongoose/types/schemaoptions" />
+/// <reference types="mongoose/types/schematypes" />
+/// <reference types="mongoose/types/session" />
+/// <reference types="mongoose/types/types" />
+/// <reference types="mongoose/types/utility" />
+/// <reference types="mongoose/types/validation" />
+/// <reference types="mongoose/types/virtuals" />
+/// <reference types="mongoose" />
+/// <reference types="mongoose/types/inferschematype" />
 import { ProductService } from 'src/product/services/product.service';
 export declare class ProductCustomerController {
     private productService;
@@ -11,12 +36,15 @@ export declare class ProductCustomerController {
         totalItems: number;
     }>;
     listOne(productId: string): Promise<{
+        categoryName: string;
+        categoryIsSale: boolean;
+        categorySaleValue: number;
         cardProperties: import("mongoose").Schema.Types.Mixed;
         productProperties: import("../../../category/models/category.model").ProductProperties;
         _id: import("mongoose").Types.ObjectId;
         __v?: any;
         $locals: Record<string, unknown>;
-        $op: "save" | "validate" | "remove";
+        $op: "remove" | "validate" | "save";
         $where: Record<string, unknown>;
         baseModelName?: string;
         collection: import("mongoose").Collection<import("bson").Document>;
@@ -33,17 +61,13 @@ export declare class ProductCustomerController {
         }> & Required<{
             _id: unknown;
         }>, never>>;
-        storeId: string;
-        categoryId: string;
+        close: () => void;
         name: string;
-        price: number;
         count: number;
-        isSale: boolean;
-        saleValue: number;
-        store: import("../../../store/models/store.model").Store;
+        normalize: () => void;
+        isActive?: boolean;
         createdAt?: Date;
         updatedAt?: Date;
-        isActive?: boolean;
         URL: string;
         alinkColor: string;
         all: HTMLAllCollection;
@@ -100,7 +124,6 @@ export declare class ProductCustomerController {
         captureEvents: () => void;
         caretRangeFromPoint: (x: number, y: number) => Range;
         clear: () => void;
-        close: () => void;
         createAttribute: (localName: string) => Attr;
         createAttributeNS: (namespace: string, qualifiedName: string) => Attr;
         createCDATASection: (data: string) => CDATASection;
@@ -252,7 +275,6 @@ export declare class ProductCustomerController {
         isSameNode: (otherNode: Node) => boolean;
         lookupNamespaceURI: (prefix: string) => string;
         lookupPrefix: (namespace: string) => string;
-        normalize: () => void;
         removeChild: <T_4 extends Node>(child: T_4) => T_4;
         replaceChild: <T_5 extends Node>(node: Node, child: T_5) => T_5;
         ATTRIBUTE_NODE: number;
@@ -398,6 +420,12 @@ export declare class ProductCustomerController {
         createExpression: (expression: string, resolver?: XPathNSResolver) => XPathExpression;
         createNSResolver: (nodeResolver: Node) => XPathNSResolver;
         evaluate: (expression: string, contextNode: Node, resolver?: XPathNSResolver, type?: number, result?: XPathResult) => XPathResult;
+        storeId: string;
+        store: import("../../../store/models/store.model").Store;
+        price: number;
+        isSale: boolean;
+        saleValue: number;
+        categoryId: string;
         category: import("../../../category/models/category.model").Category;
         version: number;
     }>;

@@ -91,6 +91,9 @@ export class ProductService {
     product = product['_doc'];
     return {
       ...product,
+      categoryName: category.name,
+      categoryIsSale: category.isSale,
+      categorySaleValue: category.saleValue,
       cardProperties: category?.cardProperties,
       productProperties: category?.productProperties,
     };
