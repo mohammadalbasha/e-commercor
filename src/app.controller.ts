@@ -10,12 +10,7 @@ export class AppController {
     private con: ConfigService,
   ) {
     console.log(con.get('mongo').production_url);
-    const data = {
-      name: 'string',
-      price: 'number',
-    };
-    console.log(classToPlain(data));
-  }
+   }
 
   @Get('')
   getHello(): string {

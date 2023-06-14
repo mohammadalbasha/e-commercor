@@ -28,6 +28,7 @@ const common_1 = require("@nestjs/common");
 const get_seller_store_id_decorator_1 = require("../../../authentication/decorators/get-seller-store-id.decorator");
 const guards_1 = require("../../../authentication/sellers/guards");
 const create_product_dto_1 = require("../../dtos/create-product.dto");
+const update_product_dto_1 = require("../../dtos/update-product.dto");
 const product_service_1 = require("../../services/product.service");
 let ProductSellerController = class ProductSellerController {
     constructor(productService) {
@@ -44,7 +45,15 @@ let ProductSellerController = class ProductSellerController {
         return this.productService.find(categoryId, filters, page, limit);
     }
     async listOne(productId) {
-        return this.productService.findById(productId);
+        return this.productService.findByIdWithStyle(productId);
+    }
+    async updateOne(productId, data) {
+        const product = await this.productService.findByIdAndUpdate(productId, data);
+        return 'product updated successfully';
+    }
+    async deleteOne(productId, data) {
+        await this.productService.findByIdAndDelete(productId);
+        return 'product deleted successfully';
     }
 };
 __decorate([
@@ -70,6 +79,22 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], ProductSellerController.prototype, "listOne", null);
+__decorate([
+    (0, common_1.Put)('/:productId'),
+    __param(0, (0, common_1.Param)('productId')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, update_product_dto_1.UpdateProductDto]),
+    __metadata("design:returntype", Promise)
+], ProductSellerController.prototype, "updateOne", null);
+__decorate([
+    (0, common_1.Delete)('/:productId'),
+    __param(0, (0, common_1.Param)('productId')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, update_product_dto_1.UpdateProductDto]),
+    __metadata("design:returntype", Promise)
+], ProductSellerController.prototype, "deleteOne", null);
 ProductSellerController = __decorate([
     (0, common_1.UseGuards)(guards_1.AtSellerGuard),
     (0, common_1.Controller)('/seller/:categoryId/products'),

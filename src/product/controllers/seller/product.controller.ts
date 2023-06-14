@@ -1,15 +1,18 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
+  Put,
   Query,
   UseGuards,
 } from '@nestjs/common';
 import { GetSellerStoreId } from 'src/authentication/decorators/get-seller-store-id.decorator';
 import { AtSellerGuard } from 'src/authentication/sellers/guards';
 import { CreateProductDto } from 'src/product/dtos/create-product.dto';
+import { UpdateProductDto } from 'src/product/dtos/update-product.dto';
 import { ProductService } from 'src/product/services/product.service';
 
 @UseGuards(AtSellerGuard)
@@ -49,6 +52,29 @@ export class ProductSellerController {
 
   @Get('/:productId')
   async listOne(@Param('productId') productId: string) {
-    return this.productService.findById(productId);
+    return this.productService.findByIdWithStyle(productId);
+  }
+
+  @Put('/:productId')
+  async updateOne(
+    @Param('productId') productId: string,
+    @Body() data: UpdateProductDto,
+  ) {
+    const product = await this.productService.findByIdAndUpdate(
+      productId,
+      data,
+    );
+    //return product;
+    return 'product updated successfully';
+  }
+
+  @Delete('/:productId')
+  async deleteOne(
+    @Param('productId') productId: string,
+    @Body() data: UpdateProductDto,
+  ) {
+    await this.productService.findByIdAndDelete(productId);
+    //return product;
+    return 'product deleted successfully';
   }
 }

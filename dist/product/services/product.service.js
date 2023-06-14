@@ -74,12 +74,30 @@ let ProductService = class ProductService {
     async findById(productId, session) {
         return this.productRepo.findById(productId, session);
     }
+    async findByIdWithStyle(productId) {
+        let product = await this.productRepo.findById(productId);
+        const category = await this.categroyService.findById(product.categoryId);
+        product = product['_doc'];
+        return Object.assign(Object.assign({}, product), { cardProperties: category === null || category === void 0 ? void 0 : category.cardProperties, productProperties: category === null || category === void 0 ? void 0 : category.productProperties });
+    }
     async find(categoryId, filters, page, limit) {
         if (filters) {
             filters = this.convertFilters(filters);
             filters = (0, filter_helper_1.filterToMongo)(filters);
         }
         return this.productRepo.find(categoryId, filters || {}, page, limit);
+    }
+    async findByIdAndUpdate(productId, data) {
+        const product = await this.productRepo.findById(productId);
+        if (!product)
+            throw new common_1.NotFoundException('product not found');
+        return this.productRepo.findByIdAndUpdate(productId, data);
+    }
+    async findByIdAndDelete(productId) {
+        const product = await this.productRepo.findById(productId);
+        if (!product)
+            throw new common_1.NotFoundException('product not found');
+        return this.productRepo.findByIdAndDelete(productId);
     }
 };
 ProductService = __decorate([

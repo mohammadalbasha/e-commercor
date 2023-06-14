@@ -1,8 +1,13 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { ProductRepository } from '../repositories/product.repository';
 import { CreateProductDto } from '../dtos/create-product.dto';
 import { CategoryService } from 'src/category/services/category.service';
 import { filterToMongo } from 'src/shared/mongoose/helperFunctions/filter.helper';
+import { UpdateProductDto } from '../dtos/update-product.dto';
 
 @Injectable()
 export class ProductService {
@@ -80,6 +85,17 @@ export class ProductService {
     return this.productRepo.findById(productId, session);
   }
 
+  async findByIdWithStyle(productId: string) {
+    let product = await this.productRepo.findById(productId);
+    const category = await this.categroyService.findById(product.categoryId);
+    product = product['_doc'];
+    return {
+      ...product,
+      cardProperties: category?.cardProperties,
+      productProperties: category?.productProperties,
+    };
+  }
+
   async find(categoryId, filters, page, limit) {
     //const category = await this.categroyService.findById(categoryId);
     if (filters) {
@@ -87,5 +103,27 @@ export class ProductService {
       filters = filterToMongo(filters);
     }
     return this.productRepo.find(categoryId, filters || {}, page, limit);
+  }
+
+  async findByIdAndUpdate(productId: string, data: UpdateProductDto) {
+    const product = await this.productRepo.findById(productId);
+    if (!product) throw new NotFoundException('product not found');
+    // TODO:
+    // refactoring
+    // find and update
+
+    return this.productRepo.findByIdAndUpdate(productId, data);
+  }
+
+  async findByIdAndDelete(productId: string) {
+    const product = await this.productRepo.findById(productId);
+    // TODO:
+    // refactoring
+    // find and delete
+
+    if (!product) throw new NotFoundException('product not found');
+    // TODO:
+    // check if any on progress orders related with this product
+    return this.productRepo.findByIdAndDelete(productId);
   }
 }

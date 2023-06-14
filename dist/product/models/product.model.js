@@ -31,9 +31,13 @@ __decorate([
     __metadata("design:type", Number)
 ], Product.prototype, "count", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", Array)
-], Product.prototype, "imagesIds", void 0);
+    (0, mongoose_1.Prop)({ required: true, index: true, default: false }),
+    __metadata("design:type", Boolean)
+], Product.prototype, "isSale", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: true, default: 0 }),
+    __metadata("design:type", Number)
+], Product.prototype, "saleValue", void 0);
 __decorate([
     (0, PropRef_decorator_1.PropRef)(store_model_1.Store),
     __metadata("design:type", String)

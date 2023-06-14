@@ -20,8 +20,11 @@ export class Product extends BaseModel {
   @Prop({ required: true, index: true, min: 0 })
   count: number;
 
-  @Prop()
-  imagesIds: string[];
+  @Prop({ required: true, index: true, default: false })
+  isSale: boolean;
+
+  @Prop({ required: true, default: 0 })
+  saleValue: number;
 
   @PropRef(Store)
   storeId: string;

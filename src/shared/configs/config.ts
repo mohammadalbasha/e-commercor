@@ -37,7 +37,7 @@ export default (): Config => ({
   },
   accessTokenSeller: {
     secret: process.env.AT_SECRET_SELLER,
-    expiresIn: '5m',
+    expiresIn: '7d',
   },
   refreshTokenSeller: {
     secret: process.env.RT_SECRET_SELLER,
@@ -46,7 +46,7 @@ export default (): Config => ({
 
   accessTokenCustomer: {
     secret: process.env.AT_SECRET_CUSTOMER,
-    expiresIn: '5m',
+    expiresIn: '7d',
   },
   refreshTokenCustomer: {
     secret: process.env.RT_SECRET_CUSTOMER,

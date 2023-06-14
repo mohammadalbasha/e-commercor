@@ -31,6 +31,6 @@ export class ProductCustomerController {
 
   @Get('/:productId')
   async listOne(@Param('productId') productId: string) {
-    return this.productService.findById(productId);
+    return this.productService.findByIdWithStyle(productId);
   }
 }

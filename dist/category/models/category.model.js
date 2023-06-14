@@ -71,7 +71,7 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", mongoose_2.default.Schema.Types.Mixed)
-], Category.prototype, "cart", void 0);
+], Category.prototype, "cardProperties", void 0);
 Category = __decorate([
     (0, mongoose_1.Schema)(common_1.defaultSchemaOptions)
 ], Category);

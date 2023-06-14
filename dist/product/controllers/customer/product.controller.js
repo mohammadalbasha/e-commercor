@@ -37,7 +37,7 @@ let ProductCustomerController = class ProductCustomerController {
         return this.productService.find(categoryId, filters, page, limit);
     }
     async listOne(productId) {
-        return this.productService.findById(productId);
+        return this.productService.findByIdWithStyle(productId);
     }
 };
 __decorate([

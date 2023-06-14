@@ -60,6 +60,12 @@ let ProductRepository = class ProductRepository {
             totalItems: count,
         };
     }
+    findByIdAndUpdate(id, data) {
+        return this.product.findByIdAndUpdate(id, data);
+    }
+    findByIdAndDelete(id) {
+        return this.product.findByIdAndDelete(id);
+    }
 };
 ProductRepository = __decorate([
     __param(0, (0, mongoose_1.InjectModel)(product_model_1.Product.name)),

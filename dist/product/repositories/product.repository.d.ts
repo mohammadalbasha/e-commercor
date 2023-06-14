@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { Product, ProductDocument } from 'src/product/models/product.model';
 import { CreateProductDto } from '../dtos/create-product.dto';
+import { UpdateProductDto } from '../dtos/update-product.dto';
 export declare class ProductRepository {
     private readonly product;
     protected connection: mongoose.Connection;
@@ -31,4 +32,14 @@ export declare class ProductRepository {
         currentPage: any;
         totalItems: number;
     }>;
+    findByIdAndUpdate(id: string, data: UpdateProductDto): mongoose.Query<mongoose.Document<unknown, {}, Product & Document> & Omit<Product & Document & {
+        _id: mongoose.Types.ObjectId;
+    }, never>, mongoose.Document<unknown, {}, Product & Document> & Omit<Product & Document & {
+        _id: mongoose.Types.ObjectId;
+    }, never>, {}, Product & Document>;
+    findByIdAndDelete(id: string): mongoose.Query<mongoose.Document<unknown, {}, Product & Document> & Omit<Product & Document & {
+        _id: mongoose.Types.ObjectId;
+    }, never>, mongoose.Document<unknown, {}, Product & Document> & Omit<Product & Document & {
+        _id: mongoose.Types.ObjectId;
+    }, never>, {}, Product & Document>;
 }

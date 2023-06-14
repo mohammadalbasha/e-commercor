@@ -15,18 +15,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
 const app_service_1 = require("./app.service");
-const class_transformer_1 = require("class-transformer");
 const config_1 = require("@nestjs/config");
 let AppController = class AppController {
     constructor(appService, con) {
         this.appService = appService;
         this.con = con;
         console.log(con.get('mongo').production_url);
-        const data = {
-            name: 'string',
-            price: 'number',
-        };
-        console.log((0, class_transformer_1.classToPlain)(data));
     }
     getHello() {
         return this.appService.getHello();

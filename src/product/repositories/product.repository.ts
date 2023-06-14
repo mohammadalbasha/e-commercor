@@ -3,6 +3,7 @@ import { classToPlain, plainToClass } from 'class-transformer';
 import mongoose, { mongo } from 'mongoose';
 import { Product, ProductDocument } from 'src/product/models/product.model';
 import { CreateProductDto } from '../dtos/create-product.dto';
+import { UpdateProductDto } from '../dtos/update-product.dto';
 
 export class ProductRepository {
   constructor(
@@ -17,12 +18,18 @@ export class ProductRepository {
   }
 
   async findById(productId: string, session?) {
+    //  await this.product.updateMany({}, { isSale: false, saleValue: 0 });
+    // await this.product.updateMany(
+    //   {},
+    //   { $unset: { imagesIds: 1 }, $set: { isSale: false, saleValue: 0 } },
+    //   { multi: true },
+    // );
     const product = session
       ? await this.product.findById(productId).session(session)
       : await this.product.findById(productId);
-
     return product;
   }
+
   async decreamentCount(
     filter: { productId: string; version: number },
     // options: { new: boolean; session? } = { new: true },
@@ -73,5 +80,13 @@ export class ProductRepository {
       currentPage: page,
       totalItems: count,
     };
+  }
+
+  findByIdAndUpdate(id: string, data: UpdateProductDto) {
+    return this.product.findByIdAndUpdate(id, data);
+  }
+
+  findByIdAndDelete(id: string) {
+    return this.product.findByIdAndDelete(id);
   }
 }

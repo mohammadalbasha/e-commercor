@@ -30,7 +30,8 @@ export declare class Product extends BaseModel {
     name: string;
     price: number;
     count: number;
-    imagesIds: string[];
+    isSale: boolean;
+    saleValue: number;
     storeId: string;
     store: Store;
     categoryId: string;
