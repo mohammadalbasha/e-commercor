@@ -20,7 +20,7 @@ import { ProductService } from 'src/product/services/product.service';
 export class ProductSellerController {
   constructor(private productService: ProductService) {}
 
-  @Post()
+  @Post('/:categoryId/products')
   // create(
   //   @Body() data: Omit<CreateProductDto, 'storeId'>,
   //   @GetSellerStoreId() storeId: string,
