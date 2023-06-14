@@ -32,6 +32,9 @@ export declare class ProductRepository {
         currentPage: any;
         totalItems: number;
     }>;
+    findByStoreId(storeId: string): Promise<Omit<mongoose.Document<unknown, {}, Product & Document> & Omit<Product & Document & {
+        _id: mongoose.Types.ObjectId;
+    }, never>, never>[]>;
     findByIdAndUpdate(id: string, data: UpdateProductDto): mongoose.Query<mongoose.Document<unknown, {}, Product & Document> & Omit<Product & Document & {
         _id: mongoose.Types.ObjectId;
     }, never>, mongoose.Document<unknown, {}, Product & Document> & Omit<Product & Document & {

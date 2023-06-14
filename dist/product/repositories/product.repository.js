@@ -60,6 +60,12 @@ let ProductRepository = class ProductRepository {
             totalItems: count,
         };
     }
+    async findByStoreId(storeId) {
+        let products = await this.product
+            .find({ storeId: storeId }, { name: 1, count: 1, price: 1, Imagesproduct: 1, categoryId: 1 })
+            .populate('category', { name: 1, id: 1 });
+        return products;
+    }
     findByIdAndUpdate(id, data) {
         return this.product.findByIdAndUpdate(id, data);
     }

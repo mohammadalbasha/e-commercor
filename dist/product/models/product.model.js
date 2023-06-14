@@ -15,6 +15,7 @@ const category_model_1 = require("../../category/models/category.model");
 const common_1 = require("../../shared/constants/common");
 const base_model_1 = require("../../shared/models/base.model");
 const PropRef_decorator_1 = require("../../shared/models/decorators/mongoose/PropRef.decorator");
+const base_schema_1 = require("../../shared/mongoose/base.schema");
 const store_model_1 = require("../../store/models/store.model");
 let Product = class Product extends base_model_1.BaseModel {
 };
@@ -30,6 +31,10 @@ __decorate([
     (0, mongoose_1.Prop)({ required: true, index: true, min: 0 }),
     __metadata("design:type", Number)
 ], Product.prototype, "count", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: true, default: '' }),
+    __metadata("design:type", String)
+], Product.prototype, "Imagesproduct", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true, index: true, default: false }),
     __metadata("design:type", Boolean)
@@ -62,5 +67,5 @@ Product = __decorate([
     (0, mongoose_1.Schema)(common_1.defaultSchemaOptions)
 ], Product);
 exports.Product = Product;
-exports.ProductSchema = mongoose_1.SchemaFactory.createForClass(Product);
+exports.ProductSchema = (0, base_schema_1.BaseSchema)(Product);
 //# sourceMappingURL=product.model.js.map

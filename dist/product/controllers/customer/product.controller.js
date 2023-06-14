@@ -36,12 +36,15 @@ let ProductCustomerController = class ProductCustomerController {
         limit = limit || 10;
         return this.productService.find(categoryId, filters, page, limit);
     }
+    async listByStoreId(storeId) {
+        return this.productService.findByStoreId(storeId);
+    }
     async listOne(productId) {
         return this.productService.findByIdWithStyle(productId);
     }
 };
 __decorate([
-    (0, common_1.Get)(),
+    (0, common_1.Get)('/:categoryId/products'),
     __param(0, (0, common_1.Param)('categoryId')),
     __param(1, (0, common_1.Query)()),
     __metadata("design:type", Function),
@@ -49,14 +52,21 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProductCustomerController.prototype, "listAll", null);
 __decorate([
-    (0, common_1.Get)('/:productId'),
+    (0, common_1.Get)('products'),
+    __param(0, (0, common_1.Param)('storeId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ProductCustomerController.prototype, "listByStoreId", null);
+__decorate([
+    (0, common_1.Get)('/:categoryId/products/:productId'),
     __param(0, (0, common_1.Param)('productId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], ProductCustomerController.prototype, "listOne", null);
 ProductCustomerController = __decorate([
-    (0, common_1.Controller)('/:storeId/:categoryId/products'),
+    (0, common_1.Controller)('/:storeId'),
     __metadata("design:paramtypes", [product_service_1.ProductService])
 ], ProductCustomerController);
 exports.ProductCustomerController = ProductCustomerController;

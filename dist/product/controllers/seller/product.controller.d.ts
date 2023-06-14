@@ -13,6 +13,9 @@ export declare class ProductSellerController {
         currentPage: any;
         totalItems: number;
     }>;
+    listByStoreId(storeId: string): Promise<Omit<import("mongoose").Document<unknown, {}, import("../../models/product.model").Product & Document> & Omit<import("../../models/product.model").Product & Document & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>, never>[]>;
     listOne(productId: string): Promise<{
         categoryName: string;
         categoryIsSale: boolean;
@@ -39,13 +42,17 @@ export declare class ProductSellerController {
         }> & Required<{
             _id: unknown;
         }>, never>>;
-        storeId: string;
-        normalize: () => void;
         name: string;
         price: number;
+        count: number;
+        Imagesproduct: string;
         isSale: boolean;
         saleValue: number;
+        storeId: string;
         store: import("../../../store/models/store.model").Store;
+        categoryId: string;
+        category: import("../../../category/models/category.model").Category;
+        version: number;
         createdAt?: Date;
         updatedAt?: Date;
         isActive?: boolean;
@@ -257,6 +264,7 @@ export declare class ProductSellerController {
         isSameNode: (otherNode: Node) => boolean;
         lookupNamespaceURI: (prefix: string) => string;
         lookupPrefix: (namespace: string) => string;
+        normalize: () => void;
         removeChild: <T_4 extends Node>(child: T_4) => T_4;
         replaceChild: <T_5 extends Node>(node: Node, child: T_5) => T_5;
         ATTRIBUTE_NODE: number;
@@ -402,10 +410,6 @@ export declare class ProductSellerController {
         createExpression: (expression: string, resolver?: XPathNSResolver) => XPathExpression;
         createNSResolver: (nodeResolver: Node) => XPathNSResolver;
         evaluate: (expression: string, contextNode: Node, resolver?: XPathNSResolver, type?: number, result?: XPathResult) => XPathResult;
-        count: number;
-        categoryId: string;
-        category: import("../../../category/models/category.model").Category;
-        version: number;
     }>;
     updateOne(productId: string, data: UpdateProductDto): Promise<string>;
     deleteOne(productId: string, data: UpdateProductDto): Promise<string>;

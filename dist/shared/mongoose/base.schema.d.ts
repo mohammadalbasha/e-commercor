@@ -23,25 +23,5 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
-import { Category } from 'src/category/models/category.model';
-import { BaseModel } from 'src/shared/models/base.model';
-import { Store } from 'src/store/models/store.model';
-export declare class Product extends BaseModel {
-    name: string;
-    price: number;
-    count: number;
-    Imagesproduct: string;
-    isSale: boolean;
-    saleValue: number;
-    storeId: string;
-    store: Store;
-    categoryId: string;
-    category: Category;
-    version: number;
-}
-export type ProductDocument = Product & Document;
-export declare const ProductSchema: import("mongoose").Schema<Product, import("mongoose").Model<Product, any, any, any, import("mongoose").Document<unknown, any, Product> & Omit<Product & {
-    _id: import("mongoose").Types.ObjectId;
-}, never>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Product, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<Product>> & Omit<import("mongoose").FlatRecord<Product> & {
-    _id: import("mongoose").Types.ObjectId;
-}, never>>;
+import { Type } from '@nestjs/common';
+export declare function BaseSchema<ModelType>(Model: Type<ModelType>): import("mongoose").Schema<ModelType, import("mongoose").Model<ModelType, any, any, any, import("mongoose").IfAny<ModelType, any, import("mongoose").Document<unknown, any, ModelType> & Omit<import("mongoose").Require_id<ModelType>, never>>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, import("mongoose").ObtainDocumentType<any, ModelType, import("mongoose").DefaultSchemaOptions>, import("mongoose").IfAny<import("mongoose").FlatRecord<import("mongoose").ObtainDocumentType<any, ModelType, import("mongoose").DefaultSchemaOptions>>, any, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<import("mongoose").ObtainDocumentType<any, ModelType, import("mongoose").DefaultSchemaOptions>>> & Omit<import("mongoose").Require_id<import("mongoose").FlatRecord<import("mongoose").ObtainDocumentType<any, ModelType, import("mongoose").DefaultSchemaOptions>>>, never>>>;

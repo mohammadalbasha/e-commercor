@@ -44,6 +44,9 @@ let ProductSellerController = class ProductSellerController {
         limit = limit || 10;
         return this.productService.find(categoryId, filters, page, limit);
     }
+    async listByStoreId(storeId) {
+        return this.productService.findByStoreId(storeId);
+    }
     async listOne(productId) {
         return this.productService.findByIdWithStyle(productId);
     }
@@ -65,7 +68,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProductSellerController.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)(),
+    (0, common_1.Get)('/:categoryId/products'),
     __param(0, (0, common_1.Param)('categoryId')),
     __param(1, (0, common_1.Query)()),
     __metadata("design:type", Function),
@@ -73,14 +76,21 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProductSellerController.prototype, "listAll", null);
 __decorate([
-    (0, common_1.Get)('/:productId'),
+    (0, common_1.Get)('products'),
+    __param(0, (0, get_seller_store_id_decorator_1.GetSellerStoreId)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ProductSellerController.prototype, "listByStoreId", null);
+__decorate([
+    (0, common_1.Get)('/:categoryId/products/:productId'),
     __param(0, (0, common_1.Param)('productId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], ProductSellerController.prototype, "listOne", null);
 __decorate([
-    (0, common_1.Put)('/:productId'),
+    (0, common_1.Put)('/:categoryId/products/:productId'),
     __param(0, (0, common_1.Param)('productId')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -88,7 +98,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProductSellerController.prototype, "updateOne", null);
 __decorate([
-    (0, common_1.Delete)('/:productId'),
+    (0, common_1.Delete)('/:categoryId/products/:productId'),
     __param(0, (0, common_1.Param)('productId')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -97,7 +107,7 @@ __decorate([
 ], ProductSellerController.prototype, "deleteOne", null);
 ProductSellerController = __decorate([
     (0, common_1.UseGuards)(guards_1.AtSellerGuard),
-    (0, common_1.Controller)('/seller/:categoryId/products'),
+    (0, common_1.Controller)('/seller'),
     __metadata("design:paramtypes", [product_service_1.ProductService])
 ], ProductSellerController);
 exports.ProductSellerController = ProductSellerController;

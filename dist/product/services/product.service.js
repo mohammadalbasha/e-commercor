@@ -87,6 +87,9 @@ let ProductService = class ProductService {
         }
         return this.productRepo.find(categoryId, filters || {}, page, limit);
     }
+    async findByStoreId(storeId) {
+        return this.productRepo.findByStoreId(storeId);
+    }
     async findByIdAndUpdate(productId, data) {
         const product = await this.productRepo.findById(productId);
         if (!product)

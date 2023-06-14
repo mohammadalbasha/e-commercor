@@ -16,7 +16,7 @@ import { UpdateProductDto } from 'src/product/dtos/update-product.dto';
 import { ProductService } from 'src/product/services/product.service';
 
 @UseGuards(AtSellerGuard)
-@Controller('/seller/:categoryId/products')
+@Controller('/seller')
 export class ProductSellerController {
   constructor(private productService: ProductService) {}
 
@@ -37,7 +37,7 @@ export class ProductSellerController {
     return 'product added successfully';
   }
 
-  @Get()
+  @Get('/:categoryId/products')
   async listAll(
     // @Query('page') page: number,
     // @Query('limit') limit: number,
@@ -50,12 +50,17 @@ export class ProductSellerController {
     return this.productService.find(categoryId, filters, page, limit);
   }
 
-  @Get('/:productId')
+  @Get('products')
+  async listByStoreId(@GetSellerStoreId() storeId: string) {
+    return this.productService.findByStoreId(storeId);
+  }
+
+  @Get('/:categoryId/products/:productId')
   async listOne(@Param('productId') productId: string) {
     return this.productService.findByIdWithStyle(productId);
   }
 
-  @Put('/:productId')
+  @Put('/:categoryId/products/:productId')
   async updateOne(
     @Param('productId') productId: string,
     @Body() data: UpdateProductDto,
@@ -68,7 +73,7 @@ export class ProductSellerController {
     return 'product updated successfully';
   }
 
-  @Delete('/:productId')
+  @Delete('/:categoryId/products/:productId')
   async deleteOne(
     @Param('productId') productId: string,
     @Body() data: UpdateProductDto,

@@ -12,11 +12,11 @@ import { AtSellerGuard } from 'src/authentication/sellers/guards';
 import { CreateProductDto } from 'src/product/dtos/create-product.dto';
 import { ProductService } from 'src/product/services/product.service';
 
-@Controller('/:storeId/:categoryId/products')
+@Controller('/:storeId')
 export class ProductCustomerController {
   constructor(private productService: ProductService) {}
 
-  @Get()
+  @Get('/:categoryId/products')
   async listAll(
     // @Query('page') page: number,
     // @Query('limit') limit: number,
@@ -28,8 +28,12 @@ export class ProductCustomerController {
     limit = limit || 10;
     return this.productService.find(categoryId, filters, page, limit);
   }
+  @Get('products')
+  async listByStoreId(@Param('storeId') storeId: string) {
+    return this.productService.findByStoreId(storeId);
+  }
 
-  @Get('/:productId')
+  @Get('/:categoryId/products/:productId')
   async listOne(@Param('productId') productId: string) {
     return this.productService.findByIdWithStyle(productId);
   }

@@ -108,6 +108,10 @@ export class ProductService {
     return this.productRepo.find(categoryId, filters || {}, page, limit);
   }
 
+  async findByStoreId(storeId: string) {
+    return this.productRepo.findByStoreId(storeId);
+  }
+
   async findByIdAndUpdate(productId: string, data: UpdateProductDto) {
     const product = await this.productRepo.findById(productId);
     if (!product) throw new NotFoundException('product not found');

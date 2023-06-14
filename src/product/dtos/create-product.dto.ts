@@ -17,6 +17,11 @@ export class CreateProductDto {
   name: string;
 
   @IsDefined()
+  @IsString()
+  @IsNotEmpty()
+  Imagesproduct: string;
+
+  @IsDefined()
   @IsNumber()
   price: number;
 

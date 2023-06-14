@@ -31,9 +31,11 @@ export function PropObject(
   return (target, key) => {
     // TODO:
     // change _id to Id in ref
+
     let meta = {
       ref: Model.name,
-      localField: key.toString() + '_id',
+      //localField: key.toString() + '_id',
+      localField: key.toString() + 'Id',
       foreignField: '_id',
       justOne: !isArray,
     };
@@ -41,6 +43,7 @@ export function PropObject(
       meta.localField = '_id';
       meta.foreignField = foreignField;
     }
+
     const virtuals =
       Reflect.getOwnMetadata('MongooseVirtuals', target.constructor) || {};
     virtuals[key] = meta;

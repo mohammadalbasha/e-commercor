@@ -7,6 +7,7 @@ import {
   PropRef,
   PropObject,
 } from 'src/shared/models/decorators/mongoose/PropRef.decorator';
+import { BaseSchema } from 'src/shared/mongoose/base.schema';
 import { Store } from 'src/store/models/store.model';
 
 @Schema(defaultSchemaOptions)
@@ -19,6 +20,9 @@ export class Product extends BaseModel {
 
   @Prop({ required: true, index: true, min: 0 })
   count: number;
+
+  @Prop({ required: true, default: '' })
+  Imagesproduct: string;
 
   @Prop({ required: true, index: true, default: false })
   isSale: boolean;
@@ -41,4 +45,5 @@ export class Product extends BaseModel {
 }
 
 export type ProductDocument = Product & Document;
-export const ProductSchema = SchemaFactory.createForClass(Product);
+//export const ProductSchema = SchemaFactory.createForClass(Product);
+export const ProductSchema = BaseSchema(Product);

@@ -7,6 +7,7 @@ import {
   PropRef,
   PropObject,
 } from 'src/shared/models/decorators/mongoose/PropRef.decorator';
+import { BaseSchema } from 'src/shared/mongoose/base.schema';
 import { Store } from 'src/store/models/store.model';
 
 @Schema(defaultSchemaOptions)
@@ -54,3 +55,4 @@ export class Category extends BaseModel {
 
 export type CategoryDocument = Category & Document;
 export const CategorySchema = SchemaFactory.createForClass(Category);
+//export const CategorySchema = BaseSchema(Category);

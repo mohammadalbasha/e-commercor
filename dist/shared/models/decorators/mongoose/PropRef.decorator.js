@@ -22,7 +22,7 @@ function PropObject(Model, isArray = false, foreignField = '') {
     return (target, key) => {
         let meta = {
             ref: Model.name,
-            localField: key.toString() + '_id',
+            localField: key.toString() + 'Id',
             foreignField: '_id',
             justOne: !isArray,
         };

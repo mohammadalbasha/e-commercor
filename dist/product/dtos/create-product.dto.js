@@ -23,6 +23,12 @@ __decorate([
 ], CreateProductDto.prototype, "name", void 0);
 __decorate([
     (0, class_validator_1.IsDefined)(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateProductDto.prototype, "Imagesproduct", void 0);
+__decorate([
+    (0, class_validator_1.IsDefined)(),
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], CreateProductDto.prototype, "price", void 0);
