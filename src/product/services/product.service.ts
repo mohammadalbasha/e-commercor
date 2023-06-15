@@ -100,12 +100,26 @@ export class ProductService {
   }
 
   async find(categoryId, filters, page, limit) {
-    //const category = await this.categroyService.findById(categoryId);
+    const category = await this.categroyService.findById(categoryId);
     if (filters) {
       filters = this.convertFilters(filters);
       filters = filterToMongo(filters);
     }
-    return this.productRepo.find(categoryId, filters || {}, page, limit);
+    let products = await this.productRepo.find(
+      categoryId,
+      filters || {},
+      page,
+      limit,
+    );
+    products.items = products.items.map((item) => {
+      return {
+        ...item['_doc'],
+        categoryName: category.name,
+        categoryIsSale: category.isSale,
+        categorySaleValue: category.saleValue,
+      };
+    });
+    return products;
   }
 
   async findByStoreId(storeId: string) {

@@ -88,7 +88,7 @@ export class ProductRepository {
         { storeId: storeId },
         { name: 1, count: 1, price: 1, Imagesproduct: 1, categoryId: 1 },
       )
-      .populate('category', { name: 1, id: 1 });
+      .populate('category', { name: 1, id: 1, isSale: 1, saleValue: 1 });
 
     return products;
   }
