@@ -1,4 +1,8 @@
-import { ForbiddenException, Injectable } from '@nestjs/common';
+import {
+  ForbiddenException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PasswordService } from 'src/authentication/password.service';
 import {
@@ -29,14 +33,14 @@ export class AuthCustomerService {
       storeId,
     );
 
-    if (!customer) throw new ForbiddenException('Access Denied');
+    if (!customer) throw new NotFoundException('Customer with email not found');
 
     const passwordMatches = await this.passwordService.validatePassword(
       data.password,
       customer.password,
     );
 
-    if (!passwordMatches) throw new ForbiddenException('Access Denied');
+    if (!passwordMatches) throw new ForbiddenException('passwrod incorrect');
 
     const tokens = await this.getTokens(customer.id, customer.email, storeId);
     return tokens;

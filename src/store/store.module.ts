@@ -5,13 +5,14 @@ import { Store, StoreSchema } from './models/store.model';
 import { StoreRepository } from './repositories/store.repository';
 import { AuthenticationModule } from 'src/authentication/authentication.module';
 import { StoreSellerController } from './controllers/seller/store.controller';
+import { StoreCustomerController } from './controllers/customer/store.controller';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Store.name, schema: StoreSchema }]),
     forwardRef(() => AuthenticationModule),
   ],
-  controllers: [StoreSellerController],
+  controllers: [StoreSellerController, StoreCustomerController],
   providers: [StoreService, StoreRepository],
   exports: [StoreService],
 })

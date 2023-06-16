@@ -60,7 +60,7 @@ export declare class ProductService {
         _id: import("mongoose").Types.ObjectId;
         __v?: any;
         $locals: Record<string, unknown>;
-        $op: "save" | "validate" | "remove";
+        $op: "remove" | "validate" | "save";
         $where: Record<string, unknown>;
         baseModelName?: string;
         collection: import("mongoose").Collection<import("bson").Document>;
@@ -77,20 +77,13 @@ export declare class ProductService {
         }> & Required<{
             _id: unknown;
         }>, never>>;
+        close: () => void;
         name: string;
-        price: number;
         count: number;
-        Imagesproduct: string;
-        isSale: boolean;
-        saleValue: number;
-        storeId: string;
-        store: import("../../store/models/store.model").Store;
-        categoryId: string;
-        category: import("../../category/models/category.model").Category;
-        version: number;
+        normalize: () => void;
+        isActive?: boolean;
         createdAt?: Date;
         updatedAt?: Date;
-        isActive?: boolean;
         URL: string;
         alinkColor: string;
         all: HTMLAllCollection;
@@ -147,7 +140,6 @@ export declare class ProductService {
         captureEvents: () => void;
         caretRangeFromPoint: (x: number, y: number) => Range;
         clear: () => void;
-        close: () => void;
         createAttribute: (localName: string) => Attr;
         createAttributeNS: (namespace: string, qualifiedName: string) => Attr;
         createCDATASection: (data: string) => CDATASection;
@@ -299,7 +291,6 @@ export declare class ProductService {
         isSameNode: (otherNode: Node) => boolean;
         lookupNamespaceURI: (prefix: string) => string;
         lookupPrefix: (namespace: string) => string;
-        normalize: () => void;
         removeChild: <T_4 extends Node>(child: T_4) => T_4;
         replaceChild: <T_5 extends Node>(node: Node, child: T_5) => T_5;
         ATTRIBUTE_NODE: number;
@@ -445,6 +436,15 @@ export declare class ProductService {
         createExpression: (expression: string, resolver?: XPathNSResolver) => XPathExpression;
         createNSResolver: (nodeResolver: Node) => XPathNSResolver;
         evaluate: (expression: string, contextNode: Node, resolver?: XPathNSResolver, type?: number, result?: XPathResult) => XPathResult;
+        storeId: string;
+        store: import("../../store/models/store.model").Store;
+        price: number;
+        isSale: boolean;
+        saleValue: number;
+        Imagesproduct: string;
+        categoryId: string;
+        category: import("../../category/models/category.model").Category;
+        version: number;
     }>;
     find(categoryId: any, filters: any, page: any, limit: any): Promise<{
         items: (import("mongoose").Document<unknown, {}, import("../models/product.model").Product & Document> & Omit<import("../models/product.model").Product & Document & {

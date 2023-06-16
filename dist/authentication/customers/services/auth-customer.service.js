@@ -25,10 +25,10 @@ let AuthCustomerService = class AuthCustomerService {
     async login(data, storeId) {
         const customer = await this.customerService.findByEmailAndStoreId(data.email, storeId);
         if (!customer)
-            throw new common_1.ForbiddenException('Access Denied');
+            throw new common_1.NotFoundException('Customer with email not found');
         const passwordMatches = await this.passwordService.validatePassword(data.password, customer.password);
         if (!passwordMatches)
-            throw new common_1.ForbiddenException('Access Denied');
+            throw new common_1.ForbiddenException('passwrod incorrect');
         const tokens = await this.getTokens(customer.id, customer.email, storeId);
         return tokens;
     }
