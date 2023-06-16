@@ -3,6 +3,7 @@ import {
   IsEmail,
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsString,
   Validate,
   ValidateNested,
@@ -13,42 +14,42 @@ import { Customer } from '../models/customer.model';
 import { Store } from 'src/store/models/store.model';
 
 export class AddressDto {
-  @IsDefined()
+  @IsOptional()
   @IsNotEmpty()
   @IsString()
   country: string;
 
-  @IsDefined()
+  @IsOptional()
   @IsNotEmpty()
   @IsString()
   city: string;
 
-  @IsDefined()
+  @IsOptional()
   @IsNotEmpty()
   @IsString()
   state: string;
 
-  @IsDefined()
+  @IsOptional()
   @IsNotEmpty()
   @IsString()
   fullAddress: string;
 
-  @IsDefined()
+  @IsOptional()
   @IsNotEmpty()
   @IsString()
   street: string;
 
-  @IsDefined()
+  @IsOptional()
   @IsNotEmpty()
   @IsNumber()
   buildingNumber: number;
 
-  @IsDefined()
+  @IsOptional()
   @IsNotEmpty()
   @IsNumber()
   lan: string;
 
-  @IsDefined()
+  @IsOptional()
   @IsNotEmpty()
   @IsNumber()
   lat: string;
@@ -91,12 +92,12 @@ export class SignupDto {
   @IsString()
   nationality: string;
 
-  @IsDefined()
+  @IsOptional()
   @IsNotEmpty()
   @IsString()
   ssn: string;
 
-  @IsDefined()
+  @IsOptional()
   @IsNotEmpty()
   @ValidateNested()
   address: AddressDto;

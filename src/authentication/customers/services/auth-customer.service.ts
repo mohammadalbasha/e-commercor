@@ -33,7 +33,8 @@ export class AuthCustomerService {
       storeId,
     );
 
-    if (!customer) throw new NotFoundException('Customer with email not found');
+    if (!customer)
+      throw new NotFoundException('Customer with this email not found');
 
     const passwordMatches = await this.passwordService.validatePassword(
       data.password,

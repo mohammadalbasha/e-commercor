@@ -17,49 +17,49 @@ const store_model_1 = require("../../store/models/store.model");
 class AddressDto {
 }
 __decorate([
-    (0, class_validator_1.IsDefined)(),
+    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], AddressDto.prototype, "country", void 0);
 __decorate([
-    (0, class_validator_1.IsDefined)(),
+    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], AddressDto.prototype, "city", void 0);
 __decorate([
-    (0, class_validator_1.IsDefined)(),
+    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], AddressDto.prototype, "state", void 0);
 __decorate([
-    (0, class_validator_1.IsDefined)(),
+    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], AddressDto.prototype, "fullAddress", void 0);
 __decorate([
-    (0, class_validator_1.IsDefined)(),
+    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], AddressDto.prototype, "street", void 0);
 __decorate([
-    (0, class_validator_1.IsDefined)(),
+    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], AddressDto.prototype, "buildingNumber", void 0);
 __decorate([
-    (0, class_validator_1.IsDefined)(),
+    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", String)
 ], AddressDto.prototype, "lan", void 0);
 __decorate([
-    (0, class_validator_1.IsDefined)(),
+    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", String)
@@ -111,13 +111,13 @@ __decorate([
     __metadata("design:type", String)
 ], SignupDto.prototype, "nationality", void 0);
 __decorate([
-    (0, class_validator_1.IsDefined)(),
+    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], SignupDto.prototype, "ssn", void 0);
 __decorate([
-    (0, class_validator_1.IsDefined)(),
+    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.ValidateNested)(),
     __metadata("design:type", AddressDto)
