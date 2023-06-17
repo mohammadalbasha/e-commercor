@@ -45,7 +45,7 @@ let ProductRepository = class ProductRepository {
         }, { $inc: { count: 1, version: 1 } }, { session: session, new: true });
     }
     async find(categoryId, filters, page, limit) {
-        const skip = (page - 1) * limit;
+        const skip = (+page - 1) * limit;
         filters['categoryId'] = new mongoose_2.default.Types.ObjectId(categoryId);
         const items = await this.product
             .find(filters)
@@ -56,7 +56,7 @@ let ProductRepository = class ProductRepository {
         return {
             items,
             totalPages: Math.ceil(count / limit),
-            currentPage: page,
+            currentPage: +page,
             totalItems: count,
         };
     }

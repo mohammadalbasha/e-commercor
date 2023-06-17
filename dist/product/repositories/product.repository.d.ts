@@ -29,7 +29,7 @@ export declare class ProductRepository {
             _id: mongoose.Types.ObjectId;
         }, never>)[];
         totalPages: number;
-        currentPage: any;
+        currentPage: number;
         totalItems: number;
     }>;
     findByStoreId(storeId: string): Promise<Omit<mongoose.Document<unknown, {}, Product & Document> & Omit<Product & Document & {

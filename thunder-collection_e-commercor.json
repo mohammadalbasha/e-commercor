@@ -1,0 +1,288 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "e-commercor",
+    "dateExported": "2023-06-17T11:22:56.301Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "5da84cf1-7b70-41f1-bc91-a178407dc95a",
+            "name": "store",
+            "containerId": "",
+            "created": "2023-06-01T11:01:37.005Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "829dd357-5ad8-44f6-8af5-764c3c8afd3b",
+            "name": "order",
+            "containerId": "",
+            "created": "2023-06-17T08:52:51.324Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "7d81f19b-95cc-43ad-84c7-6d57930c7f9c",
+            "name": "seller",
+            "containerId": "5da84cf1-7b70-41f1-bc91-a178407dc95a",
+            "created": "2023-06-17T11:04:21.459Z",
+            "sortNum": 30000
+        },
+        {
+            "_id": "355d92c4-4e50-488d-9b73-8e29183039ab",
+            "name": "auth",
+            "containerId": "7d81f19b-95cc-43ad-84c7-6d57930c7f9c",
+            "created": "2023-06-17T11:04:35.481Z",
+            "sortNum": 40000
+        },
+        {
+            "_id": "2a7c118b-1223-4f81-a831-9f6c1407705b",
+            "name": "customer",
+            "containerId": "5da84cf1-7b70-41f1-bc91-a178407dc95a",
+            "created": "2023-06-17T11:05:51.309Z",
+            "sortNum": 50000
+        },
+        {
+            "_id": "a8287f75-00c9-4603-acc8-73bfe1490a59",
+            "name": "category",
+            "containerId": "",
+            "created": "2023-06-17T11:06:43.369Z",
+            "sortNum": 60000
+        },
+        {
+            "_id": "a13db8e3-bca4-4acf-907d-cba96013ce80",
+            "name": "customer",
+            "containerId": "a8287f75-00c9-4603-acc8-73bfe1490a59",
+            "created": "2023-06-17T11:06:47.744Z",
+            "sortNum": 70000
+        },
+        {
+            "_id": "e2386a9f-fd0f-414f-9e52-02bf6ff6c76c",
+            "name": "product",
+            "containerId": "",
+            "created": "2023-06-17T11:07:43.242Z",
+            "sortNum": 80000
+        },
+        {
+            "_id": "4b7751d6-7997-4577-8e40-f3f58302e3f9",
+            "name": "customer",
+            "containerId": "e2386a9f-fd0f-414f-9e52-02bf6ff6c76c",
+            "created": "2023-06-17T11:07:49.291Z",
+            "sortNum": 90000
+        },
+        {
+            "_id": "7b035788-bcbc-47ac-a2b6-683840f86e01",
+            "name": "auth-customer",
+            "containerId": "",
+            "created": "2023-06-17T11:11:46.956Z",
+            "sortNum": 100000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "0b66d016-741c-465a-a9d7-5b9a57e8d274",
+            "colId": "e0407187-0216-4711-b21a-e8ebdddb486a",
+            "containerId": "355d92c4-4e50-488d-9b73-8e29183039ab",
+            "name": "signin",
+            "url": "{{production_domain}}/seller/auth/login",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-06-01T11:01:57.735Z",
+            "modified": "2023-06-17T11:18:50.988Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"mmm@m.com\",\n  \"password\": \"12345678\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "b5adcbfe-ae3e-4478-9c3c-dc38e998c9a5",
+            "colId": "e0407187-0216-4711-b21a-e8ebdddb486a",
+            "containerId": "829dd357-5ad8-44f6-8af5-764c3c8afd3b",
+            "name": "create",
+            "url": "{{production_domain}}/6475f0cd24c90b233c3ae9bd/order",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-06-17T08:53:00.259Z",
+            "modified": "2023-06-17T11:21:55.605Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"productId\": \"6475f1fc295ec37b229c3921\",\n    \"recieverAddress\": {\n        \"country\": \"syria\",\n        \"city\": \"damascus\",\n        \"state\": \"damascus\",\n        \"fullAddress\": \"40th street\",\n        \"buildingNumber\": 12,\n        \"lan\": \"123456\",\n        \"lat\": \"123456\"\n    },\n    \"recieverFirstName\": \"mohammad\",\n    \"recieverLastName\": \"bacha\",\n    \"recieverEmail\": \"hamoudy00128@hotmail.com\",\n    \"recieverPhoneNumber\": \"00963997699458\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{customer_access_token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "78500106-e4fa-481d-9826-eea247a94333",
+            "colId": "e0407187-0216-4711-b21a-e8ebdddb486a",
+            "containerId": "2a7c118b-1223-4f81-a831-9f6c1407705b",
+            "name": "get store by name",
+            "url": "{{production_domain}}/kaka%20store",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-06-17T11:06:06.555Z",
+            "modified": "2023-06-17T11:21:20.883Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "48880b38-4204-4937-bbb5-f85eba3dfdd4",
+            "colId": "e0407187-0216-4711-b21a-e8ebdddb486a",
+            "containerId": "a13db8e3-bca4-4acf-907d-cba96013ce80",
+            "name": "list one",
+            "url": "{{production_domain}}/6475f0cd24c90b233c3ae9bd/categories/647b21d574b92bea8918c7c5",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2023-06-17T11:07:04.374Z",
+            "modified": "2023-06-17T11:18:17.559Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "f0dfd8ad-3993-428e-9237-a3db75795b47",
+            "colId": "e0407187-0216-4711-b21a-e8ebdddb486a",
+            "containerId": "a13db8e3-bca4-4acf-907d-cba96013ce80",
+            "name": "list",
+            "url": "{{production_domain}}/6475f0cd24c90b233c3ae9bd/categories",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2023-06-17T11:07:12.585Z",
+            "modified": "2023-06-17T11:18:30.131Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "71deb5fa-a99b-4e6d-8888-65c893c35cbf",
+            "colId": "e0407187-0216-4711-b21a-e8ebdddb486a",
+            "containerId": "4b7751d6-7997-4577-8e40-f3f58302e3f9",
+            "name": "list",
+            "url": "{{production_domain}}/6475f0cd24c90b233c3ae9bd/647b21d574b92bea8918c7c5/products?name=cr&minPrice=20&maxPrice=200&page=1&limit=10",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2023-06-17T11:07:54.686Z",
+            "modified": "2023-06-17T11:19:07.073Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "name",
+                    "value": "cr",
+                    "isPath": false
+                },
+                {
+                    "name": "minPrice",
+                    "value": "20",
+                    "isPath": false
+                },
+                {
+                    "name": "maxPrice",
+                    "value": "200",
+                    "isPath": false
+                },
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "limit",
+                    "value": "10",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "015d7ac6-5cd2-498c-bfb3-01dbb64bb7ca",
+            "colId": "e0407187-0216-4711-b21a-e8ebdddb486a",
+            "containerId": "4b7751d6-7997-4577-8e40-f3f58302e3f9",
+            "name": "list one",
+            "url": "{{production_domain}}/6475f0cd24c90b233c3ae9bd/647b21d574b92bea8918c7c5/products/647c83b252560c206f2cb77e",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2023-06-17T11:08:09.069Z",
+            "modified": "2023-06-17T11:19:13.823Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "633e1da6-76a3-4021-a4e0-ae13743e09c0",
+            "colId": "e0407187-0216-4711-b21a-e8ebdddb486a",
+            "containerId": "4b7751d6-7997-4577-8e40-f3f58302e3f9",
+            "name": "list all by store id",
+            "url": "{{production_domain}}/6475f0cd24c90b233c3ae9bd/products",
+            "method": "GET",
+            "sortNum": 80000,
+            "created": "2023-06-17T11:10:11.866Z",
+            "modified": "2023-06-17T11:19:18.256Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "21336f18-5caf-406d-9163-82e6d4796e4b",
+            "colId": "e0407187-0216-4711-b21a-e8ebdddb486a",
+            "containerId": "7b035788-bcbc-47ac-a2b6-683840f86e01",
+            "name": "refresh token",
+            "url": "{{production_domain}}/644e7acd55d753f317807cf3/auth/refresh",
+            "method": "POST",
+            "sortNum": 100000,
+            "created": "2023-06-17T11:11:53.984Z",
+            "modified": "2023-06-17T11:22:24.445Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{customer_refresh_token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "053a8a1b-db79-4b41-847f-66e5db34cbcc",
+            "colId": "e0407187-0216-4711-b21a-e8ebdddb486a",
+            "containerId": "7b035788-bcbc-47ac-a2b6-683840f86e01",
+            "name": "login",
+            "url": "{{production_domain}}/6475f0cd24c90b233c3ae9bd/auth/login",
+            "method": "POST",
+            "sortNum": 110000,
+            "created": "2023-06-17T11:12:44.941Z",
+            "modified": "2023-06-17T11:19:30.053Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n    \"email\": \"m@m.com\",\r\n    \"password\":\"123456\"\r\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "6b4e7884-d763-41a8-a121-baa0d3437296",
+            "colId": "e0407187-0216-4711-b21a-e8ebdddb486a",
+            "containerId": "7b035788-bcbc-47ac-a2b6-683840f86e01",
+            "name": "signup",
+            "url": "{{production_domain}}/6475f0cd24c90b233c3ae9bd/signup",
+            "method": "POST",
+            "sortNum": 120000,
+            "created": "2023-06-17T11:13:18.248Z",
+            "modified": "2023-06-17T11:19:35.189Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n    \"email\":\"m@m.com\",\r\n    \"password\": \"123456\",\r\n    \"confirmPassword\": \"123456\",\r\n    \"nationality\": \"syrian\",\r\n    \"phoneNumber\": \"0987654321\",\r\n    \"firstName\": \"mohammad\",\r\n    \"lastName\": \"bacha\",\r\n    \"ssn\": \"0328005229234\",\r\n    \"address\": {\r\n        \"country\": \"syria\",\r\n        \"city\": \"damascus\",\r\n        \"state\": \"damascus govern\",\r\n        \"street\": \"baghdaad streer\",\r\n        \"buildingNumber\": 12,\r\n        \"fullAddress\": \"beside azbakeiah cauldron\"\r\n\r\n    }\r\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}

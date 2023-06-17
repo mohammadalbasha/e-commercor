@@ -64,7 +64,7 @@ export class ProductRepository {
   }
 
   async find(categoryId, filters, page, limit) {
-    const skip = (page - 1) * limit;
+    const skip = (+page - 1) * limit;
     filters['categoryId'] = new mongoose.Types.ObjectId(categoryId);
 
     const items = await this.product
@@ -77,7 +77,7 @@ export class ProductRepository {
     return {
       items,
       totalPages: Math.ceil(count / limit),
-      currentPage: page,
+      currentPage: +page,
       totalItems: count,
     };
   }
