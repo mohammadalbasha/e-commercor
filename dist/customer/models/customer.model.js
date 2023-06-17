@@ -81,7 +81,7 @@ __decorate([
     __metadata("design:type", String)
 ], Customer.prototype, "phoneNumber", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ type: Address, required: true }),
+    (0, mongoose_1.Prop)({ type: Address }),
     __metadata("design:type", Address)
 ], Customer.prototype, "address", void 0);
 __decorate([

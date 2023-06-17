@@ -109,11 +109,11 @@ let PaypalService = class PaypalService {
         return 'merchantId was setted successfully';
     }
     async createOrder(storeMerchantId, amount, storeName = 'ecommercor', storeId, orderId) {
-        console.log(orderId);
         let fee = amount * 0.05;
         amount -= amount * 0.05;
         let authData = await this.getAuthToken();
         const accessToken = authData.access_token;
+        console.log(accessToken);
         const response = await (0, node_fetch_1.default)('https://api-m.sandbox.paypal.com/v2/checkout/orders', {
             method: 'POST',
             headers: {

@@ -10,6 +10,7 @@ export class OrderRepository {
     private readonly order: mongoose.Model<Order & OrderDocument>,
   ) {}
   async create(data: CreateOrderDto, session) {
+    console.log({ ...data });
     const order = await this.order.create([{ ...data }], { session: session });
     return order;
   }

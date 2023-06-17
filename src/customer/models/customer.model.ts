@@ -60,7 +60,7 @@ export class Customer extends BaseModel {
   @Prop({ required: true })
   phoneNumber: string;
 
-  @Prop({ type: Address, required: true })
+  @Prop({ type: Address })
   address: Address;
 
   @Prop()

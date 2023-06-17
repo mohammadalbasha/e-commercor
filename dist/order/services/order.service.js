@@ -43,13 +43,11 @@ let OrderService = class OrderService {
             if (!updatedProduct) {
                 throw new common_1.NotFoundException('Product not found or version mismatch');
             }
-            console.log(data);
             const order = await this.orderRepo.create(data, session);
-            if (!order) {
+            if (order.length == 0) {
                 throw new common_1.InternalServerErrorException('Error creating order');
             }
-            console.log(order);
-            const paypalOrder = await this.paypalService.createOrder(store.paypalMerchantId, product.price, store.name, store.id, order.id);
+            const paypalOrder = await this.paypalService.createOrder(store.paypalMerchantId, product.price, store.name, store.id, order[0].id);
             if (!paypalOrder) {
                 throw new common_1.InternalServerErrorException('Error creating order');
             }

@@ -63,20 +63,20 @@ export class OrderService {
       if (!updatedProduct) {
         throw new NotFoundException('Product not found or version mismatch');
       }
-      console.log(data);
       const order = await this.orderRepo.create(data, session);
-      if (!order) {
+      // NOTE:
+      // here order created as array
+      // because when we wanna use sessions in createion , we must pass an array as a first argument to the create method
+      if (order.length == 0) {
         throw new InternalServerErrorException('Error creating order');
       }
-      console.log(order);
       // @ts-ignore
       const paypalOrder = await this.paypalService.createOrder(
         store.paypalMerchantId,
         product.price,
         store.name,
         store.id,
-        // @ts-ignore
-        order.id,
+        order[0].id,
       );
       if (!paypalOrder) {
         throw new InternalServerErrorException('Error creating order');

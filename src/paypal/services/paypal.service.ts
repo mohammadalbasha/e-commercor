@@ -136,7 +136,6 @@ export class PaypalService {
     storeId: string,
     orderId: string,
   ) {
-    console.log(orderId);
     // TODO:
     // recalculate amount
     // 1- paypal fee
@@ -181,6 +180,7 @@ export class PaypalService {
 
     let authData = await this.getAuthToken();
     const accessToken = authData.access_token;
+    console.log(accessToken);
 
     const response = await fetch(
       'https://api-m.sandbox.paypal.com/v2/checkout/orders',
