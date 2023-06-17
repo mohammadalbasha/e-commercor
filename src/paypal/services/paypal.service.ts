@@ -61,7 +61,7 @@ export class PaypalService {
           partner_config_override: {
             partner_logo_url: storeLogo,
             return_url:
-              'http://localhost:3000/seller/paypal/setup-merchant-success-callback',
+              'https://e-commercor-git-main-mohammadalbasha.vercel.app/seller/paypal/setup-merchant-success-callback',
 
             return_url_description:
               'the url to return the merchant after the paypal onboarding process.',
@@ -236,9 +236,9 @@ export class PaypalService {
 
                 user_action: 'PAY_NOW',
 
-                return_url: `http://localhost:3000/${storeId}/order/capture/${orderId}`,
+                return_url: `https://e-commercor-git-main-mohammadalbasha.vercel.app/${storeId}/order/capture/${orderId}`,
 
-                cancel_url: `http://localhost:3000/${storeId}/order/capture/cancel/${orderId}`,
+                cancel_url: `https://e-commercor-git-main-mohammadalbasha.vercel.app/${storeId}/order/capture/cancel/${orderId}`,
               },
             },
           },

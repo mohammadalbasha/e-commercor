@@ -37,7 +37,7 @@ export class OrderController {
   // TODO:
   // refactor this path
   @Public()
-  @Get('/captue/:orderId')
+  @Get('/capture/:orderId')
   captureOrder(
     @Param('storeId') storeId: string,
     @Param('orderId') orderId: string,
@@ -47,7 +47,7 @@ export class OrderController {
   }
 
   @Public()
-  @Get('/captue/cancel/:orderId')
+  @Get('/capture/cancel/:orderId')
   cancelOrder(
     @Param('storeId') storeId: string,
     @Param('orderId') orderId: string,

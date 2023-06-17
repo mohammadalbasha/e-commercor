@@ -64,6 +64,7 @@ let OrderService = class OrderService {
     }
     async captureOrder(storeId, orderId, token) {
         const isCaptured = await this.paypalService.captureOrder(token);
+        console.log(isCaptured);
         await this.orderRepo.updateOne({ id: orderId }, { isCaptured: true });
         return isCaptured;
     }

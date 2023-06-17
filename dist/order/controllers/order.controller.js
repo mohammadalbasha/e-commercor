@@ -45,7 +45,7 @@ __decorate([
 ], OrderController.prototype, "creataOrder", null);
 __decorate([
     (0, decorators_1.Public)(),
-    (0, common_1.Get)('/captue/:orderId'),
+    (0, common_1.Get)('/capture/:orderId'),
     __param(0, (0, common_1.Param)('storeId')),
     __param(1, (0, common_1.Param)('orderId')),
     __param(2, (0, common_1.Query)('token')),
@@ -55,7 +55,7 @@ __decorate([
 ], OrderController.prototype, "captureOrder", null);
 __decorate([
     (0, decorators_1.Public)(),
-    (0, common_1.Get)('/captue/cancel/:orderId'),
+    (0, common_1.Get)('/capture/cancel/:orderId'),
     __param(0, (0, common_1.Param)('storeId')),
     __param(1, (0, common_1.Param)('orderId')),
     __param(2, (0, common_1.Query)('token')),
