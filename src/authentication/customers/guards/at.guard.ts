@@ -1,4 +1,8 @@
-import { ExecutionContext, Injectable } from '@nestjs/common';
+import {
+  ExecutionContext,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
 
@@ -6,6 +10,12 @@ import { AuthGuard } from '@nestjs/passport';
 export class AtCustomerGuard extends AuthGuard('jwt-customer') {
   constructor(private reflector: Reflector) {
     super();
+  }
+
+  handleRequest(err, user, info, context: ExecutionContext) {
+    if (user.storeId != context.switchToHttp().getRequest().params.storeId)
+      throw new UnauthorizedException();
+    return user;
   }
 
   canActivate(context: ExecutionContext) {

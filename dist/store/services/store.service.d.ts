@@ -27,6 +27,7 @@ import { CreateStoreDto } from '../dtos/create-store.dto';
 import { StoreRepository } from '../repositories/store.repository';
 import { PasswordService } from 'src/authentication/password.service';
 import { Seller, Store } from '../models/store.model';
+import { MarketDto } from '../dtos/market-store.dto';
 export declare class StoreService {
     private storeRepo;
     private passwordService;
@@ -37,11 +38,9 @@ export declare class StoreService {
     findBySellerId(sellerId: string): Promise<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;
-    findAll(filter: Partial<Store>): import("mongoose").Query<(import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+    findAll(filter: Partial<Store>): Promise<(import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;
-    }, never>)[], import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
-        _id: import("mongoose").Types.ObjectId;
-    }, never>, {}, Store & Document>;
+    }, never>)[]>;
     findOne(filter: Partial<Store>): import("mongoose").Query<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>, import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
@@ -68,6 +67,11 @@ export declare class StoreService {
     findSellerAndUpdate(filter: Partial<Seller>, data: Partial<Seller>): Promise<void>;
     findSellerByIdAndUpdate(sellerId: string, data: Partial<Seller>): Promise<import("mongodb").UpdateResult>;
     addLandingPage(sellerId: any, data: any): import("mongoose").Query<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>, import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>, {}, Store & Document>;
+    addMarketPlace(sellerId: any, data: MarketDto): import("mongoose").Query<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>, import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;

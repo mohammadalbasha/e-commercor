@@ -3,6 +3,7 @@ import { CreateStoreDto } from '../dtos/create-store.dto';
 import { StoreRepository } from '../repositories/store.repository';
 import { PasswordService } from 'src/authentication/password.service';
 import { Seller, Store } from '../models/store.model';
+import { MarketDto } from '../dtos/market-store.dto';
 
 @Injectable()
 export class StoreService {
@@ -75,6 +76,13 @@ export class StoreService {
   addLandingPage(sellerId, data) {
     return this.storeRepo.findBySellerIdAndUpdate(sellerId, {
       landingPage: data,
+    });
+  }
+
+  addMarketPlace(sellerId, data: MarketDto) {
+    return this.storeRepo.findBySellerIdAndUpdate(sellerId, {
+      ...data,
+      isVerifiedAsMarket: false,
     });
   }
 }

@@ -13,11 +13,9 @@ export declare class StoreRepository {
     }): Promise<mongoose.Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: mongoose.Types.ObjectId;
     }, never>>;
-    findAll(filter: Partial<Store>): mongoose.Query<(mongoose.Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+    findAll(filter: Partial<Store>): Promise<(mongoose.Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: mongoose.Types.ObjectId;
-    }, never>)[], mongoose.Document<unknown, {}, Store & Document> & Omit<Store & Document & {
-        _id: mongoose.Types.ObjectId;
-    }, never>, {}, Store & Document>;
+    }, never>)[]>;
     findOne(filter: Partial<Store>): mongoose.Query<mongoose.Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: mongoose.Types.ObjectId;
     }, never>, mongoose.Document<unknown, {}, Store & Document> & Omit<Store & Document & {

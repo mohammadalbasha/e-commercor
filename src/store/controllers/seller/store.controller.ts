@@ -15,6 +15,7 @@ import { PoliciesGuard } from 'src/authorization/casl/guards/policy.guard';
 import MongooseClassSerializerInterceptor from 'src/shared/mongoose/interceptors/mongooseClassSerializer.interceptor';
 import { Store } from '../../models/store.model';
 import { AuthSellerService } from 'src/authentication/sellers/services/auth-seller.service';
+import { MarketDto } from 'src/store/dtos/market-store.dto';
 
 @UseGuards(AtSellerGuard)
 @Controller('/seller/store')
@@ -44,5 +45,13 @@ export class StoreSellerController {
   @Post('/landing-page')
   addLandingPage(@Body() body, @GetCurrentUserId() sellerId: string) {
     return this.storeService.addLandingPage(sellerId, body);
+  }
+
+  @Post('/market')
+  addMarketInformation(
+    @Body() body: MarketDto,
+    @GetCurrentUserId() sellerId: string,
+  ) {
+    return this.storeService.addMarketPlace(sellerId, body);
   }
 }

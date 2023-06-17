@@ -18,6 +18,11 @@ let AtCustomerGuard = class AtCustomerGuard extends (0, passport_1.AuthGuard)('j
         super();
         this.reflector = reflector;
     }
+    handleRequest(err, user, info, context) {
+        if (user.storeId != context.switchToHttp().getRequest().params.storeId)
+            throw new common_1.UnauthorizedException();
+        return user;
+    }
     canActivate(context) {
         const isPublic = this.reflector.getAllAndOverride('isPublic', [
             context.getHandler(),

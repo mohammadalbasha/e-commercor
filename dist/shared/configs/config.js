@@ -5,6 +5,10 @@ exports.default = () => ({
         port: +process.env.PORT,
         environment: process.env.APP_ENV,
     },
+    adminAuth: {
+        username: process.env.ADMIN_USERNAME,
+        password: process.env.ADMIN_PASSWORD,
+    },
     cors: {
         enabled: true,
     },

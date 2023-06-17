@@ -36,9 +36,11 @@ export class Store extends BaseModel {
   @Prop({ index: true, required: true, unique: true })
   name: string;
 
-  @Prop()
+  @Prop({ default: '', required: true })
   paypalMerchantId: string;
 
+  @Prop({ default: false, required: true })
+  isAccepted: boolean;
   //  @Exclude()
   @Prop({ required: true })
   @Type(() => Seller)
@@ -63,7 +65,10 @@ export class Store extends BaseModel {
   marketName: string;
 
   @Prop()
-  marketVerifications: string;
+  marketVerificationUrl: string;
+
+  @Prop({ required: true, default: true })
+  isVerifiedAsMarket: boolean;
 
   @Prop()
   landingPage: mongoose.Schema.Types.Mixed;

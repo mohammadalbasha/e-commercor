@@ -28,7 +28,7 @@ let StoreRepository = class StoreRepository {
         await store.save();
         return store;
     }
-    findAll(filter) {
+    async findAll(filter) {
         return this.store.find(Object.assign({}, filter));
     }
     findOne(filter) {
@@ -41,7 +41,7 @@ let StoreRepository = class StoreRepository {
         return this.store.findOne({ name: storeName });
     }
     findByIdAndUpdate(storeId, data) {
-        return this.store.findByIdAndUpdate(storeId, Object.assign({}, data));
+        return this.store.findByIdAndUpdate(storeId, Object.assign({}, data), { new: true });
     }
     findBySellerIdAndUpdate(sellerId, data) {
         return this.store.findOneAndUpdate({ 'seller._id': sellerId }, Object.assign({}, data));

@@ -21,6 +21,7 @@ const guards_1 = require("../../../authentication/sellers/guards");
 const mongooseClassSerializer_interceptor_1 = require("../../../shared/mongoose/interceptors/mongooseClassSerializer.interceptor");
 const store_model_1 = require("../../models/store.model");
 const auth_seller_service_1 = require("../../../authentication/sellers/services/auth-seller.service");
+const market_store_dto_1 = require("../../dtos/market-store.dto");
 let StoreSellerController = class StoreSellerController {
     constructor(storeService, authService) {
         this.storeService = storeService;
@@ -38,6 +39,9 @@ let StoreSellerController = class StoreSellerController {
     }
     addLandingPage(body, sellerId) {
         return this.storeService.addLandingPage(sellerId, body);
+    }
+    addMarketInformation(body, sellerId) {
+        return this.storeService.addMarketPlace(sellerId, body);
     }
 };
 __decorate([
@@ -65,6 +69,14 @@ __decorate([
     __metadata("design:paramtypes", [Object, String]),
     __metadata("design:returntype", void 0)
 ], StoreSellerController.prototype, "addLandingPage", null);
+__decorate([
+    (0, common_1.Post)('/market'),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, decorators_1.GetCurrentUserId)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [market_store_dto_1.MarketDto, String]),
+    __metadata("design:returntype", void 0)
+], StoreSellerController.prototype, "addMarketInformation", null);
 StoreSellerController = __decorate([
     (0, common_1.UseGuards)(guards_1.AtSellerGuard),
     (0, common_1.Controller)('/seller/store'),

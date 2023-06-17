@@ -21,6 +21,10 @@ let GetStoreMiddleware = class GetStoreMiddleware {
         const store = await this.storeService.findById(storeId);
         if (!store)
             throw new common_1.NotFoundException('store not found');
+        if (!store.isActive ||
+            !store.isVerifiedAsMarket ||
+            store.paypalMerchantId == '')
+            throw new common_1.BadRequestException('store inactive');
         req.store = store;
         next();
     }

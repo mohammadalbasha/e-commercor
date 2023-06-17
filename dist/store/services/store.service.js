@@ -74,6 +74,9 @@ let StoreService = class StoreService {
             landingPage: data,
         });
     }
+    addMarketPlace(sellerId, data) {
+        return this.storeRepo.findBySellerIdAndUpdate(sellerId, Object.assign(Object.assign({}, data), { isVerifiedAsMarket: false }));
+    }
 };
 StoreService = __decorate([
     (0, common_1.Injectable)(),

@@ -27,6 +27,7 @@ import { CreateStoreDto } from '../../dtos/create-store.dto';
 import { StoreService } from '../../services/store.service';
 import { Store } from '../../models/store.model';
 import { AuthSellerService } from 'src/authentication/sellers/services/auth-seller.service';
+import { MarketDto } from 'src/store/dtos/market-store.dto';
 export declare class StoreSellerController {
     private storeService;
     private authService;
@@ -36,6 +37,11 @@ export declare class StoreSellerController {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;
     addLandingPage(body: any, sellerId: string): import("mongoose").Query<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>, import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>, {}, Store & Document>;
+    addMarketInformation(body: MarketDto, sellerId: string): import("mongoose").Query<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>, import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;

@@ -1,6 +1,7 @@
 export interface Config {
     nest: NestConfig;
     cors: CorsConfig;
+    adminAuth: AdminAuthConfig;
     security: SecurityConfig;
     nodemailer: NodemailerConfig;
     mongo: MongoConfig;
@@ -10,6 +11,10 @@ export interface Config {
     refreshTokenSeller: RefreshTokenConfig;
     accessTokenCustomer: AccessTokenConfig;
     refreshTokenCustomer: RefreshTokenConfig;
+}
+export interface AdminAuthConfig {
+    username: string;
+    password: string;
 }
 export interface MongoConfig {
     production_url: string;

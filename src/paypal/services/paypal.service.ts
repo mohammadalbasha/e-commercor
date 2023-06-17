@@ -196,7 +196,7 @@ export class PaypalService {
 
           purchase_units: [
             {
-              reference_id: 'REFID-1',
+              reference_id: orderId,
               payee: {
                 merchant_id: storeMerchantId,
               },

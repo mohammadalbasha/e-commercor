@@ -18,6 +18,10 @@ const auth_customer_controller_1 = require("./customers/controllers/auth-custome
 const auth_customer_service_1 = require("./customers/services/auth-customer.service");
 const customer_module_1 = require("../customer/customer.module");
 const strategies_2 = require("./customers/strategies");
+const strategies_3 = require("./customers copy/strategies");
+const auth_admin_controller_1 = require("./customers copy/controllers/auth-admin.controller");
+const shared_module_1 = require("../shared/shared.module");
+const auth_admin_service_1 = require("./customers copy/services/auth-admin.service");
 let AuthenticationModule = class AuthenticationModule {
 };
 AuthenticationModule = __decorate([
@@ -31,10 +35,21 @@ AuthenticationModule = __decorate([
             strategies_2.RtCustomerStrategy,
             jwt_1.JwtService,
             auth_customer_service_1.AuthCustomerService,
+            strategies_3.AtAdminStrategy,
+            strategies_3.RtAdminStrategy,
+            auth_admin_service_1.AuthAdminService,
         ],
         exports: [password_service_1.PasswordService, auth_seller_service_1.AuthSellerService],
-        imports: [(0, common_1.forwardRef)(() => store_module_1.StoreModule), (0, common_1.forwardRef)(() => customer_module_1.CustomerModule)],
-        controllers: [auth_seller_controller_1.AuthSellerController, auth_customer_controller_1.AuthCustomerController],
+        imports: [
+            (0, common_1.forwardRef)(() => shared_module_1.SharedModule),
+            (0, common_1.forwardRef)(() => store_module_1.StoreModule),
+            (0, common_1.forwardRef)(() => customer_module_1.CustomerModule),
+        ],
+        controllers: [
+            auth_admin_controller_1.AuthAdminController,
+            auth_seller_controller_1.AuthSellerController,
+            auth_customer_controller_1.AuthCustomerController,
+        ],
     })
 ], AuthenticationModule);
 exports.AuthenticationModule = AuthenticationModule;

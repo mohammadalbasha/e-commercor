@@ -9,6 +9,10 @@ import { AuthCustomerController } from './customers/controllers/auth-customer.co
 import { AuthCustomerService } from './customers/services/auth-customer.service';
 import { CustomerModule } from 'src/customer/customer.module';
 import { AtCustomerStrategy, RtCustomerStrategy } from './customers/strategies';
+import { AtAdminStrategy, RtAdminStrategy } from './customers copy/strategies';
+import { AuthAdminController } from './customers copy/controllers/auth-admin.controller';
+import { SharedModule } from 'src/shared/shared.module';
+import { AuthAdminService } from './customers copy/services/auth-admin.service';
 
 @Module({
   providers: [
@@ -20,9 +24,20 @@ import { AtCustomerStrategy, RtCustomerStrategy } from './customers/strategies';
     RtCustomerStrategy,
     JwtService,
     AuthCustomerService,
+    AtAdminStrategy,
+    RtAdminStrategy,
+    AuthAdminService,
   ],
   exports: [PasswordService, AuthSellerService],
-  imports: [forwardRef(() => StoreModule), forwardRef(() => CustomerModule)],
-  controllers: [AuthSellerController, AuthCustomerController],
+  imports: [
+    forwardRef(() => SharedModule),
+    forwardRef(() => StoreModule),
+    forwardRef(() => CustomerModule),
+  ],
+  controllers: [
+    AuthAdminController,
+    AuthSellerController,
+    AuthCustomerController,
+  ],
 })
 export class AuthenticationModule {}

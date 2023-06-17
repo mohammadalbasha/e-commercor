@@ -58,9 +58,13 @@ __decorate([
     __metadata("design:type", String)
 ], Store.prototype, "name", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(),
+    (0, mongoose_1.Prop)({ default: '', required: true }),
     __metadata("design:type", String)
 ], Store.prototype, "paypalMerchantId", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: false, required: true }),
+    __metadata("design:type", Boolean)
+], Store.prototype, "isAccepted", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     (0, class_transformer_1.Type)(() => Seller),
@@ -93,7 +97,11 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Store.prototype, "marketVerifications", void 0);
+], Store.prototype, "marketVerificationUrl", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: true, default: true }),
+    __metadata("design:type", Boolean)
+], Store.prototype, "isVerifiedAsMarket", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", mongoose_2.default.Schema.Types.Mixed)

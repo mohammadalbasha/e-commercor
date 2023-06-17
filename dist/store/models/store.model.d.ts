@@ -12,6 +12,7 @@ export declare class Seller extends BaseModel {
 export declare class Store extends BaseModel {
     name: string;
     paypalMerchantId: string;
+    isAccepted: boolean;
     seller: Seller;
     businessType: string;
     description: string;
@@ -19,7 +20,8 @@ export declare class Store extends BaseModel {
     isMarket: boolean;
     marketAddress: string;
     marketName: string;
-    marketVerifications: string;
+    marketVerificationUrl: string;
+    isVerifiedAsMarket: boolean;
     landingPage: mongoose.Schema.Types.Mixed;
 }
 export type StoreDocument = Store & Document;

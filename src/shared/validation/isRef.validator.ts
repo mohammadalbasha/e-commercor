@@ -59,10 +59,10 @@ export class IsRef implements ValidatorConstraintInterface {
     let [Model, where] = args.constraints;
 
     if (!where) where = {};
-    where = {
-      isActive: true,
-      ...where,
-    };
+    // where = {
+    //   isActive: true,
+    //   ...where,
+    // };
 
     if (Array.isArray(value)) {
       for (const v of value) {

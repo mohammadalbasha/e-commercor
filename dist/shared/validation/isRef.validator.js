@@ -41,7 +41,6 @@ let IsRef = class IsRef {
         let [Model, where] = args.constraints;
         if (!where)
             where = {};
-        where = Object.assign({ isActive: true }, where);
         if (Array.isArray(value)) {
             for (const v of value) {
                 const result = await this.connection.models[Model.name].findOne(Object.assign({ _id: new mongoose.Types.ObjectId(v) }, where));

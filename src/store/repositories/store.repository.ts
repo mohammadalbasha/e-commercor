@@ -26,10 +26,8 @@ export class StoreRepository {
     return store;
   }
 
-  findAll(filter: Partial<Store>) {
-    return this.store.find({
-      ...filter,
-    });
+  async findAll(filter: Partial<Store>) {
+    return this.store.find({ ...filter });
   }
 
   findOne(filter: Partial<Store>) {
@@ -47,7 +45,7 @@ export class StoreRepository {
   }
 
   findByIdAndUpdate(storeId: string, data: Partial<Store>) {
-    return this.store.findByIdAndUpdate(storeId, { ...data });
+    return this.store.findByIdAndUpdate(storeId, { ...data }, { new: true });
   }
 
   findBySellerIdAndUpdate(sellerId: string, data: Partial<Store>) {
