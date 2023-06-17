@@ -75,7 +75,7 @@ let StoreService = class StoreService {
         });
     }
     addMarketPlace(sellerId, data) {
-        return this.storeRepo.findBySellerIdAndUpdate(sellerId, Object.assign(Object.assign({}, data), { isVerifiedAsMarket: false }));
+        return this.storeRepo.findBySellerIdAndUpdate(sellerId, Object.assign(Object.assign({}, data), { isMarket: true, isVerifiedAsMarket: false }));
     }
 };
 StoreService = __decorate([

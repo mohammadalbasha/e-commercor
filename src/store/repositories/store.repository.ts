@@ -49,7 +49,11 @@ export class StoreRepository {
   }
 
   findBySellerIdAndUpdate(sellerId: string, data: Partial<Store>) {
-    return this.store.findOneAndUpdate({ 'seller._id': sellerId }, { ...data });
+    return this.store.findOneAndUpdate(
+      { 'seller._id': sellerId },
+      { ...data },
+      { new: true },
+    );
   }
 
   async;

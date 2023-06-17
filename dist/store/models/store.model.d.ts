@@ -20,7 +20,6 @@ export declare class Store extends BaseModel {
     isMarket: boolean;
     marketAddress: string;
     marketName: string;
-    marketVerificationUrl: string;
     isVerifiedAsMarket: boolean;
     landingPage: mongoose.Schema.Types.Mixed;
 }

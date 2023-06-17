@@ -82,6 +82,7 @@ export class StoreService {
   addMarketPlace(sellerId, data: MarketDto) {
     return this.storeRepo.findBySellerIdAndUpdate(sellerId, {
       ...data,
+      isMarket: true,
       isVerifiedAsMarket: false,
     });
   }

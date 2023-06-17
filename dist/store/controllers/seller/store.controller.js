@@ -70,7 +70,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], StoreSellerController.prototype, "addLandingPage", null);
 __decorate([
-    (0, common_1.Post)('/market'),
+    (0, common_1.Put)('/market'),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, decorators_1.GetCurrentUserId)()),
     __metadata("design:type", Function),

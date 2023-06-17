@@ -64,9 +64,6 @@ export class Store extends BaseModel {
   @Prop()
   marketName: string;
 
-  @Prop()
-  marketVerificationUrl: string;
-
   @Prop({ required: true, default: true })
   isVerifiedAsMarket: boolean;
 

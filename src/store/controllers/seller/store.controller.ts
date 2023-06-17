@@ -4,6 +4,7 @@ import {
   Controller,
   Get,
   Post,
+  Put,
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
@@ -47,7 +48,7 @@ export class StoreSellerController {
     return this.storeService.addLandingPage(sellerId, body);
   }
 
-  @Post('/market')
+  @Put('/market')
   addMarketInformation(
     @Body() body: MarketDto,
     @GetCurrentUserId() sellerId: string,

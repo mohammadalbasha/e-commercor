@@ -44,7 +44,7 @@ let StoreRepository = class StoreRepository {
         return this.store.findByIdAndUpdate(storeId, Object.assign({}, data), { new: true });
     }
     findBySellerIdAndUpdate(sellerId, data) {
-        return this.store.findOneAndUpdate({ 'seller._id': sellerId }, Object.assign({}, data));
+        return this.store.findOneAndUpdate({ 'seller._id': sellerId }, Object.assign({}, data), { new: true });
     }
     async findBySellerId(sellerId) {
         const store = await this.store.findOne({

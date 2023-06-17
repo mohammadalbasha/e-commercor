@@ -15,18 +15,13 @@ class MarketDto {
 }
 __decorate([
     (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDefined)(),
     __metadata("design:type", String)
 ], MarketDto.prototype, "marketAddress", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDefined)(),
     __metadata("design:type", String)
 ], MarketDto.prototype, "marketName", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
-], MarketDto.prototype, "marketVerificationUrl", void 0);
 exports.MarketDto = MarketDto;
 //# sourceMappingURL=market-store.dto.js.map

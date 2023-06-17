@@ -1,15 +1,11 @@
-import { IsString, IsOptional } from 'class-validator';
+import { IsString, IsDefined } from 'class-validator';
 
 export class MarketDto {
   @IsString()
-  @IsOptional()
+  @IsDefined()
   marketAddress: string;
 
   @IsString()
-  @IsOptional()
+  @IsDefined()
   marketName: string;
-
-  @IsString()
-  @IsOptional()
-  marketVerificationUrl: string;
 }

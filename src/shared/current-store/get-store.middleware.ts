@@ -19,12 +19,13 @@ export class GetStoreMiddleware implements NestMiddleware {
     const storeId = req.params.storeId;
     const store = await this.storeService.findById(storeId);
     if (!store) throw new NotFoundException('store not found');
-    if (
-      !store.isActive ||
-      !store.isVerifiedAsMarket ||
-      store.paypalMerchantId == ''
-    )
-      throw new BadRequestException('store inactive');
+    // if (
+    //   !store.isActive ||
+    //   !store.isVerifiedAsMarket ||
+    //   store.paypalMerchantId == '' ||
+    //   !store.isAccepted
+    // )
+    //   throw new BadRequestException('store inactive');
     req.store = store;
     next();
   }
