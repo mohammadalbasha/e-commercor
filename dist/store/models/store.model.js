@@ -58,7 +58,7 @@ __decorate([
     __metadata("design:type", String)
 ], Store.prototype, "name", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: '', required: true }),
+    (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], Store.prototype, "paypalMerchantId", void 0);
 __decorate([

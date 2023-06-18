@@ -17,6 +17,8 @@ export class StoreService {
       input.seller.password,
     );
     const { confirmPassword, ...seller } = input.seller;
+
+    console.log(input);
     const store = await this.storeRepo.create({
       ...input,
       seller: {

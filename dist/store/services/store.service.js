@@ -32,6 +32,7 @@ let StoreService = class StoreService {
     async create(input) {
         const hashedPassword = await this.passwordService.hashPassword(input.seller.password);
         const _a = input.seller, { confirmPassword } = _a, seller = __rest(_a, ["confirmPassword"]);
+        console.log(input);
         const store = await this.storeRepo.create(Object.assign(Object.assign({}, input), { seller: Object.assign(Object.assign({}, seller), { password: hashedPassword }) }));
         await store.save();
         return store;
