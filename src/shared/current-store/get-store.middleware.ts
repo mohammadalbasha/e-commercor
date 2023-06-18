@@ -22,7 +22,7 @@ export class GetStoreMiddleware implements NestMiddleware {
     // if (
     //   !store.isActive ||
     //   !store.isVerifiedAsMarket ||
-    //   !store.paypalMerchantId ||
+    //   store.paypalMerchantId == 'f' ||
     //   !store.isAccepted
     // )
     //   throw new BadRequestException('store inactive');

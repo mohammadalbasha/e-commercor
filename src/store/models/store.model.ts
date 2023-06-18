@@ -36,7 +36,7 @@ export class Store extends BaseModel {
   @Prop({ index: true, required: true, unique: true })
   name: string;
 
-  @Prop()
+  @Prop({ default: 'f', required: true })
   paypalMerchantId: string;
 
   @Prop({ default: false, required: true })
