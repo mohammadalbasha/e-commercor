@@ -21,6 +21,8 @@ async function bootstrap() {
     'validationPipeOptions',
   );
 
+  if (corsConfig.enabled) app.enableCors();
+
   app.useGlobalPipes(new ValidationPipe(validationPipeOptions));
   app.use(RequestIdMiddleware);
 
@@ -28,8 +30,6 @@ async function bootstrap() {
     fallbackOnErrors: true,
     fallback: true,
   }); // for custom validators like unique
-
-  if (corsConfig.enabled) app.enableCors();
 
   await app.listen(nestConfig.port);
 }
