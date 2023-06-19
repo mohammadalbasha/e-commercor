@@ -19,7 +19,7 @@ async function bootstrap() {
         fallback: true,
     });
     if (corsConfig.enabled)
-        app.enableCors();
+        app.enableCors({ origin: '*' });
     await app.listen(nestConfig.port);
 }
 bootstrap();
