@@ -29,7 +29,7 @@ async function bootstrap() {
     fallback: true,
   }); // for custom validators like unique
 
-  if (corsConfig.enabled) app.enableCors();
+  if (corsConfig.enabled) app.enableCors({ origin: 'true' });
 
   await app.listen(nestConfig.port);
 }
