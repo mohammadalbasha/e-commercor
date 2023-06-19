@@ -13,18 +13,7 @@ async function bootstrap() {
     const corsConfig = configService.get('cors');
     const validationPipeOptions = configService.get('validationPipeOptions');
     if (corsConfig.enabled)
-        console.log('ka');
-    app.use((req, res, next) => {
-        res.setHeader('Access-Control-Allow-Credentials', true);
-        res.setHeader('Access-Control-Allow-Origin', '*');
-        res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-        res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, Authorization, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
-        if (req.method === 'OPTIONS') {
-            res.status(200).end();
-            return;
-        }
-        next();
-    });
+        app.enableCors();
     app.useGlobalPipes(new common_1.ValidationPipe(validationPipeOptions));
     app.use(request_id_middleware_1.RequestIdMiddleware);
     (0, class_validator_1.useContainer)(app.select(app_module_1.AppModule), {

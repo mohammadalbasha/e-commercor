@@ -21,37 +21,7 @@ async function bootstrap() {
     'validationPipeOptions',
   );
 
-  if (corsConfig.enabled) console.log('ka');
-  // app.enableCors({
-  //   origin: '*',
-  //   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-  // });
-  app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Credentials', true);
-
-    res.setHeader('Access-Control-Allow-Origin', '*');
-
-    // another common pattern
-
-    // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-
-    res.setHeader(
-      'Access-Control-Allow-Methods',
-      'GET,OPTIONS,PATCH,DELETE,POST,PUT',
-    );
-
-    res.setHeader(
-      'Access-Control-Allow-Headers',
-
-      'X-CSRF-Token, Authorization, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
-    );
-    if (req.method === 'OPTIONS') {
-      res.status(200).end();
-
-      return;
-    }
-    next();
-  });
+  if (corsConfig.enabled) app.enableCors();
 
   app.useGlobalPipes(new ValidationPipe(validationPipeOptions));
   app.use(RequestIdMiddleware);
