@@ -21,7 +21,7 @@ async function bootstrap() {
     'validationPipeOptions',
   );
 
-  if (corsConfig.enabled) app.enableCors();
+  if (corsConfig.enabled) app.enableCors({ origin: 'http://localhost:3000' });
 
   app.useGlobalPipes(new ValidationPipe(validationPipeOptions));
   app.use(RequestIdMiddleware);
