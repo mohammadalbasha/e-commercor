@@ -13,7 +13,17 @@ async function bootstrap() {
     const corsConfig = configService.get('cors');
     const validationPipeOptions = configService.get('validationPipeOptions');
     if (corsConfig.enabled)
-        app.enableCors();
+        console.log('ka');
+    app.enableCors({
+        origin: '*',
+        methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    });
+    app.use((req, res, next) => {
+        res.setHeader('Access-Control-Allow-Methods', [
+            'GET, POST, PUT, PATCH, DELETE',
+        ]);
+        next();
+    });
     app.useGlobalPipes(new common_1.ValidationPipe(validationPipeOptions));
     app.use(request_id_middleware_1.RequestIdMiddleware);
     (0, class_validator_1.useContainer)(app.select(app_module_1.AppModule), {
