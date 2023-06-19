@@ -28,9 +28,7 @@ import { Store } from '../../models/store.model';
 export declare class StoreCustomerController {
     private storeService;
     constructor(storeService: StoreService);
-    getStore(storeName: string): import("mongoose").Query<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+    getStore(storeName: string): Promise<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;
-    }, never>, import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
-        _id: import("mongoose").Types.ObjectId;
-    }, never>, {}, Store & Document>;
+    }, never>>;
 }

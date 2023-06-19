@@ -67,21 +67,13 @@ export declare class ProductSellerController {
         }> & Required<{
             _id: unknown;
         }>, never>>;
+        close: () => void;
         name: string;
         count: number;
         normalize: () => void;
+        isActive?: boolean;
         createdAt?: Date;
         updatedAt?: Date;
-        isActive?: boolean;
-        storeId: string;
-        price: number;
-        Imagesproduct: string;
-        isSale: boolean;
-        saleValue: number;
-        store: import("../../../store/models/store.model").Store;
-        categoryId: string;
-        category: import("../../../category/models/category.model").Category;
-        version: number;
         URL: string;
         alinkColor: string;
         all: HTMLAllCollection;
@@ -138,7 +130,6 @@ export declare class ProductSellerController {
         captureEvents: () => void;
         caretRangeFromPoint: (x: number, y: number) => Range;
         clear: () => void;
-        close: () => void;
         createAttribute: (localName: string) => Attr;
         createAttributeNS: (namespace: string, qualifiedName: string) => Attr;
         createCDATASection: (data: string) => CDATASection;
@@ -435,6 +426,15 @@ export declare class ProductSellerController {
         createExpression: (expression: string, resolver?: XPathNSResolver) => XPathExpression;
         createNSResolver: (nodeResolver: Node) => XPathNSResolver;
         evaluate: (expression: string, contextNode: Node, resolver?: XPathNSResolver, type?: number, result?: XPathResult) => XPathResult;
+        storeId: string;
+        store: import("../../../store/models/store.model").Store;
+        price: number;
+        isSale: boolean;
+        saleValue: number;
+        Imagesproduct: string;
+        categoryId: string;
+        category: import("../../../category/models/category.model").Category;
+        version: number;
     }>;
     updateOne(productId: string, data: UpdateProductDto): Promise<string>;
     deleteOne(productId: string, data: UpdateProductDto): Promise<string>;

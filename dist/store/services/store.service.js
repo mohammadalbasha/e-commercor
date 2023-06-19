@@ -49,8 +49,11 @@ let StoreService = class StoreService {
     findById(storeId) {
         return this.storeRepo.findById(storeId);
     }
-    findByName(storeName) {
-        return this.storeRepo.findByName(storeName);
+    async findByName(storeName) {
+        const store = await this.storeRepo.findByName(storeName);
+        if (!store)
+            throw new common_1.NotFoundException('store with this name not found');
+        return store;
     }
     findByIdAndUpdate(storeId, data) {
         return this.storeRepo.findByIdAndUpdate(storeId, data);

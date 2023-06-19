@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateStoreDto } from '../dtos/create-store.dto';
 import { StoreRepository } from '../repositories/store.repository';
 import { PasswordService } from 'src/authentication/password.service';
@@ -47,8 +47,10 @@ export class StoreService {
     return this.storeRepo.findById(storeId);
   }
 
-  findByName(storeName: string) {
-    return this.storeRepo.findByName(storeName);
+  async findByName(storeName: string) {
+    const store = await this.storeRepo.findByName(storeName);
+    if (!store) throw new NotFoundException('store with this name not found');
+    return store;
   }
 
   findByIdAndUpdate(storeId: string, data: Partial<Store>) {

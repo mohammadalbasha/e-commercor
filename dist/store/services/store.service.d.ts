@@ -51,11 +51,9 @@ export declare class StoreService {
     }, never>, import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>, {}, Store & Document>;
-    findByName(storeName: string): import("mongoose").Query<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+    findByName(storeName: string): Promise<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;
-    }, never>, import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
-        _id: import("mongoose").Types.ObjectId;
-    }, never>, {}, Store & Document>;
+    }, never>>;
     findByIdAndUpdate(storeId: string, data: Partial<Store>): import("mongoose").Query<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>, import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
