@@ -19,7 +19,7 @@ async function bootstrap() {
         fallback: true,
     });
     if (corsConfig.enabled)
-        app.enableCors({ origin: '*' });
+        app.enableCors({ origin: 'http://localhost:3000' });
     await app.listen(nestConfig.port);
 }
 bootstrap();
