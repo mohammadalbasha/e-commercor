@@ -92,7 +92,7 @@ export class StoreAdminController {
   async deActivate(@Body() data: ActivateStoreDto) {
     // TODO:
     // check orders
-    await this.storeService.findByIdAndUpdate(data.storeId, {
+    return this.storeService.findByIdAndUpdate(data.storeId, {
       isActive: false,
     });
   }

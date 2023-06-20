@@ -74,7 +74,7 @@ let StoreAdminController = class StoreAdminController {
         });
     }
     async deActivate(data) {
-        await this.storeService.findByIdAndUpdate(data.storeId, {
+        return this.storeService.findByIdAndUpdate(data.storeId, {
             isActive: false,
         });
     }

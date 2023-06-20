@@ -66,5 +66,7 @@ export declare class StoreAdminController {
     activate(data: ActivateStoreDto): Promise<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;
-    deActivate(data: ActivateStoreDto): Promise<void>;
+    deActivate(data: ActivateStoreDto): Promise<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>>;
 }
