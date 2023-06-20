@@ -15,10 +15,13 @@ export function filterToMongo(filters) {
         $lte: filters[key].max,
       };
     } else {
-      const regex = new RegExp(filters[key], 'i');
-      output[key] = {
-        $regex: regex,
-      };
+      if (typeof filters[key] == 'boolean') output[key] = filters[key];
+      else {
+        const regex = new RegExp(filters[key], 'i');
+        output[key] = {
+          $regex: regex,
+        };
+      }
     }
   }
   return output;

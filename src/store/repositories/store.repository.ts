@@ -7,7 +7,6 @@ import {
   convertObjectToNested,
   convertToDotNotation,
 } from 'src/shared/mongoose/helperFunctions/convertNestedObject.helper';
-import { exec } from 'child_process';
 
 @Injectable()
 export class StoreRepository {
