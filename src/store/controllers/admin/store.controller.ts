@@ -20,16 +20,16 @@ import { AtAdminGuard } from 'src/authentication/customers copy/guards';
 export class StoreAdminController {
   constructor(private storeService: StoreService) {}
 
-  @UseInterceptors(MongooseClassSerializerInterceptor(Store))
+  //@UseInterceptors(MongooseClassSerializerInterceptor(Store))
   @Get('/')
   getStore(@Query() requestQuery) {
     let { page, limit, ...filters } = requestQuery;
     page = page || 1;
     limit = limit || 10;
-    return this.storeService.findAll({}, page, limit);
+    return this.storeService.findAll(filters, page, limit);
   }
 
-  @UseInterceptors(MongooseClassSerializerInterceptor(Store))
+  //@UseInterceptors(MongooseClassSerializerInterceptor(Store))
   @Get('/creation-requests')
   getStoreCreationRequests(@Query() requestQuery) {
     let { page, limit, ...filters } = requestQuery;
@@ -38,7 +38,7 @@ export class StoreAdminController {
     return this.storeService.findAll({ isAccepted: false }, page, limit);
   }
 
-  @UseInterceptors(MongooseClassSerializerInterceptor(Store))
+  //@UseInterceptors(MongooseClassSerializerInterceptor(Store))
   @Get('/market-requests')
   getStoreMarketRequests(@Query() requestQuery) {
     let { page, limit, ...filters } = requestQuery;

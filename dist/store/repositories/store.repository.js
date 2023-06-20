@@ -31,10 +31,11 @@ let StoreRepository = class StoreRepository {
     async findAll(filters, page, limit) {
         const skip = (+page - 1) * limit;
         const items = await this.store
-            .find(Object.assign({}, filters))
+            .find(Object.assign({}, filters), '-landingPage -seller.password')
             .skip(skip)
             .limit(limit)
             .exec();
+        console.log(items);
         const count = await this.store.countDocuments(filters).exec();
         return {
             items,

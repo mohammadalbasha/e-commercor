@@ -38,6 +38,7 @@ export declare class StoreService {
     findBySellerId(sellerId: string): Promise<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;
+    convertFilters(filters: any): {};
     findAll(filter: Partial<Store>, page: any, limit: any): Promise<{
         items: (import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
             _id: import("mongoose").Types.ObjectId;

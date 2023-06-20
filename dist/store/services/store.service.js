@@ -24,6 +24,7 @@ exports.StoreService = void 0;
 const common_1 = require("@nestjs/common");
 const store_repository_1 = require("../repositories/store.repository");
 const password_service_1 = require("../../authentication/password.service");
+const filter_helper_1 = require("../../shared/mongoose/helperFunctions/filter.helper");
 let StoreService = class StoreService {
     constructor(storeRepo, passwordService) {
         this.storeRepo = storeRepo;
@@ -40,7 +41,24 @@ let StoreService = class StoreService {
     findBySellerId(sellerId) {
         return this.storeRepo.findBySellerId(sellerId);
     }
+    convertFilters(filters) {
+        const output = {};
+        for (const key in filters) {
+            let [type, name] = key.split(/(?=[A-Z])/);
+            if (type != 'seller') {
+                output[key] = filters[key];
+            }
+            else {
+                const value = filters[key];
+                name = name.toLowerCase();
+                output[`seller.${name}`] = value;
+            }
+        }
+        return output;
+    }
     findAll(filter, page, limit) {
+        filter = this.convertFilters(filter);
+        filter = (0, filter_helper_1.filterToMongo)(filter);
         return this.storeRepo.findAll(filter, page, limit);
     }
     async findUnReadStores() {

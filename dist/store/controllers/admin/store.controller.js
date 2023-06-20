@@ -38,7 +38,7 @@ let StoreAdminController = class StoreAdminController {
         let { page, limit } = requestQuery, filters = __rest(requestQuery, ["page", "limit"]);
         page = page || 1;
         limit = limit || 10;
-        return this.storeService.findAll({}, page, limit);
+        return this.storeService.findAll(filters, page, limit);
     }
     getStoreCreationRequests(requestQuery) {
         let { page, limit } = requestQuery, filters = __rest(requestQuery, ["page", "limit"]);
@@ -80,7 +80,6 @@ let StoreAdminController = class StoreAdminController {
     }
 };
 __decorate([
-    (0, common_1.UseInterceptors)((0, mongooseClassSerializer_interceptor_1.default)(store_model_1.Store)),
     (0, common_1.Get)('/'),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
@@ -88,7 +87,6 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], StoreAdminController.prototype, "getStore", null);
 __decorate([
-    (0, common_1.UseInterceptors)((0, mongooseClassSerializer_interceptor_1.default)(store_model_1.Store)),
     (0, common_1.Get)('/creation-requests'),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
@@ -96,7 +94,6 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], StoreAdminController.prototype, "getStoreCreationRequests", null);
 __decorate([
-    (0, common_1.UseInterceptors)((0, mongooseClassSerializer_interceptor_1.default)(store_model_1.Store)),
     (0, common_1.Get)('/market-requests'),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),

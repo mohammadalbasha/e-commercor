@@ -4,6 +4,7 @@ import { StoreRepository } from '../repositories/store.repository';
 import { PasswordService } from 'src/authentication/password.service';
 import { Seller, Store } from '../models/store.model';
 import { MarketDto } from '../dtos/market-store.dto';
+import { filterToMongo } from 'src/shared/mongoose/helperFunctions/filter.helper';
 
 @Injectable()
 export class StoreService {
@@ -35,7 +36,25 @@ export class StoreService {
     return this.storeRepo.findBySellerId(sellerId);
   }
 
+  convertFilters(filters) {
+    const output = {};
+    for (const key in filters) {
+      let [type, name] = key.split(/(?=[A-Z])/);
+      if (type != 'seller') {
+        output[key] = filters[key];
+      } else {
+        const value = filters[key];
+        name = name.toLowerCase();
+        output[`seller.${name}`] = value;
+      }
+    }
+
+    return output;
+  }
+
   findAll(filter: Partial<Store>, page, limit) {
+    filter = this.convertFilters(filter);
+    filter = filterToMongo(filter);
     return this.storeRepo.findAll(filter, page, limit);
   }
 
