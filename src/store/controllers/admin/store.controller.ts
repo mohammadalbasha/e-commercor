@@ -3,7 +3,9 @@ import {
   ClassSerializerInterceptor,
   Controller,
   Get,
+  Param,
   Put,
+  Query,
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
@@ -20,20 +22,45 @@ export class StoreAdminController {
 
   @UseInterceptors(MongooseClassSerializerInterceptor(Store))
   @Get('/')
-  getStore() {
-    return this.storeService.findAll({});
+  getStore(@Query() requestQuery) {
+    let { page, limit, ...filters } = requestQuery;
+    page = page || 1;
+    limit = limit || 10;
+    return this.storeService.findAll({}, page, limit);
   }
 
   @UseInterceptors(MongooseClassSerializerInterceptor(Store))
   @Get('/creation-requests')
-  getStoreCreationRequests() {
-    return this.storeService.findAll({ isAccepted: false });
+  getStoreCreationRequests(@Query() requestQuery) {
+    let { page, limit, ...filters } = requestQuery;
+    page = page || 1;
+    limit = limit || 10;
+    return this.storeService.findAll({ isAccepted: false }, page, limit);
   }
 
   @UseInterceptors(MongooseClassSerializerInterceptor(Store))
   @Get('/market-requests')
-  getStoreMarketRequests() {
-    return this.storeService.findAll({ isVerifiedAsMarket: false });
+  getStoreMarketRequests(@Query() requestQuery) {
+    let { page, limit, ...filters } = requestQuery;
+    page = page || 1;
+    limit = limit || 10;
+    return this.storeService.findAll(
+      { isVerifiedAsMarket: false },
+      page,
+      limit,
+    );
+  }
+
+  @UseInterceptors(MongooseClassSerializerInterceptor(Store))
+  @Get('/unread')
+  async getUnReadCounts() {
+    return this.storeService.findUnReadStores();
+  }
+
+  @UseInterceptors(MongooseClassSerializerInterceptor(Store))
+  @Get('/:id')
+  async getById(@Param('id') storeId: string) {
+    return this.storeService.findByIdAndUpdate(storeId, { isRead: true });
   }
 
   @UseInterceptors(MongooseClassSerializerInterceptor(Store))

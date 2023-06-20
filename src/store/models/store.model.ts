@@ -71,6 +71,9 @@ export class Store extends BaseModel {
   @Prop()
   landingPage: mongoose.Schema.Types.Mixed;
 
+  @Prop({ default: false, required: true })
+  isRead: boolean;
+
   //   @PropEnum(Gender)
   //   gender?: Gender;
 

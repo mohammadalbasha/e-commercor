@@ -35,8 +35,12 @@ export class StoreService {
     return this.storeRepo.findBySellerId(sellerId);
   }
 
-  findAll(filter: Partial<Store>) {
-    return this.storeRepo.findAll(filter);
+  findAll(filter: Partial<Store>, page, limit) {
+    return this.storeRepo.findAll(filter, page, limit);
+  }
+
+  async findUnReadStores() {
+    return this.storeRepo.findUnReadStores();
   }
 
   findOne(filter: Partial<Store>) {

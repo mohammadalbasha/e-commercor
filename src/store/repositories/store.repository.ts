@@ -7,6 +7,7 @@ import {
   convertObjectToNested,
   convertToDotNotation,
 } from 'src/shared/mongoose/helperFunctions/convertNestedObject.helper';
+import { exec } from 'child_process';
 
 @Injectable()
 export class StoreRepository {
@@ -26,8 +27,25 @@ export class StoreRepository {
     return store;
   }
 
-  async findAll(filter: Partial<Store>) {
-    return this.store.find({ ...filter });
+  async findAll(filters: Partial<Store>, page, limit) {
+    const skip = (+page - 1) * limit;
+    const items = await this.store
+      .find({ ...filters })
+      .skip(skip)
+      .limit(limit)
+      .exec();
+    const count = await this.store.countDocuments(filters).exec();
+
+    return {
+      items,
+      totalPages: Math.ceil(count / limit),
+      currentPage: +page,
+      totalItems: count,
+    };
+  }
+
+  async findUnReadStores() {
+    return this.store.countDocuments({ isRead: false }).exec();
   }
 
   findOne(filter: Partial<Store>) {
@@ -56,7 +74,6 @@ export class StoreRepository {
     );
   }
 
-  async;
   async findBySellerId(sellerId: string) {
     const store = await this.store.findOne({
       'seller._id': sellerId,
