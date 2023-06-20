@@ -1,0 +1,27 @@
+import mongoose from 'mongoose';
+import { CreateCollectionDto } from '../dtos/create-collection.dto';
+import { Collection, CollectionDocument } from '../models/collection.model';
+export declare class CollectionRepository {
+    private readonly collection;
+    constructor(collection: mongoose.Model<Collection & CollectionDocument>);
+    create(data: CreateCollectionDto): Promise<mongoose.Document<unknown, {}, Collection & Document> & Omit<Collection & Document & {
+        _id: mongoose.Types.ObjectId;
+    }, never>>;
+    addProductToCollection(collectionId: string, productId: string): Promise<mongoose.Document<unknown, {}, Collection & Document> & Omit<Collection & Document & {
+        _id: mongoose.Types.ObjectId;
+    }, never>>;
+    findById(collectionId: string): Promise<mongoose.Document<unknown, {}, Collection & Document> & Omit<Collection & Document & {
+        _id: mongoose.Types.ObjectId;
+    }, never>>;
+    findByStoreId(storeId: string): Promise<(mongoose.Document<unknown, {}, Collection & Document> & Omit<Collection & Document & {
+        _id: mongoose.Types.ObjectId;
+    }, never>)[]>;
+    findAll(filter: Partial<Collection>): Promise<(mongoose.Document<unknown, {}, Collection & Document> & Omit<Collection & Document & {
+        _id: mongoose.Types.ObjectId;
+    }, never>)[]>;
+    findOne(filter: Partial<Collection>): mongoose.Query<mongoose.Document<unknown, {}, Collection & Document> & Omit<Collection & Document & {
+        _id: mongoose.Types.ObjectId;
+    }, never>, mongoose.Document<unknown, {}, Collection & Document> & Omit<Collection & Document & {
+        _id: mongoose.Types.ObjectId;
+    }, never>, {}, Collection & Document>;
+}

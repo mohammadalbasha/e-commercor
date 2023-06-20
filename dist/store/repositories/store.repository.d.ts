@@ -13,9 +13,15 @@ export declare class StoreRepository {
     }): Promise<mongoose.Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: mongoose.Types.ObjectId;
     }, never>>;
-    findAll(filter: Partial<Store>): Promise<(mongoose.Document<unknown, {}, Store & Document> & Omit<Store & Document & {
-        _id: mongoose.Types.ObjectId;
-    }, never>)[]>;
+    findAll(filters: Partial<Store>, page: any, limit: any): Promise<{
+        items: (mongoose.Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+            _id: mongoose.Types.ObjectId;
+        }, never>)[];
+        totalPages: number;
+        currentPage: number;
+        totalItems: number;
+    }>;
+    findUnReadStores(): Promise<number>;
     findOne(filter: Partial<Store>): mongoose.Query<mongoose.Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: mongoose.Types.ObjectId;
     }, never>, mongoose.Document<unknown, {}, Store & Document> & Omit<Store & Document & {
@@ -41,7 +47,6 @@ export declare class StoreRepository {
     }, never>, mongoose.Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: mongoose.Types.ObjectId;
     }, never>, {}, Store & Document>;
-    async: any;
     findBySellerId(sellerId: string): Promise<mongoose.Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: mongoose.Types.ObjectId;
     }, never>>;

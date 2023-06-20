@@ -28,8 +28,23 @@ let StoreRepository = class StoreRepository {
         await store.save();
         return store;
     }
-    async findAll(filter) {
-        return this.store.find(Object.assign({}, filter));
+    async findAll(filters, page, limit) {
+        const skip = (+page - 1) * limit;
+        const items = await this.store
+            .find(Object.assign({}, filters))
+            .skip(skip)
+            .limit(limit)
+            .exec();
+        const count = await this.store.countDocuments(filters).exec();
+        return {
+            items,
+            totalPages: Math.ceil(count / limit),
+            currentPage: +page,
+            totalItems: count,
+        };
+    }
+    async findUnReadStores() {
+        return this.store.countDocuments({ isRead: false }).exec();
     }
     findOne(filter) {
         return this.store.findOne(Object.assign({}, filter));

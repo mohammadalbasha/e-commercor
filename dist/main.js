@@ -13,7 +13,7 @@ async function bootstrap() {
     const corsConfig = configService.get('cors');
     const validationPipeOptions = configService.get('validationPipeOptions');
     if (corsConfig.enabled)
-        app.enableCors({ origin: 'http://localhost:3000' });
+        app.enableCors();
     app.useGlobalPipes(new common_1.ValidationPipe(validationPipeOptions));
     app.use(request_id_middleware_1.RequestIdMiddleware);
     (0, class_validator_1.useContainer)(app.select(app_module_1.AppModule), {

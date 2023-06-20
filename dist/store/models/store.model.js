@@ -102,6 +102,10 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", mongoose_2.default.Schema.Types.Mixed)
 ], Store.prototype, "landingPage", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: false, required: true }),
+    __metadata("design:type", Boolean)
+], Store.prototype, "isRead", void 0);
 Store = __decorate([
     (0, mongoose_1.Schema)(common_1.defaultSchemaOptions)
 ], Store);

@@ -40,8 +40,11 @@ let StoreService = class StoreService {
     findBySellerId(sellerId) {
         return this.storeRepo.findBySellerId(sellerId);
     }
-    findAll(filter) {
-        return this.storeRepo.findAll(filter);
+    findAll(filter, page, limit) {
+        return this.storeRepo.findAll(filter, page, limit);
+    }
+    async findUnReadStores() {
+        return this.storeRepo.findUnReadStores();
     }
     findOne(filter) {
         return this.storeRepo.findOne(filter);

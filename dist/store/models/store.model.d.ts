@@ -22,6 +22,7 @@ export declare class Store extends BaseModel {
     marketName: string;
     isVerifiedAsMarket: boolean;
     landingPage: mongoose.Schema.Types.Mixed;
+    isRead: boolean;
 }
 export type StoreDocument = Store & Document;
 export declare const StoreSchema: mongoose.Schema<Store, mongoose.Model<Store, any, any, any, mongoose.Document<unknown, any, Store> & Omit<Store & {

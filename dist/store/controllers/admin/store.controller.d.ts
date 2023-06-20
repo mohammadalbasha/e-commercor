@@ -29,15 +29,34 @@ import { ActivateStoreDto } from 'src/store/dtos/active-store-dto';
 export declare class StoreAdminController {
     private storeService;
     constructor(storeService: StoreService);
-    getStore(): Promise<(import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+    getStore(requestQuery: any): Promise<{
+        items: (import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+            _id: import("mongoose").Types.ObjectId;
+        }, never>)[];
+        totalPages: number;
+        currentPage: number;
+        totalItems: number;
+    }>;
+    getStoreCreationRequests(requestQuery: any): Promise<{
+        items: (import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+            _id: import("mongoose").Types.ObjectId;
+        }, never>)[];
+        totalPages: number;
+        currentPage: number;
+        totalItems: number;
+    }>;
+    getStoreMarketRequests(requestQuery: any): Promise<{
+        items: (import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+            _id: import("mongoose").Types.ObjectId;
+        }, never>)[];
+        totalPages: number;
+        currentPage: number;
+        totalItems: number;
+    }>;
+    getUnReadCounts(): Promise<number>;
+    getById(storeId: string): Promise<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;
-    }, never>)[]>;
-    getStoreCreationRequests(): Promise<(import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
-        _id: import("mongoose").Types.ObjectId;
-    }, never>)[]>;
-    getStoreMarketRequests(): Promise<(import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
-        _id: import("mongoose").Types.ObjectId;
-    }, never>)[]>;
+    }, never>>;
     acceptCreation(data: ActivateStoreDto): Promise<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;

@@ -11,6 +11,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StoreAdminController = void 0;
 const common_1 = require("@nestjs/common");
@@ -23,14 +34,29 @@ let StoreAdminController = class StoreAdminController {
     constructor(storeService) {
         this.storeService = storeService;
     }
-    getStore() {
-        return this.storeService.findAll({});
+    getStore(requestQuery) {
+        let { page, limit } = requestQuery, filters = __rest(requestQuery, ["page", "limit"]);
+        page = page || 1;
+        limit = limit || 10;
+        return this.storeService.findAll({}, page, limit);
     }
-    getStoreCreationRequests() {
-        return this.storeService.findAll({ isAccepted: false });
+    getStoreCreationRequests(requestQuery) {
+        let { page, limit } = requestQuery, filters = __rest(requestQuery, ["page", "limit"]);
+        page = page || 1;
+        limit = limit || 10;
+        return this.storeService.findAll({ isAccepted: false }, page, limit);
     }
-    getStoreMarketRequests() {
-        return this.storeService.findAll({ isVerifiedAsMarket: false });
+    getStoreMarketRequests(requestQuery) {
+        let { page, limit } = requestQuery, filters = __rest(requestQuery, ["page", "limit"]);
+        page = page || 1;
+        limit = limit || 10;
+        return this.storeService.findAll({ isVerifiedAsMarket: false }, page, limit);
+    }
+    async getUnReadCounts() {
+        return this.storeService.findUnReadStores();
+    }
+    async getById(storeId) {
+        return this.storeService.findByIdAndUpdate(storeId, { isRead: true });
     }
     async acceptCreation(data) {
         return this.storeService.findByIdAndUpdate(data.storeId, {
@@ -56,24 +82,42 @@ let StoreAdminController = class StoreAdminController {
 __decorate([
     (0, common_1.UseInterceptors)((0, mongooseClassSerializer_interceptor_1.default)(store_model_1.Store)),
     (0, common_1.Get)('/'),
+    __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], StoreAdminController.prototype, "getStore", null);
 __decorate([
     (0, common_1.UseInterceptors)((0, mongooseClassSerializer_interceptor_1.default)(store_model_1.Store)),
     (0, common_1.Get)('/creation-requests'),
+    __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], StoreAdminController.prototype, "getStoreCreationRequests", null);
 __decorate([
     (0, common_1.UseInterceptors)((0, mongooseClassSerializer_interceptor_1.default)(store_model_1.Store)),
     (0, common_1.Get)('/market-requests'),
+    __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], StoreAdminController.prototype, "getStoreMarketRequests", null);
+__decorate([
+    (0, common_1.UseInterceptors)((0, mongooseClassSerializer_interceptor_1.default)(store_model_1.Store)),
+    (0, common_1.Get)('/unread'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], StoreAdminController.prototype, "getUnReadCounts", null);
+__decorate([
+    (0, common_1.UseInterceptors)((0, mongooseClassSerializer_interceptor_1.default)(store_model_1.Store)),
+    (0, common_1.Get)('/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], StoreAdminController.prototype, "getById", null);
 __decorate([
     (0, common_1.UseInterceptors)((0, mongooseClassSerializer_interceptor_1.default)(store_model_1.Store)),
     (0, common_1.Put)('accept-creation'),
