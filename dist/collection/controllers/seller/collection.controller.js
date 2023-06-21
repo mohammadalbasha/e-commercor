@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CollectionSellerController = void 0;
 const common_1 = require("@nestjs/common");
 const get_seller_store_id_decorator_1 = require("../../../authentication/decorators/get-seller-store-id.decorator");
+const guards_1 = require("../../../authentication/sellers/guards");
 const add_product_dto_1 = require("../../dtos/add-product.dto");
 const create_collection_dto_1 = require("../../dtos/create-collection.dto");
 const collection_service_1 = require("../../services/collection.service");
@@ -72,7 +73,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], CollectionSellerController.prototype, "listOne", null);
 CollectionSellerController = __decorate([
-    (0, common_1.Controller)('/seller/collections'),
+    (0, common_1.UseGuards)(guards_1.AtSellerGuard),
+    (0, common_1.Controller)('seller/collections'),
     __metadata("design:paramtypes", [collection_service_1.CollectionService])
 ], CollectionSellerController);
 exports.CollectionSellerController = CollectionSellerController;
