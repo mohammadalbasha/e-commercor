@@ -7,7 +7,7 @@ import { CollectionService } from 'src/collection/services/collection.service';
 import { GetCurrentStore } from 'src/shared/current-store/current-store.decorator';
 import { Store } from 'src/store/models/store.model';
 
-@Controller('/:storeId/collections')
+@Controller('/seller/collections')
 export class CollectionSellerController {
   constructor(private collectionService: CollectionService) {}
 
