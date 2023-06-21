@@ -26,7 +26,11 @@ export class StoreAdminController {
     let { page, limit, ...filters } = requestQuery;
     page = page || 1;
     limit = limit || 10;
-    return this.storeService.findAll(filters, page, limit);
+    return this.storeService.findAll(
+      { ...filters, isAccepted: true },
+      page,
+      limit,
+    );
   }
 
   //@UseInterceptors(MongooseClassSerializerInterceptor(Store))

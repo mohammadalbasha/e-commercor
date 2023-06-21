@@ -1,7 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
+import { INestApplication, ValidationPipe } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
+import { RequestIdMiddleware } from 'src/shared/middlewares/request-id/request-id.middleware';
+import { useContainer } from 'class-validator';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
@@ -12,6 +14,15 @@ describe('AppController (e2e)', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
+
+    app.useGlobalPipes(new ValidationPipe({ whitelist: false }));
+    app.use(RequestIdMiddleware);
+
+    useContainer(app.select(AppModule), {
+      fallbackOnErrors: true,
+      fallback: true,
+    }); // for custom validators like unique
+
     await app.init();
   });
 

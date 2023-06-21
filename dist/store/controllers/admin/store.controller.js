@@ -38,7 +38,7 @@ let StoreAdminController = class StoreAdminController {
         let { page, limit } = requestQuery, filters = __rest(requestQuery, ["page", "limit"]);
         page = page || 1;
         limit = limit || 10;
-        return this.storeService.findAll(filters, page, limit);
+        return this.storeService.findAll(Object.assign(Object.assign({}, filters), { isAccepted: true }), page, limit);
     }
     getStoreCreationRequests(requestQuery) {
         let { page, limit } = requestQuery, filters = __rest(requestQuery, ["page", "limit"]);

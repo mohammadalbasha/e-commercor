@@ -14,7 +14,7 @@ export class CollectionRepository {
 
   async create(data: CreateCollectionDto) {
     const collection = await this.collection.create(data);
-    return collection;
+    return collection; 
   }
 
   async addProductToCollection(collectionId: string, productId: string) {
