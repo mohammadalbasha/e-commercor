@@ -24,6 +24,7 @@ const isRef_validator_1 = require("./shared/validation/isRef.validator");
 const file_module_1 = require("./file/file.module");
 const uniqueCategoryName_validator_1 = require("./shared/validation/uniqueCategoryName.validator");
 const nestjs_cls_1 = require("nestjs-cls");
+const collection_module_1 = require("./collection/collection.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -44,6 +45,7 @@ AppModule = __decorate([
             customer_module_1.CustomerModule,
             product_module_1.ProductModule,
             category_module_1.CategoryModule,
+            collection_module_1.CollectionModule,
             order_module_1.OrderModule,
             file_module_1.MediaFileModule,
         ],

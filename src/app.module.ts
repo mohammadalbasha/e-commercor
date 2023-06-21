@@ -17,6 +17,7 @@ import { IsRef } from './shared/validation/isRef.validator';
 import { MediaFileModule } from './file/file.module';
 import { UniqueCategoryName } from './shared/validation/uniqueCategoryName.validator';
 import { ClsModule } from 'nestjs-cls';
+import { CollectionModule } from './collection/collection.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { ClsModule } from 'nestjs-cls';
     CustomerModule,
     ProductModule,
     CategoryModule,
+    CollectionModule,
     OrderModule,
     MediaFileModule,
   ],

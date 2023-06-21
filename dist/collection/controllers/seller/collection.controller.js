@@ -72,7 +72,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], CollectionSellerController.prototype, "listOne", null);
 CollectionSellerController = __decorate([
-    (0, common_1.Controller)('/:storeId/collections'),
+    (0, common_1.Controller)('/seller/collections'),
     __metadata("design:paramtypes", [collection_service_1.CollectionService])
 ], CollectionSellerController);
 exports.CollectionSellerController = CollectionSellerController;
