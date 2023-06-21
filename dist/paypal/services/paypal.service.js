@@ -110,7 +110,6 @@ let PaypalService = class PaypalService {
     }
     async createOrder(storeMerchantId, amount, storeName = 'ecommercor', storeId, orderId) {
         let fee = amount * 0.05;
-        amount -= amount * 0.05;
         let authData = await this.getAuthToken();
         const accessToken = authData.access_token;
         console.log(accessToken);

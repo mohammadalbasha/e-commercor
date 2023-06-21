@@ -142,7 +142,7 @@ export class PaypalService {
     // 2- ecommercor fee
     // 3- product price
     let fee: number = amount * 0.05;
-    amount -= amount * 0.05;
+    //amount += amount * 0.05;
     // change amount to string
     // body should be  amount : "100.00"
     // I have removed payee from req.body
