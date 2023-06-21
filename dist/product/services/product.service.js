@@ -62,6 +62,9 @@ let ProductService = class ProductService {
     async create(data) {
         const categoryId = data.categoryId;
         const category = await this.categroyService.findById(categoryId);
+        if (category.storeId != data.storeId) {
+            throw new common_1.UnauthorizedException("you don't have access to this category");
+        }
         this.validateProductData(category.productProperties, data);
         return this.productRepo.create(data);
     }

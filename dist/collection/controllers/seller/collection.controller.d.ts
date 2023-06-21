@@ -26,16 +26,15 @@
 import { AddProductToCollectionDto } from 'src/collection/dtos/add-product.dto';
 import { CreateCollectionDto } from 'src/collection/dtos/create-collection.dto';
 import { CollectionService } from 'src/collection/services/collection.service';
-import { Store } from 'src/store/models/store.model';
 export declare class CollectionSellerController {
     private collectionService;
     constructor(collectionService: CollectionService);
     create(data: CreateCollectionDto, storeId: string): Promise<string>;
     addProductToCollection(data: AddProductToCollectionDto, storeId: string, collectionId: any): Promise<string>;
-    list(store: Store): Promise<(import("mongoose").Document<unknown, {}, import("../../models/collection.model").Collection & Document> & Omit<import("../../models/collection.model").Collection & Document & {
+    list(storeId: string): Promise<(import("mongoose").Document<unknown, {}, import("../../models/collection.model").Collection & Document> & Omit<import("../../models/collection.model").Collection & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>)[]>;
-    listOne(collectionId: any): Promise<import("mongoose").Document<unknown, {}, import("../../models/collection.model").Collection & Document> & Omit<import("../../models/collection.model").Collection & Document & {
+    listOne(collectionId: any, storeId: string): Promise<import("mongoose").Document<unknown, {}, import("../../models/collection.model").Collection & Document> & Omit<import("../../models/collection.model").Collection & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;
 }

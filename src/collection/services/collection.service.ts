@@ -1,27 +1,39 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { CreateCollectionDto } from 'src/collection/dtos/create-collection.dto';
 import { CollectionRepository } from 'src/collection/repositories/collection.repository';
 import { AddProductToCollectionDto } from '../dtos/add-product.dto';
+import { ProductService } from 'src/product/services/product.service';
 
 @Injectable()
 export class CollectionService {
-  constructor(private collectionRepo: CollectionRepository) {}
+  constructor(
+    private collectionRepo: CollectionRepository,
+    private prodcutService: ProductService,
+  ) {}
   create(data: CreateCollectionDto) {
     return this.collectionRepo.create(data);
   }
 
   async addProductToCollection(data: AddProductToCollectionDto) {
-    // TODO:
-    // fetch store with data.storeId
-    // check if store.seller.id == sellerId
+    const product = await this.prodcutService.findById(data.productId);
+    if (product.storeId != data.storeId) {
+      throw new UnauthorizedException("you don't have access to this product");
+    }
+
     return this.collectionRepo.addProductToCollection(
       data.collectionId,
       data.productId,
     );
   }
 
-  findById(collectionId: string) {
-    return this.collectionRepo.findById(collectionId);
+  async findById(collectionId: string, storeId: string) {
+    const collection = await this.collectionRepo.findById(collectionId);
+    if (collection.storeId != storeId) {
+      throw new UnauthorizedException(
+        "you don't have access to this collection",
+      );
+    }
+    return collection;
   }
 
   findByStoreId(storeId: string) {

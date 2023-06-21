@@ -5,12 +5,14 @@ import { CollectionRepository } from './repositories/collection.repository';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Collection, CollectionSchema } from './models/collection.model';
 import { CollectionCustomerController } from './controllers/customer/collection.controller';
+import { ProductModule } from 'src/product/product.module';
 
 @Module({
   imports: [
     MongooseModule.forFeature([
       { name: Collection.name, schema: CollectionSchema },
     ]),
+    ProductModule,
   ],
   providers: [CollectionService, CollectionRepository],
   controllers: [CollectionSellerController, CollectionCustomerController],

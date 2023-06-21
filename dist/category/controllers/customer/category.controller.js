@@ -24,8 +24,12 @@ let CategoryCustomerController = class CategoryCustomerController {
     list(store) {
         return this.categoryService.findByStoreId(store.id);
     }
-    listOne(categoryId) {
-        return this.categoryService.findById(categoryId);
+    async listOne(categoryId, store) {
+        const category = await this.categoryService.findById(categoryId);
+        if (category.storeId != store.id) {
+            throw new common_1.UnauthorizedException("you don't have access to this category");
+        }
+        return category;
     }
 };
 __decorate([
@@ -38,9 +42,10 @@ __decorate([
 __decorate([
     (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, current_store_decorator_1.GetCurrentStore)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [Object, store_model_1.Store]),
+    __metadata("design:returntype", Promise)
 ], CategoryCustomerController.prototype, "listOne", null);
 CategoryCustomerController = __decorate([
     (0, common_1.Controller)('/:storeId/categories'),

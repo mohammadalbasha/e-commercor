@@ -24,8 +24,8 @@ let CollectionCustomerController = class CollectionCustomerController {
     list(store) {
         return this.collectionService.findByStoreId(store.id);
     }
-    listOne(collectionId) {
-        return this.collectionService.findById(collectionId);
+    listOne(collectionId, store) {
+        return this.collectionService.findById(collectionId, store.id);
     }
 };
 __decorate([
@@ -38,8 +38,9 @@ __decorate([
 __decorate([
     (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, current_store_decorator_1.GetCurrentStore)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [Object, store_model_1.Store]),
     __metadata("design:returntype", void 0)
 ], CollectionCustomerController.prototype, "listOne", null);
 CollectionCustomerController = __decorate([

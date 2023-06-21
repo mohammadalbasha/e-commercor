@@ -14,6 +14,7 @@ const collection_repository_1 = require("./repositories/collection.repository");
 const mongoose_1 = require("@nestjs/mongoose");
 const collection_model_1 = require("./models/collection.model");
 const collection_controller_2 = require("./controllers/customer/collection.controller");
+const product_module_1 = require("../product/product.module");
 let CollectionModule = class CollectionModule {
 };
 CollectionModule = __decorate([
@@ -22,6 +23,7 @@ CollectionModule = __decorate([
             mongoose_1.MongooseModule.forFeature([
                 { name: collection_model_1.Collection.name, schema: collection_model_1.CollectionSchema },
             ]),
+            product_module_1.ProductModule,
         ],
         providers: [collection_service_1.CollectionService, collection_repository_1.CollectionRepository],
         controllers: [collection_controller_1.CollectionSellerController, collection_controller_2.CollectionCustomerController],

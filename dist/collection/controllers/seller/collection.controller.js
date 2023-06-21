@@ -19,26 +19,24 @@ const guards_1 = require("../../../authentication/sellers/guards");
 const add_product_dto_1 = require("../../dtos/add-product.dto");
 const create_collection_dto_1 = require("../../dtos/create-collection.dto");
 const collection_service_1 = require("../../services/collection.service");
-const current_store_decorator_1 = require("../../../shared/current-store/current-store.decorator");
-const store_model_1 = require("../../../store/models/store.model");
 let CollectionSellerController = class CollectionSellerController {
     constructor(collectionService) {
         this.collectionService = collectionService;
     }
     async create(data, storeId) {
-        const category = await this.collectionService.create(Object.assign(Object.assign({}, data), { storeId }));
+        const collection = await this.collectionService.create(Object.assign(Object.assign({}, data), { storeId }));
         return 'collection created successfully';
     }
     async addProductToCollection(data, storeId, collectionId) {
-        const category = await this.collectionService.addProductToCollection(Object.assign(Object.assign({}, data), { storeId,
+        const collection = await this.collectionService.addProductToCollection(Object.assign(Object.assign({}, data), { storeId,
             collectionId }));
-        return 'collection created successfully';
+        return 'product added successfully';
     }
-    list(store) {
-        return this.collectionService.findByStoreId(store.id);
+    list(storeId) {
+        return this.collectionService.findByStoreId(storeId);
     }
-    listOne(collectionId) {
-        return this.collectionService.findById(collectionId);
+    listOne(collectionId, storeId) {
+        return this.collectionService.findById(collectionId, storeId);
     }
 };
 __decorate([
@@ -60,16 +58,17 @@ __decorate([
 ], CollectionSellerController.prototype, "addProductToCollection", null);
 __decorate([
     (0, common_1.Get)(),
-    __param(0, (0, current_store_decorator_1.GetCurrentStore)()),
+    __param(0, (0, get_seller_store_id_decorator_1.GetSellerStoreId)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [store_model_1.Store]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], CollectionSellerController.prototype, "list", null);
 __decorate([
     (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, get_seller_store_id_decorator_1.GetSellerStoreId)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [Object, String]),
     __metadata("design:returntype", void 0)
 ], CollectionSellerController.prototype, "listOne", null);
 CollectionSellerController = __decorate([

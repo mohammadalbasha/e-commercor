@@ -31,7 +31,7 @@ export declare class CategoryCustomerController {
     list(store: Store): Promise<(import("mongoose").Document<unknown, {}, import("../../models/category.model").Category & Document> & Omit<import("../../models/category.model").Category & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>)[]>;
-    listOne(categoryId: any): Promise<import("mongoose").Document<unknown, {}, import("../../models/category.model").Category & Document> & Omit<import("../../models/category.model").Category & Document & {
+    listOne(categoryId: any, store: Store): Promise<import("mongoose").Document<unknown, {}, import("../../models/category.model").Category & Document> & Omit<import("../../models/category.model").Category & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;
 }

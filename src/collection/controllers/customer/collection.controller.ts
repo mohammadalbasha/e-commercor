@@ -14,7 +14,7 @@ export class CollectionCustomerController {
     return this.collectionService.findByStoreId(store.id);
   }
   @Get('/:id')
-  listOne(@Param('id') collectionId) {
-    return this.collectionService.findById(collectionId);
+  listOne(@Param('id') collectionId, @GetCurrentStore() store: Store) {
+    return this.collectionService.findById(collectionId, store.id);
   }
 }

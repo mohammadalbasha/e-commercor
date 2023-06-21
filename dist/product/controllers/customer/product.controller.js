@@ -25,12 +25,20 @@ var __rest = (this && this.__rest) || function (s, e) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductCustomerController = void 0;
 const common_1 = require("@nestjs/common");
+const category_service_1 = require("../../../category/services/category.service");
 const product_service_1 = require("../../services/product.service");
+const current_store_decorator_1 = require("../../../shared/current-store/current-store.decorator");
+const store_model_1 = require("../../../store/models/store.model");
 let ProductCustomerController = class ProductCustomerController {
-    constructor(productService) {
+    constructor(productService, categoryService) {
         this.productService = productService;
+        this.categoryService = categoryService;
     }
-    async listAll(categoryId, requestQuery) {
+    async listAll(categoryId, requestQuery, store) {
+        const category = await this.categoryService.findById(categoryId);
+        if (category.storeId != store.id) {
+            throw new common_1.UnauthorizedException("you don't have access to this category");
+        }
         let { page, limit } = requestQuery, filters = __rest(requestQuery, ["page", "limit"]);
         page = page || 1;
         limit = limit || 10;
@@ -39,16 +47,21 @@ let ProductCustomerController = class ProductCustomerController {
     async listByStoreId(storeId) {
         return this.productService.findByStoreId(storeId);
     }
-    async listOne(productId) {
-        return this.productService.findByIdWithStyle(productId);
+    async listOne(productId, store) {
+        const product = await this.productService.findByIdWithStyle(productId);
+        if (product.storeId != store.id) {
+            throw new common_1.UnauthorizedException("you don't have access to this product");
+        }
+        return product;
     }
 };
 __decorate([
     (0, common_1.Get)('/:categoryId/products'),
     __param(0, (0, common_1.Param)('categoryId')),
     __param(1, (0, common_1.Query)()),
+    __param(2, (0, current_store_decorator_1.GetCurrentStore)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:paramtypes", [String, Object, store_model_1.Store]),
     __metadata("design:returntype", Promise)
 ], ProductCustomerController.prototype, "listAll", null);
 __decorate([
@@ -61,13 +74,15 @@ __decorate([
 __decorate([
     (0, common_1.Get)('/:categoryId/products/:productId'),
     __param(0, (0, common_1.Param)('productId')),
+    __param(1, (0, current_store_decorator_1.GetCurrentStore)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [String, store_model_1.Store]),
     __metadata("design:returntype", Promise)
 ], ProductCustomerController.prototype, "listOne", null);
 ProductCustomerController = __decorate([
     (0, common_1.Controller)('/:storeId'),
-    __metadata("design:paramtypes", [product_service_1.ProductService])
+    __metadata("design:paramtypes", [product_service_1.ProductService,
+        category_service_1.CategoryService])
 ], ProductCustomerController);
 exports.ProductCustomerController = ProductCustomerController;
 //# sourceMappingURL=product.controller.js.map

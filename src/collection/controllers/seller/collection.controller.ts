@@ -19,7 +19,7 @@ export class CollectionSellerController {
     @Body() data: CreateCollectionDto,
     @GetSellerStoreId() storeId: string,
   ) {
-    const category = await this.collectionService.create({
+    const collection = await this.collectionService.create({
       ...data,
       storeId,
     });
@@ -36,22 +36,22 @@ export class CollectionSellerController {
     @GetSellerStoreId() storeId: string,
     @Param('id') collectionId,
   ) {
-    const category = await this.collectionService.addProductToCollection({
+    const collection = await this.collectionService.addProductToCollection({
       ...data,
       storeId,
       collectionId,
     });
 
     //return category;
-    return 'collection created successfully';
+    return 'product added successfully';
   }
 
   @Get()
-  list(@GetCurrentStore() store: Store) {
-    return this.collectionService.findByStoreId(store.id);
+  list(@GetSellerStoreId() storeId: string) {
+    return this.collectionService.findByStoreId(storeId);
   }
   @Get('/:id')
-  listOne(@Param('id') collectionId) {
-    return this.collectionService.findById(collectionId);
+  listOne(@Param('id') collectionId, @GetSellerStoreId() storeId: string) {
+    return this.collectionService.findById(collectionId, storeId);
   }
 }

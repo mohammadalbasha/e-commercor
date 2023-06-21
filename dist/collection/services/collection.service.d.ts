@@ -26,16 +26,18 @@
 import { CreateCollectionDto } from 'src/collection/dtos/create-collection.dto';
 import { CollectionRepository } from 'src/collection/repositories/collection.repository';
 import { AddProductToCollectionDto } from '../dtos/add-product.dto';
+import { ProductService } from 'src/product/services/product.service';
 export declare class CollectionService {
     private collectionRepo;
-    constructor(collectionRepo: CollectionRepository);
+    private prodcutService;
+    constructor(collectionRepo: CollectionRepository, prodcutService: ProductService);
     create(data: CreateCollectionDto): Promise<import("mongoose").Document<unknown, {}, import("../models/collection.model").Collection & Document> & Omit<import("../models/collection.model").Collection & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;
     addProductToCollection(data: AddProductToCollectionDto): Promise<import("mongoose").Document<unknown, {}, import("../models/collection.model").Collection & Document> & Omit<import("../models/collection.model").Collection & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;
-    findById(collectionId: string): Promise<import("mongoose").Document<unknown, {}, import("../models/collection.model").Collection & Document> & Omit<import("../models/collection.model").Collection & Document & {
+    findById(collectionId: string, storeId: string): Promise<import("mongoose").Document<unknown, {}, import("../models/collection.model").Collection & Document> & Omit<import("../models/collection.model").Collection & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;
     findByStoreId(storeId: string): Promise<(import("mongoose").Document<unknown, {}, import("../models/collection.model").Collection & Document> & Omit<import("../models/collection.model").Collection & Document & {

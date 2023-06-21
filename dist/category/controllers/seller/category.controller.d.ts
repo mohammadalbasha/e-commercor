@@ -32,7 +32,7 @@ export declare class CategorySellerController {
     list(storeId: string): Promise<(import("mongoose").Document<unknown, {}, import("../../models/category.model").Category & Document> & Omit<import("../../models/category.model").Category & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>)[]>;
-    listOne(categoryId: any): Promise<import("mongoose").Document<unknown, {}, import("../../models/category.model").Category & Document> & Omit<import("../../models/category.model").Category & Document & {
+    listOne(categoryId: any, storeId: string): Promise<import("mongoose").Document<unknown, {}, import("../../models/category.model").Category & Document> & Omit<import("../../models/category.model").Category & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;
 }

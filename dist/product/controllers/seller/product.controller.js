@@ -27,18 +27,24 @@ exports.ProductSellerController = void 0;
 const common_1 = require("@nestjs/common");
 const get_seller_store_id_decorator_1 = require("../../../authentication/decorators/get-seller-store-id.decorator");
 const guards_1 = require("../../../authentication/sellers/guards");
+const category_service_1 = require("../../../category/services/category.service");
 const create_product_dto_1 = require("../../dtos/create-product.dto");
 const update_product_dto_1 = require("../../dtos/update-product.dto");
 const product_service_1 = require("../../services/product.service");
 let ProductSellerController = class ProductSellerController {
-    constructor(productService) {
+    constructor(productService, categoryService) {
         this.productService = productService;
+        this.categoryService = categoryService;
     }
     async create(data, storeId) {
         const product = await this.productService.create(Object.assign(Object.assign({}, data), { storeId }));
         return 'product added successfully';
     }
-    async listAll(categoryId, requestQuery) {
+    async listAll(categoryId, requestQuery, storeId) {
+        const category = await this.categoryService.findById(categoryId);
+        if (category.storeId != storeId) {
+            throw new common_1.UnauthorizedException("you don't have access to this category");
+        }
         let { page, limit } = requestQuery, filters = __rest(requestQuery, ["page", "limit"]);
         page = page || 1;
         limit = limit || 10;
@@ -47,14 +53,26 @@ let ProductSellerController = class ProductSellerController {
     async listByStoreId(storeId) {
         return this.productService.findByStoreId(storeId);
     }
-    async listOne(productId) {
-        return this.productService.findByIdWithStyle(productId);
+    async listOne(productId, storeId) {
+        const product = await this.productService.findByIdWithStyle(productId);
+        if (product.storeId != storeId) {
+            throw new common_1.UnauthorizedException("you don't have access to this product");
+        }
+        return product;
     }
-    async updateOne(productId, data) {
-        const product = await this.productService.findByIdAndUpdate(productId, data);
+    async updateOne(productId, data, storeId) {
+        let product = await this.productService.findById(productId);
+        if (product.storeId != storeId) {
+            throw new common_1.UnauthorizedException("you don't have access to this product");
+        }
+        product = await this.productService.findByIdAndUpdate(productId, data);
         return 'product updated successfully';
     }
-    async deleteOne(productId, data) {
+    async deleteOne(productId, data, storeId) {
+        let product = await this.productService.findById(productId);
+        if (product.storeId != storeId) {
+            throw new common_1.UnauthorizedException("you don't have access to this product");
+        }
         await this.productService.findByIdAndDelete(productId);
         return 'product deleted successfully';
     }
@@ -71,8 +89,9 @@ __decorate([
     (0, common_1.Get)('/:categoryId/products'),
     __param(0, (0, common_1.Param)('categoryId')),
     __param(1, (0, common_1.Query)()),
+    __param(2, (0, get_seller_store_id_decorator_1.GetSellerStoreId)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:paramtypes", [String, Object, String]),
     __metadata("design:returntype", Promise)
 ], ProductSellerController.prototype, "listAll", null);
 __decorate([
@@ -85,30 +104,34 @@ __decorate([
 __decorate([
     (0, common_1.Get)('/:categoryId/products/:productId'),
     __param(0, (0, common_1.Param)('productId')),
+    __param(1, (0, get_seller_store_id_decorator_1.GetSellerStoreId)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
 ], ProductSellerController.prototype, "listOne", null);
 __decorate([
     (0, common_1.Put)('/:categoryId/products/:productId'),
     __param(0, (0, common_1.Param)('productId')),
     __param(1, (0, common_1.Body)()),
+    __param(2, (0, get_seller_store_id_decorator_1.GetSellerStoreId)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_product_dto_1.UpdateProductDto]),
+    __metadata("design:paramtypes", [String, update_product_dto_1.UpdateProductDto, String]),
     __metadata("design:returntype", Promise)
 ], ProductSellerController.prototype, "updateOne", null);
 __decorate([
     (0, common_1.Delete)('/:categoryId/products/:productId'),
     __param(0, (0, common_1.Param)('productId')),
     __param(1, (0, common_1.Body)()),
+    __param(2, (0, get_seller_store_id_decorator_1.GetSellerStoreId)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_product_dto_1.UpdateProductDto]),
+    __metadata("design:paramtypes", [String, update_product_dto_1.UpdateProductDto, String]),
     __metadata("design:returntype", Promise)
 ], ProductSellerController.prototype, "deleteOne", null);
 ProductSellerController = __decorate([
     (0, common_1.UseGuards)(guards_1.AtSellerGuard),
     (0, common_1.Controller)('/seller'),
-    __metadata("design:paramtypes", [product_service_1.ProductService])
+    __metadata("design:paramtypes", [product_service_1.ProductService,
+        category_service_1.CategoryService])
 ], ProductSellerController);
 exports.ProductSellerController = ProductSellerController;
 //# sourceMappingURL=product.controller.js.map

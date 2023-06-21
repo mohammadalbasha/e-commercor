@@ -2,6 +2,7 @@ import {
   BadRequestException,
   Injectable,
   NotFoundException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { ProductRepository } from '../repositories/product.repository';
 import { CreateProductDto } from '../dtos/create-product.dto';
@@ -62,6 +63,9 @@ export class ProductService {
   async create(data: CreateProductDto) {
     const categoryId = data.categoryId;
     const category = await this.categroyService.findById(categoryId);
+    if (category.storeId != data.storeId) {
+      throw new UnauthorizedException("you don't have access to this category");
+    }
     this.validateProductData(category.productProperties, data);
 
     return this.productRepo.create(data);
