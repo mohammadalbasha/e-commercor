@@ -77,13 +77,13 @@ export class StoreService {
   async findByName(storeName: string) {
     const store = await this.storeRepo.findByName(storeName);
     if (!store) throw new NotFoundException('store with this name not found');
-    if (
-      !store.isActive ||
-      !store.isVerifiedAsMarket ||
-      store.paypalMerchantId == 'f' ||
-      !store.isAccepted
-    )
-      throw new BadRequestException('store inactive');
+    // if (
+    //   !store.isActive ||
+    //   !store.isVerifiedAsMarket ||
+    //   store.paypalMerchantId == 'f' ||
+    //   !store.isAccepted
+    // )
+    //   throw new BadRequestException('store inactive');
     return store;
   }
 

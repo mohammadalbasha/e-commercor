@@ -74,11 +74,6 @@ let StoreService = class StoreService {
         const store = await this.storeRepo.findByName(storeName);
         if (!store)
             throw new common_1.NotFoundException('store with this name not found');
-        if (!store.isActive ||
-            !store.isVerifiedAsMarket ||
-            store.paypalMerchantId == 'f' ||
-            !store.isAccepted)
-            throw new common_1.BadRequestException('store inactive');
         return store;
     }
     findByIdAndUpdate(storeId, data) {
