@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateStoreDto } from '../dtos/create-store.dto';
 import { StoreRepository } from '../repositories/store.repository';
 import { PasswordService } from 'src/authentication/password.service';
@@ -73,6 +77,13 @@ export class StoreService {
   async findByName(storeName: string) {
     const store = await this.storeRepo.findByName(storeName);
     if (!store) throw new NotFoundException('store with this name not found');
+    if (
+      !store.isActive ||
+      !store.isVerifiedAsMarket ||
+      store.paypalMerchantId == 'f' ||
+      !store.isAccepted
+    )
+      throw new BadRequestException('store inactive');
     return store;
   }
 
