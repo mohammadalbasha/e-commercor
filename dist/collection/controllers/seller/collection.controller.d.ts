@@ -31,9 +31,9 @@ export declare class CollectionSellerController {
     constructor(collectionService: CollectionService);
     create(data: CreateCollectionDto, storeId: string): Promise<string>;
     addProductToCollection(data: AddProductToCollectionDto, storeId: string, collectionId: any): Promise<string>;
-    list(storeId: string): Promise<(import("mongoose").Document<unknown, {}, import("../../models/collection.model").Collection & Document> & Omit<import("../../models/collection.model").Collection & Document & {
+    list(storeId: string): Promise<Omit<import("mongoose").Document<unknown, {}, import("../../models/collection.model").Collection & Document> & Omit<import("../../models/collection.model").Collection & Document & {
         _id: import("mongoose").Types.ObjectId;
-    }, never>)[]>;
+    }, never>, never>[]>;
     listOne(collectionId: any, storeId: string): Promise<import("mongoose").Document<unknown, {}, import("../../models/collection.model").Collection & Document> & Omit<import("../../models/collection.model").Collection & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;

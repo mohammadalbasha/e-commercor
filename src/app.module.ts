@@ -18,6 +18,7 @@ import { MediaFileModule } from './file/file.module';
 import { UniqueCategoryName } from './shared/validation/uniqueCategoryName.validator';
 import { ClsModule } from 'nestjs-cls';
 import { CollectionModule } from './collection/collection.module';
+import { FeedbackModule } from './feedback/feedback.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { CollectionModule } from './collection/collection.module';
     CollectionModule,
     OrderModule,
     MediaFileModule,
+    FeedbackModule,
   ],
   controllers: [AppController],
   providers: [

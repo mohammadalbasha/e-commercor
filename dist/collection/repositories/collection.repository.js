@@ -39,16 +39,18 @@ let CollectionRepository = class CollectionRepository {
         return collection;
     }
     async findByStoreId(storeId) {
-        const categories = await this.collection.find({
+        const collections = await this.collection
+            .find({
             storeId: storeId,
-        });
-        return categories;
-    }
-    async findAll(filter) {
-        return this.collection.find(Object.assign({}, filter));
+        })
+            .populate('products');
+        return collections;
     }
     findOne(filter) {
-        return this.collection.findOne(Object.assign({}, filter));
+        return this.collection
+            .findOne(Object.assign({}, filter))
+            .populate('products')
+            .exec();
     }
 };
 CollectionRepository = __decorate([

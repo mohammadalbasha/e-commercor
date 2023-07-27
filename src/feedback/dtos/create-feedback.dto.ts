@@ -6,7 +6,7 @@ import {
   Validate,
 } from 'class-validator';
 import { Product } from 'src/product/models/product.model';
-import { IsRef } from 'src/shared/validation/isRef-old.validator';
+import { IsRef } from 'src/shared/validation/isRef.validator';
 
 export class CreateFeedbackDto {
   //@Validate(UniqueCategoryName, [Category, 'name'])

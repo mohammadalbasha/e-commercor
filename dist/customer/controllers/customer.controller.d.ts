@@ -25,10 +25,12 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { SignupDto } from 'src/customer/dtos/signup.dto';
 import { CustomerService } from '../services/customer.service';
+import { Customer } from '../models/customer.model';
 export declare class CustomerController {
     private customerService;
     constructor(customerService: CustomerService);
-    signup(data: SignupDto, storeId: string): Promise<import("mongoose").Document<unknown, {}, import("../models/customer.model").Customer & Document> & Omit<import("../models/customer.model").Customer & Document & {
+    signup(data: SignupDto, storeId: string): Promise<import("mongoose").Document<unknown, {}, Customer & Document> & Omit<Customer & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;
+    me(user: Customer): void;
 }

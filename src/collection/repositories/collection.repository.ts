@@ -33,23 +33,20 @@ export class CollectionRepository {
   }
 
   async findByStoreId(storeId: string) {
-    const categories = await this.collection.find({
-      storeId: storeId,
-    });
-    return categories;
-  }
-
-  // TODO:
-  // make a filter type decorator and filter dto
-  async findAll(filter: Partial<Collection>) {
-    return this.collection.find({
-      ...filter,
-    });
+    const collections = await this.collection
+      .find({
+        storeId: storeId,
+      })
+      .populate('products');
+    return collections;
   }
 
   findOne(filter: Partial<Collection>) {
-    return this.collection.findOne({
-      ...filter,
-    });
+    return this.collection
+      .findOne({
+        ...filter,
+      })
+      .populate('products')
+      .exec();
   }
 }

@@ -13,15 +13,10 @@ export declare class CollectionRepository {
     findById(collectionId: string): Promise<mongoose.Document<unknown, {}, Collection & Document> & Omit<Collection & Document & {
         _id: mongoose.Types.ObjectId;
     }, never>>;
-    findByStoreId(storeId: string): Promise<(mongoose.Document<unknown, {}, Collection & Document> & Omit<Collection & Document & {
+    findByStoreId(storeId: string): Promise<Omit<mongoose.Document<unknown, {}, Collection & Document> & Omit<Collection & Document & {
         _id: mongoose.Types.ObjectId;
-    }, never>)[]>;
-    findAll(filter: Partial<Collection>): Promise<(mongoose.Document<unknown, {}, Collection & Document> & Omit<Collection & Document & {
+    }, never>, never>[]>;
+    findOne(filter: Partial<Collection>): Promise<mongoose.Document<unknown, {}, Collection & Document> & Omit<Collection & Document & {
         _id: mongoose.Types.ObjectId;
-    }, never>)[]>;
-    findOne(filter: Partial<Collection>): mongoose.Query<mongoose.Document<unknown, {}, Collection & Document> & Omit<Collection & Document & {
-        _id: mongoose.Types.ObjectId;
-    }, never>, mongoose.Document<unknown, {}, Collection & Document> & Omit<Collection & Document & {
-        _id: mongoose.Types.ObjectId;
-    }, never>, {}, Collection & Document>;
+    }, never>>;
 }

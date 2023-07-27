@@ -40,7 +40,7 @@ export declare class CollectionService {
     findById(collectionId: string, storeId: string): Promise<import("mongoose").Document<unknown, {}, import("../models/collection.model").Collection & Document> & Omit<import("../models/collection.model").Collection & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;
-    findByStoreId(storeId: string): Promise<(import("mongoose").Document<unknown, {}, import("../models/collection.model").Collection & Document> & Omit<import("../models/collection.model").Collection & Document & {
+    findByStoreId(storeId: string): Promise<Omit<import("mongoose").Document<unknown, {}, import("../models/collection.model").Collection & Document> & Omit<import("../models/collection.model").Collection & Document & {
         _id: import("mongoose").Types.ObjectId;
-    }, never>)[]>;
+    }, never>, never>[]>;
 }

@@ -7,6 +7,7 @@ export declare class ProductProperties {
     count: mongoose.Schema.Types.Mixed;
 }
 export declare class Category extends BaseModel {
+    private products;
     name: string;
     description: string;
     isSale: boolean;

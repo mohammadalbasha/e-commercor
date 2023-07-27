@@ -16,6 +16,9 @@ exports.CustomerController = void 0;
 const common_1 = require("@nestjs/common");
 const signup_dto_1 = require("../dtos/signup.dto");
 const customer_service_1 = require("../services/customer.service");
+const guards_1 = require("../../authentication/customers/guards");
+const decorators_1 = require("../../authentication/decorators");
+const customer_model_1 = require("../models/customer.model");
 let CustomerController = class CustomerController {
     constructor(customerService) {
         this.customerService = customerService;
@@ -23,6 +26,7 @@ let CustomerController = class CustomerController {
     signup(data, storeId) {
         return this.customerService.signup(Object.assign(Object.assign({}, data), { storeId }));
     }
+    me(user) { }
 };
 __decorate([
     (0, common_1.Post)('signup'),
@@ -32,6 +36,14 @@ __decorate([
     __metadata("design:paramtypes", [signup_dto_1.SignupDto, String]),
     __metadata("design:returntype", void 0)
 ], CustomerController.prototype, "signup", null);
+__decorate([
+    (0, common_1.UseGuards)(guards_1.AtCustomerGuard),
+    (0, common_1.Get)('me'),
+    __param(0, (0, decorators_1.GetCurrentUser)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [customer_model_1.Customer]),
+    __metadata("design:returntype", void 0)
+], CustomerController.prototype, "me", null);
 CustomerController = __decorate([
     (0, common_1.Controller)('/:storeId'),
     __metadata("design:paramtypes", [customer_service_1.CustomerService])

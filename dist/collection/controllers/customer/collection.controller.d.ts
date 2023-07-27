@@ -28,9 +28,9 @@ import { Store } from 'src/store/models/store.model';
 export declare class CollectionCustomerController {
     private collectionService;
     constructor(collectionService: CollectionService);
-    list(store: Store): Promise<(import("mongoose").Document<unknown, {}, import("../../models/collection.model").Collection & Document> & Omit<import("../../models/collection.model").Collection & Document & {
+    list(store: Store): Promise<Omit<import("mongoose").Document<unknown, {}, import("../../models/collection.model").Collection & Document> & Omit<import("../../models/collection.model").Collection & Document & {
         _id: import("mongoose").Types.ObjectId;
-    }, never>)[]>;
+    }, never>, never>[]>;
     listOne(collectionId: any, store: Store): Promise<import("mongoose").Document<unknown, {}, import("../../models/collection.model").Collection & Document> & Omit<import("../../models/collection.model").Collection & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;

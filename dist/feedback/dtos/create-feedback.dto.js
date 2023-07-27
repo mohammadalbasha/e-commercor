@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateFeedbackDto = void 0;
 const class_validator_1 = require("class-validator");
 const product_model_1 = require("../../product/models/product.model");
-const isRef_old_validator_1 = require("../../shared/validation/isRef-old.validator");
+const isRef_validator_1 = require("../../shared/validation/isRef.validator");
 class CreateFeedbackDto {
 }
 __decorate([
@@ -23,7 +23,7 @@ __decorate([
     __metadata("design:type", String)
 ], CreateFeedbackDto.prototype, "text", void 0);
 __decorate([
-    (0, class_validator_1.Validate)(isRef_old_validator_1.IsRef, [product_model_1.Product]),
+    (0, class_validator_1.Validate)(isRef_validator_1.IsRef, [product_model_1.Product]),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsDefined)(),
     (0, class_validator_1.IsNotEmpty)(),
