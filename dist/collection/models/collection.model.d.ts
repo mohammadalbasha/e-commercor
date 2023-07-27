@@ -31,7 +31,7 @@ export declare class Collection extends BaseModel {
     description: string;
     storeId: string;
     store: Store;
-    productsIds: string[];
+    productsId: string[];
     products: Product[];
 }
 export type CollectionDocument = Collection & Document;

@@ -1,6 +1,7 @@
 import { ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
+import { AuthSellerService } from '../services/auth-seller.service';
 
 @Injectable()
 export class AtSellerGuard extends AuthGuard('jwt-seller') {

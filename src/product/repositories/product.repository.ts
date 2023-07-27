@@ -4,6 +4,7 @@ import mongoose, { mongo } from 'mongoose';
 import { Product, ProductDocument } from 'src/product/models/product.model';
 import { CreateProductDto } from '../dtos/create-product.dto';
 import { UpdateProductDto } from '../dtos/update-product.dto';
+import { NotFoundException } from '@nestjs/common';
 
 export class ProductRepository {
   constructor(
@@ -99,5 +100,49 @@ export class ProductRepository {
 
   findByIdAndDelete(id: string) {
     return this.product.findByIdAndDelete(id);
+  }
+
+  async findSimilarProducts(productId: string) {
+    const product = await this.product
+      .findById(productId)
+      .populate('collections')
+      .exec();
+
+    if (!product) {
+      throw new NotFoundException('Product not found');
+    }
+
+    // This code must be refactored
+    // there is no type safety
+    // but this is mandatory here because of using virtual properties
+    let collectionsProductsIds = [];
+    for (let i = 0; i < product['collections'].length; i++) {
+      collectionsProductsIds = [
+        ...collectionsProductsIds,
+        ...product['collections'][i]['productsIds'],
+      ];
+    }
+
+    // Find products with common tags
+    const similarProductsByTags = await this.product.find({
+      _id: { $ne: product._id },
+      tags: { $in: product.tags },
+    });
+    // Find products with common categories
+    const similarProductsByCategories = await this.product
+      .find({
+        _id: {
+          $ne: productId,
+          $in: collectionsProductsIds,
+        },
+      })
+      .exec();
+
+    // Combine the three sets of products and remove duplicates
+    const similarProducts = [
+      ...new Set([...similarProductsByTags, ...similarProductsByCategories]),
+    ];
+
+    return similarProducts;
   }
 }

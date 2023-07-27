@@ -15,6 +15,7 @@ const product_model_1 = require("../../product/models/product.model");
 const constants_1 = require("../../shared/constants");
 const base_model_1 = require("../../shared/models/base.model");
 const PropRef_decorator_1 = require("../../shared/models/decorators/mongoose/PropRef.decorator");
+const base_schema_1 = require("../../shared/mongoose/base.schema");
 const store_model_1 = require("../../store/models/store.model");
 let Collection = class Collection extends base_model_1.BaseModel {
 };
@@ -37,7 +38,7 @@ __decorate([
 __decorate([
     (0, PropRef_decorator_1.PropRef)(product_model_1.Product, true),
     __metadata("design:type", Array)
-], Collection.prototype, "productsIds", void 0);
+], Collection.prototype, "productsId", void 0);
 __decorate([
     (0, PropRef_decorator_1.PropObject)(product_model_1.Product, true),
     __metadata("design:type", Array)
@@ -46,5 +47,5 @@ Collection = __decorate([
     (0, mongoose_1.Schema)(constants_1.defaultSchemaOptions)
 ], Collection);
 exports.Collection = Collection;
-exports.CollectionSchema = mongoose_1.SchemaFactory.createForClass(Collection);
+exports.CollectionSchema = (0, base_schema_1.BaseSchema)(Collection);
 //# sourceMappingURL=collection.model.js.map

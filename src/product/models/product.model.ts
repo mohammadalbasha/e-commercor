@@ -1,6 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Exclude, Type } from 'class-transformer';
+import mongoose from 'mongoose';
 import { Category } from 'src/category/models/category.model';
+import { Collection } from 'src/collection/models/collection.model';
 import { defaultSchemaOptions } from 'src/shared/constants/common';
 import { BaseModel } from 'src/shared/models/base.model';
 import {
@@ -30,6 +32,9 @@ export class Product extends BaseModel {
   @Prop({ required: true, default: 0 })
   saleValue: number;
 
+  @Prop({ required: true, default: [], type: [String] })
+  tags: string[];
+
   @PropRef(Store)
   storeId: string;
   @PropObject(Store)
@@ -46,4 +51,14 @@ export class Product extends BaseModel {
 
 export type ProductDocument = Product & Document;
 //export const ProductSchema = SchemaFactory.createForClass(Product);
-export const ProductSchema = BaseSchema(Product);
+
+// this is better to be defined with PropObject Decorator
+// but it throws an error because one of two classes will be undefined while define the first class
+export var ProductSchema = BaseSchema(Product);
+ProductSchema.virtual('collections', {
+  ref: 'Collection',
+  //localField: key.toString() + '_id',
+  localField: '_id',
+  foreignField: 'productsIds',
+  justOne: false,
+});

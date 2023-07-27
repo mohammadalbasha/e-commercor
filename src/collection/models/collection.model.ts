@@ -6,6 +6,7 @@ import {
   PropRef,
   PropObject,
 } from 'src/shared/models/decorators/mongoose/PropRef.decorator';
+import { BaseSchema } from 'src/shared/mongoose/base.schema';
 import { Store } from 'src/store/models/store.model';
 
 @Schema(defaultSchemaOptions)
@@ -22,11 +23,11 @@ export class Collection extends BaseModel {
   store: Store;
 
   @PropRef(Product, true)
-  productsIds: string[];
+  productsId: string[];
   @PropObject(Product, true)
   products: Product[];
 }
 
 export type CollectionDocument = Collection & Document;
-export const CollectionSchema = SchemaFactory.createForClass(Collection);
-//export const CollectionSchema = BaseSchema(Collection);
+//export const CollectionSchema = SchemaFactory.createForClass(Collection);
+export const CollectionSchema = BaseSchema(Collection);

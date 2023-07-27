@@ -45,4 +45,7 @@ export declare class ProductRepository {
     }, never>, mongoose.Document<unknown, {}, Product & Document> & Omit<Product & Document & {
         _id: mongoose.Types.ObjectId;
     }, never>, {}, Product & Document>;
+    findSimilarProducts(productId: string): Promise<(mongoose.Document<unknown, {}, Product & Document> & Omit<Product & Document & {
+        _id: mongoose.Types.ObjectId;
+    }, never>)[]>;
 }

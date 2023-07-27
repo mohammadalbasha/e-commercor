@@ -7,7 +7,6 @@ import { PaypalService } from 'src/paypal/services/paypal.service';
 @Controller('seller/paypal')
 export class PaypalController {
   constructor(private paypalService: PaypalService) {}
-
   @UseGuards(AtSellerGuard)
   @Get('setup-merchant')
   setupMerchant(@GetSellerStoreId() storeId) {

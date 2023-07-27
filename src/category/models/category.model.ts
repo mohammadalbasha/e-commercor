@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Exclude, Type } from 'class-transformer';
 import mongoose from 'mongoose';
+import { Product } from 'src/product/models/product.model';
 import { defaultSchemaOptions } from 'src/shared/constants/common';
 import { BaseModel } from 'src/shared/models/base.model';
 import {
@@ -26,6 +27,8 @@ export class ProductProperties {
 
 @Schema(defaultSchemaOptions)
 export class Category extends BaseModel {
+  private products: Product[];
+
   @Prop({ index: true, required: true })
   name: string;
 

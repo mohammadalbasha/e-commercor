@@ -7,6 +7,7 @@ exports.VALIDATION_PIPE_OPTIONS = { transform: true, whitelist: true };
 exports.defaultSchemaOptions = {
     timestamps: true,
     strict: false,
+    strictPopulate: false,
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
 };

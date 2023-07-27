@@ -24,7 +24,7 @@ export class ProductService {
     const productPropertiesKeys = Object.keys(productProperties._doc);
     const productDataKeys = Object.keys(productData);
     for (let key of productDataKeys) {
-      if (key == 'tag') continue;
+      if (key == 'tag' || key == 'tags') continue;
       if (!productPropertiesKeys.includes(key)) {
         throw new BadRequestException(
           `${key} is invalid property for this product`,
@@ -67,6 +67,13 @@ export class ProductService {
       throw new UnauthorizedException("you don't have access to this category");
     }
     this.validateProductData(category.productProperties, data);
+
+    // // TODO:
+    // // refactor
+    if (data['tag'] && !data['tags']) {
+      data['tags'] = data['tag'];
+    }
+    data['tags'] = data['tags'].trim().split(' ');
 
     return this.productRepo.create(data);
   }
@@ -150,5 +157,12 @@ export class ProductService {
     // TODO:
     // check if any on progress orders related with this product
     return this.productRepo.findByIdAndDelete(productId);
+  }
+
+  findSimilarProducts(productId: string) {
+    // TODO:
+    // refactor
+    // business logic must be here not in the repo
+    return this.productRepo.findSimilarProducts(productId);
   }
 }

@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Exclude, Type } from 'class-transformer';
 import mongoose from 'mongoose';
+
 import { defaultSchemaOptions } from 'src/shared/constants/common';
 import { BaseModel } from 'src/shared/models/base.model';
 

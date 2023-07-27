@@ -16,6 +16,7 @@ exports.ProductRepository = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const product_model_1 = require("../models/product.model");
+const common_1 = require("@nestjs/common");
 let ProductRepository = class ProductRepository {
     constructor(product, connection) {
         this.product = product;
@@ -71,6 +72,38 @@ let ProductRepository = class ProductRepository {
     }
     findByIdAndDelete(id) {
         return this.product.findByIdAndDelete(id);
+    }
+    async findSimilarProducts(productId) {
+        const product = await this.product
+            .findById(productId)
+            .populate('collections')
+            .exec();
+        if (!product) {
+            throw new common_1.NotFoundException('Product not found');
+        }
+        let collectionsProductsIds = [];
+        for (let i = 0; i < product['collections'].length; i++) {
+            collectionsProductsIds = [
+                ...collectionsProductsIds,
+                ...product['collections'][i]['productsIds'],
+            ];
+        }
+        const similarProductsByTags = await this.product.find({
+            _id: { $ne: product._id },
+            tags: { $in: product.tags },
+        });
+        const similarProductsByCategories = await this.product
+            .find({
+            _id: {
+                $ne: productId,
+                $in: collectionsProductsIds,
+            },
+        })
+            .exec();
+        const similarProducts = [
+            ...new Set([...similarProductsByTags, ...similarProductsByCategories]),
+        ];
+        return similarProducts;
     }
 };
 ProductRepository = __decorate([

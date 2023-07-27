@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
+import { AuthAdminService } from '../services/auth-admin.service';
 
 @Injectable()
 export class AtAdminGuard extends AuthGuard('jwt-admin') {

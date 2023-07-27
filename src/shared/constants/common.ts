@@ -9,6 +9,7 @@ import { SchemaOptions } from '@nestjs/mongoose';
 export const defaultSchemaOptions = {
   timestamps: true,
   strict: false,
+  strictPopulate: false, // this is for populate field not in the schema , used in product to populate collections
   toJSON: { virtuals: true },
   toObject: { virtuals: true },
 } as SchemaOptions;

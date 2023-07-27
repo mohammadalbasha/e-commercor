@@ -35,7 +35,7 @@ let ProductService = class ProductService {
         const productPropertiesKeys = Object.keys(productProperties._doc);
         const productDataKeys = Object.keys(productData);
         for (let key of productDataKeys) {
-            if (key == 'tag')
+            if (key == 'tag' || key == 'tags')
                 continue;
             if (!productPropertiesKeys.includes(key)) {
                 throw new common_1.BadRequestException(`${key} is invalid property for this product`);
@@ -66,6 +66,10 @@ let ProductService = class ProductService {
             throw new common_1.UnauthorizedException("you don't have access to this category");
         }
         this.validateProductData(category.productProperties, data);
+        if (data['tag'] && !data['tags']) {
+            data['tags'] = data['tag'];
+        }
+        data['tags'] = data['tags'].trim().split(' ');
         return this.productRepo.create(data);
     }
     async increamentCount(filter, session) {
@@ -109,6 +113,9 @@ let ProductService = class ProductService {
         if (!product)
             throw new common_1.NotFoundException('product not found');
         return this.productRepo.findByIdAndDelete(productId);
+    }
+    findSimilarProducts(productId) {
+        return this.productRepo.findSimilarProducts(productId);
     }
 };
 ProductService = __decorate([

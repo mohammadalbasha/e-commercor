@@ -15,6 +15,7 @@ import { AtSellerGuard } from 'src/authentication/sellers/guards';
 import { PoliciesGuard } from 'src/authorization/casl/guards/policy.guard';
 import MongooseClassSerializerInterceptor from 'src/shared/mongoose/interceptors/mongooseClassSerializer.interceptor';
 import { Store } from '../../models/store.model';
+import { AtCustomerGuard } from 'src/authentication/customers/guards';
 
 @Controller()
 export class StoreCustomerController {

@@ -50,7 +50,7 @@ export declare class ProductCustomerController {
         _id: import("mongoose").Types.ObjectId;
         __v?: any;
         $locals: Record<string, unknown>;
-        $op: "remove" | "validate" | "save";
+        $op: "save" | "validate" | "remove";
         $where: Record<string, unknown>;
         baseModelName?: string;
         collection: import("mongoose").Collection<import("bson").Document>;
@@ -67,13 +67,19 @@ export declare class ProductCustomerController {
         }> & Required<{
             _id: unknown;
         }>, never>>;
-        close: () => void;
+        storeId: string;
+        categoryId: string;
         name: string;
+        Imagesproduct: string;
+        price: number;
         count: number;
-        normalize: () => void;
-        isActive?: boolean;
+        tags: string[];
+        isSale: boolean;
+        saleValue: number;
+        store: Store;
         createdAt?: Date;
         updatedAt?: Date;
+        isActive?: boolean;
         URL: string;
         alinkColor: string;
         all: HTMLAllCollection;
@@ -130,6 +136,7 @@ export declare class ProductCustomerController {
         captureEvents: () => void;
         caretRangeFromPoint: (x: number, y: number) => Range;
         clear: () => void;
+        close: () => void;
         createAttribute: (localName: string) => Attr;
         createAttributeNS: (namespace: string, qualifiedName: string) => Attr;
         createCDATASection: (data: string) => CDATASection;
@@ -281,6 +288,7 @@ export declare class ProductCustomerController {
         isSameNode: (otherNode: Node) => boolean;
         lookupNamespaceURI: (prefix: string) => string;
         lookupPrefix: (namespace: string) => string;
+        normalize: () => void;
         removeChild: <T_4 extends Node>(child: T_4) => T_4;
         replaceChild: <T_5 extends Node>(node: Node, child: T_5) => T_5;
         ATTRIBUTE_NODE: number;
@@ -426,14 +434,10 @@ export declare class ProductCustomerController {
         createExpression: (expression: string, resolver?: XPathNSResolver) => XPathExpression;
         createNSResolver: (nodeResolver: Node) => XPathNSResolver;
         evaluate: (expression: string, contextNode: Node, resolver?: XPathNSResolver, type?: number, result?: XPathResult) => XPathResult;
-        storeId: string;
-        store: Store;
-        price: number;
-        isSale: boolean;
-        saleValue: number;
-        Imagesproduct: string;
-        categoryId: string;
         category: import("../../../category/models/category.model").Category;
         version: number;
     }>;
+    listSimilarProducts(productId: string, store: Store): Promise<(import("mongoose").Document<unknown, {}, import("../../models/product.model").Product & Document> & Omit<import("../../models/product.model").Product & Document & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>)[]>;
 }

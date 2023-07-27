@@ -7,6 +7,7 @@ import {
   UnauthorizedException,
   UseGuards,
 } from '@nestjs/common';
+import { AtCustomerGuard } from 'src/authentication/customers/guards';
 import { GetSellerStoreId } from 'src/authentication/decorators/get-seller-store-id.decorator';
 import { AtSellerGuard } from 'src/authentication/sellers/guards';
 import { CreateCategoryDto } from 'src/category/dtos/create-category.dto';
@@ -17,7 +18,6 @@ import { Store } from 'src/store/models/store.model';
 @Controller('/:storeId/categories')
 export class CategoryCustomerController {
   constructor(private categoryService: CategoryService) {}
-
   @Get()
   list(@GetCurrentStore() store: Store) {
     return this.categoryService.findByStoreId(store.id);

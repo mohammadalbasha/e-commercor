@@ -44,6 +44,10 @@ __decorate([
     __metadata("design:type", Number)
 ], Product.prototype, "saleValue", void 0);
 __decorate([
+    (0, mongoose_1.Prop)({ required: true, default: [], type: [String] }),
+    __metadata("design:type", Array)
+], Product.prototype, "tags", void 0);
+__decorate([
     (0, PropRef_decorator_1.PropRef)(store_model_1.Store),
     __metadata("design:type", String)
 ], Product.prototype, "storeId", void 0);
@@ -68,4 +72,10 @@ Product = __decorate([
 ], Product);
 exports.Product = Product;
 exports.ProductSchema = (0, base_schema_1.BaseSchema)(Product);
+exports.ProductSchema.virtual('collections', {
+    ref: 'Collection',
+    localField: '_id',
+    foreignField: 'productsIds',
+    justOne: false,
+});
 //# sourceMappingURL=product.model.js.map

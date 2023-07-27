@@ -54,6 +54,13 @@ let ProductCustomerController = class ProductCustomerController {
         }
         return product;
     }
+    async listSimilarProducts(productId, store) {
+        const product = await this.productService.findByIdWithStyle(productId);
+        if (product.storeId != store.id) {
+            throw new common_1.UnauthorizedException("you don't have access to this product");
+        }
+        return this.productService.findSimilarProducts(productId);
+    }
 };
 __decorate([
     (0, common_1.Get)('/:categoryId/products'),
@@ -79,6 +86,14 @@ __decorate([
     __metadata("design:paramtypes", [String, store_model_1.Store]),
     __metadata("design:returntype", Promise)
 ], ProductCustomerController.prototype, "listOne", null);
+__decorate([
+    (0, common_1.Get)('/:categoryId/products/:productId/similar'),
+    __param(0, (0, common_1.Param)('productId')),
+    __param(1, (0, current_store_decorator_1.GetCurrentStore)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, store_model_1.Store]),
+    __metadata("design:returntype", Promise)
+], ProductCustomerController.prototype, "listSimilarProducts", null);
 ProductCustomerController = __decorate([
     (0, common_1.Controller)('/:storeId'),
     __metadata("design:paramtypes", [product_service_1.ProductService,

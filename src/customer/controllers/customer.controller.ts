@@ -1,6 +1,9 @@
-import { Body, Controller, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { SignupDto } from 'src/customer/dtos/signup.dto';
 import { CustomerService } from '../services/customer.service';
+import { AtCustomerGuard } from 'src/authentication/customers/guards';
+import { GetCurrentUser } from 'src/authentication/decorators';
+import { Customer } from '../models/customer.model';
 
 @Controller('/:storeId')
 export class CustomerController {
@@ -13,4 +16,8 @@ export class CustomerController {
       storeId,
     });
   }
+
+  @UseGuards(AtCustomerGuard)
+  @Get('me')
+  me(@GetCurrentUser() user: Customer) {}
 }

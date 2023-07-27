@@ -14,6 +14,7 @@ import { CategoryService } from 'src/category/services/category.service';
 import { CreateProductDto } from 'src/product/dtos/create-product.dto';
 import { ProductService } from 'src/product/services/product.service';
 import { GetCurrentStore } from 'src/shared/current-store/current-store.decorator';
+import { AtCustomerGuard } from 'src/authentication/customers/guards';
 import { Store } from 'src/store/models/store.model';
 
 @Controller('/:storeId')
@@ -55,5 +56,17 @@ export class ProductCustomerController {
       throw new UnauthorizedException("you don't have access to this product");
     }
     return product;
+  }
+
+  @Get('/:categoryId/products/:productId/similar')
+  async listSimilarProducts(
+    @Param('productId') productId: string,
+    @GetCurrentStore() store: Store,
+  ) {
+    const product = await this.productService.findByIdWithStyle(productId);
+    if (product.storeId != store.id) {
+      throw new UnauthorizedException("you don't have access to this product");
+    }
+    return this.productService.findSimilarProducts(productId);
   }
 }

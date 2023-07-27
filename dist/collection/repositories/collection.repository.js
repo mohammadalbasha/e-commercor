@@ -30,7 +30,7 @@ let CollectionRepository = class CollectionRepository {
         if (!collection) {
             throw new common_1.NotFoundException('collection not found');
         }
-        collection.productsIds.push(productId);
+        collection.productsId.push(productId);
         await collection.save();
         return collection;
     }
