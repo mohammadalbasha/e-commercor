@@ -31,6 +31,12 @@ let OrderRepository = class OrderRepository {
     findById(id) {
         return this.order.findById(id);
     }
+    listByStore(storeId) {
+        return this.order.find({ storeId: storeId });
+    }
+    listByUser(userId) {
+        return this.order.find({ customerId: userId });
+    }
 };
 OrderRepository = __decorate([
     __param(0, (0, mongoose_2.InjectModel)(order_model_1.Order.name)),

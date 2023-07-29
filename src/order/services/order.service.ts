@@ -96,6 +96,14 @@ export class OrderService {
     }
   }
 
+  listOrdersByStore(storeId: string) {
+    return this.orderRepo.listByStore(storeId);
+  }
+
+  listOrdersByUser(userId: string) {
+    return this.orderRepo.listByStore(userId);
+  }
+
   async captureOrder(storeId: string, orderId: string, token: string) {
     const isCaptured = await this.paypalService.captureOrder(token);
     console.log(isCaptured);

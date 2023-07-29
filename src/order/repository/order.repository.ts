@@ -22,4 +22,12 @@ export class OrderRepository {
   findById(id: string) {
     return this.order.findById(id);
   }
+
+  listByStore(storeId: string) {
+    return this.order.find({ storeId: storeId });
+  }
+
+  listByUser(userId: string) {
+    return this.order.find({ customerId: userId });
+  }
 }

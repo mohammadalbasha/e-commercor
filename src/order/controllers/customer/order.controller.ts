@@ -7,17 +7,21 @@ import {
   Query,
   UseGuards,
 } from '@nestjs/common';
-import { CreateOrderDto } from '../dtos/create-order.dto';
-import { OrderService } from '../services/order.service';
+import { CreateOrderDto } from '../../dtos/create-order.dto';
+import { OrderService } from '../../services/order.service';
 import { GetCurrentStore } from 'src/shared/current-store/current-store.decorator';
 import { Store } from 'src/store/models/store.model';
-import { GetCurrentUser, Public } from 'src/authentication/decorators';
+import {
+  GetCurrentUser,
+  GetCurrentUserId,
+  Public,
+} from 'src/authentication/decorators';
 import { User } from 'src/authorization/casl/user.model';
 import { AtCustomerGuard } from 'src/authentication/customers/guards';
 
 @UseGuards(AtCustomerGuard)
 @Controller(':storeId/order')
-export class OrderController {
+export class OrderCustomerController {
   constructor(private readonly orderService: OrderService) {}
 
   @Post()
@@ -32,6 +36,11 @@ export class OrderController {
       customerId: user.sub,
     } as CreateOrderDto;
     return this.orderService.purchaseProduct(data as CreateOrderDto, store);
+  }
+
+  @Get()
+  listMyOrders(@GetCurrentUserId() userId: string) {
+    return this.orderService.listOrdersByUser(userId);
   }
 
   // TODO:

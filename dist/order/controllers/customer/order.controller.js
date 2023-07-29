@@ -12,20 +12,23 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderController = void 0;
+exports.OrderCustomerController = void 0;
 const common_1 = require("@nestjs/common");
-const order_service_1 = require("../services/order.service");
-const current_store_decorator_1 = require("../../shared/current-store/current-store.decorator");
-const store_model_1 = require("../../store/models/store.model");
-const decorators_1 = require("../../authentication/decorators");
-const guards_1 = require("../../authentication/customers/guards");
-let OrderController = class OrderController {
+const order_service_1 = require("../../services/order.service");
+const current_store_decorator_1 = require("../../../shared/current-store/current-store.decorator");
+const store_model_1 = require("../../../store/models/store.model");
+const decorators_1 = require("../../../authentication/decorators");
+const guards_1 = require("../../../authentication/customers/guards");
+let OrderCustomerController = class OrderCustomerController {
     constructor(orderService) {
         this.orderService = orderService;
     }
     creataOrder(data, store, user) {
         data = Object.assign(Object.assign({}, data), { storeId: store.id, customerId: user.sub });
         return this.orderService.purchaseProduct(data, store);
+    }
+    listMyOrders(userId) {
+        return this.orderService.listOrdersByUser(userId);
     }
     captureOrder(storeId, orderId, token) {
         return this.orderService.captureOrder(storeId, orderId, token);
@@ -42,7 +45,14 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, store_model_1.Store, Object]),
     __metadata("design:returntype", void 0)
-], OrderController.prototype, "creataOrder", null);
+], OrderCustomerController.prototype, "creataOrder", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, decorators_1.GetCurrentUserId)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], OrderCustomerController.prototype, "listMyOrders", null);
 __decorate([
     (0, decorators_1.Public)(),
     (0, common_1.Get)('/capture/:orderId'),
@@ -52,7 +62,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, String, String]),
     __metadata("design:returntype", void 0)
-], OrderController.prototype, "captureOrder", null);
+], OrderCustomerController.prototype, "captureOrder", null);
 __decorate([
     (0, decorators_1.Public)(),
     (0, common_1.Get)('/capture/cancel/:orderId'),
@@ -62,11 +72,11 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, String, String]),
     __metadata("design:returntype", void 0)
-], OrderController.prototype, "cancelOrder", null);
-OrderController = __decorate([
+], OrderCustomerController.prototype, "cancelOrder", null);
+OrderCustomerController = __decorate([
     (0, common_1.UseGuards)(guards_1.AtCustomerGuard),
     (0, common_1.Controller)(':storeId/order'),
     __metadata("design:paramtypes", [order_service_1.OrderService])
-], OrderController);
-exports.OrderController = OrderController;
+], OrderCustomerController);
+exports.OrderCustomerController = OrderCustomerController;
 //# sourceMappingURL=order.controller.js.map

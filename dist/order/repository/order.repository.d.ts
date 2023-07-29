@@ -15,4 +15,14 @@ export declare class OrderRepository {
     }, never>, mongoose.Document<unknown, {}, Order & Document> & Omit<Order & Document & {
         _id: mongoose.Types.ObjectId;
     }, never>, {}, Order & Document>;
+    listByStore(storeId: string): mongoose.Query<(mongoose.Document<unknown, {}, Order & Document> & Omit<Order & Document & {
+        _id: mongoose.Types.ObjectId;
+    }, never>)[], mongoose.Document<unknown, {}, Order & Document> & Omit<Order & Document & {
+        _id: mongoose.Types.ObjectId;
+    }, never>, {}, Order & Document>;
+    listByUser(userId: string): mongoose.Query<(mongoose.Document<unknown, {}, Order & Document> & Omit<Order & Document & {
+        _id: mongoose.Types.ObjectId;
+    }, never>)[], mongoose.Document<unknown, {}, Order & Document> & Omit<Order & Document & {
+        _id: mongoose.Types.ObjectId;
+    }, never>, {}, Order & Document>;
 }
