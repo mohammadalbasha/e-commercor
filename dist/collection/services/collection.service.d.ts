@@ -34,7 +34,9 @@ export declare class CollectionService {
     create(data: CreateCollectionDto): Promise<import("mongoose").Document<unknown, {}, import("../models/collection.model").Collection & Document> & Omit<import("../models/collection.model").Collection & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;
-    deleteCollection(collectionId: string, storeId: string): Promise<import("mongodb").DeleteResult>;
+    deleteCollection(collectionId: string, storeId: string): Promise<import("mongoose").Document<unknown, {}, import("../models/collection.model").Collection & Document> & Omit<import("../models/collection.model").Collection & Document & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>>;
     addProductToCollection(data: AddProductToCollectionDto): Promise<import("mongoose").Document<unknown, {}, import("../models/collection.model").Collection & Document> & Omit<import("../models/collection.model").Collection & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;

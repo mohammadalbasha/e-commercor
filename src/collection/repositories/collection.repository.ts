@@ -22,9 +22,7 @@ export class CollectionRepository {
     if (!collection) {
       throw new NotFoundException('collection not found');
     }
-    return this.collection.deleteOne({
-      id: collectionId,
-    });
+    return this.collection.findByIdAndDelete(collectionId);
   }
 
   async addProductToCollection(collectionId: string, productId: string) {

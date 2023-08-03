@@ -30,9 +30,7 @@ let CollectionRepository = class CollectionRepository {
         if (!collection) {
             throw new common_1.NotFoundException('collection not found');
         }
-        return this.collection.deleteOne({
-            id: collectionId,
-        });
+        return this.collection.findByIdAndDelete(collectionId);
     }
     async addProductToCollection(collectionId, productId) {
         const collection = await this.collection.findById(collectionId);

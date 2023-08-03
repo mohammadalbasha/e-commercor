@@ -7,7 +7,9 @@ export declare class CollectionRepository {
     create(data: CreateCollectionDto): Promise<mongoose.Document<unknown, {}, Collection & Document> & Omit<Collection & Document & {
         _id: mongoose.Types.ObjectId;
     }, never>>;
-    deleteOne(collectionId: string): Promise<mongoose.mongo.DeleteResult>;
+    deleteOne(collectionId: string): Promise<mongoose.Document<unknown, {}, Collection & Document> & Omit<Collection & Document & {
+        _id: mongoose.Types.ObjectId;
+    }, never>>;
     addProductToCollection(collectionId: string, productId: string): Promise<mongoose.Document<unknown, {}, Collection & Document> & Omit<Collection & Document & {
         _id: mongoose.Types.ObjectId;
     }, never>>;
