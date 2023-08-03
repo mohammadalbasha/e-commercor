@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Validate } from 'class-validator';
 import { Product } from 'src/product/models/product.model';
 import { defaultSchemaOptions } from 'src/shared/constants';
 import { BaseModel } from 'src/shared/models/base.model';
@@ -7,6 +8,7 @@ import {
   PropObject,
 } from 'src/shared/models/decorators/mongoose/PropRef.decorator';
 import { BaseSchema } from 'src/shared/mongoose/base.schema';
+import { UniqueMulti } from 'src/shared/validation/uniqueMulti.validator';
 import { Store } from 'src/store/models/store.model';
 
 @Schema(defaultSchemaOptions)

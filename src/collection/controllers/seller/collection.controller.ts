@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { GetSellerStoreId } from 'src/authentication/decorators/get-seller-store-id.decorator';
 import { AtSellerGuard } from 'src/authentication/sellers/guards';
 import { AddProductToCollectionDto } from 'src/collection/dtos/add-product.dto';
@@ -28,6 +36,22 @@ export class CollectionSellerController {
     return 'collection created successfully';
   }
 
+  @Delete('/:id')
+  async delete(
+    // @Body() data: Omit<CreateCategoryDto, 'storeId'>,
+    // dto validations will be missed if we use Omit
+    @GetSellerStoreId() storeId: string,
+    @Param('id') collectionId,
+  ) {
+    const collection = await this.collectionService.deleteCollection(
+      collectionId,
+      storeId,
+    );
+
+    //return category;
+    return 'collection deleted successfully';
+  }
+
   @Post('/:id/add-product')
   async addProductToCollection(
     // @Body() data: Omit<CreateCategoryDto, 'storeId'>,
@@ -44,6 +68,26 @@ export class CollectionSellerController {
 
     //return category;
     return 'product added successfully';
+  }
+
+  @Delete('/:id/remove-product')
+  async removeProductFromCollection(
+    // @Body() data: Omit<CreateCategoryDto, 'storeId'>,
+    // dto validations will be missed if we use Omit
+    @Body() data: AddProductToCollectionDto,
+    @GetSellerStoreId() storeId: string,
+    @Param('id') collectionId,
+  ) {
+    const collection = await this.collectionService.removeProductFromCollection(
+      {
+        ...data,
+        storeId,
+        collectionId,
+      },
+    );
+
+    //return category;
+    return 'product removed successfully';
   }
 
   @Get()

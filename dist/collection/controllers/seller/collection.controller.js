@@ -27,10 +27,19 @@ let CollectionSellerController = class CollectionSellerController {
         const collection = await this.collectionService.create(Object.assign(Object.assign({}, data), { storeId }));
         return 'collection created successfully';
     }
+    async delete(storeId, collectionId) {
+        const collection = await this.collectionService.deleteCollection(collectionId, storeId);
+        return 'collection deleted successfully';
+    }
     async addProductToCollection(data, storeId, collectionId) {
         const collection = await this.collectionService.addProductToCollection(Object.assign(Object.assign({}, data), { storeId,
             collectionId }));
         return 'product added successfully';
+    }
+    async removeProductFromCollection(data, storeId, collectionId) {
+        const collection = await this.collectionService.removeProductFromCollection(Object.assign(Object.assign({}, data), { storeId,
+            collectionId }));
+        return 'product removed successfully';
     }
     list(storeId) {
         return this.collectionService.findByStoreId(storeId);
@@ -48,6 +57,14 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CollectionSellerController.prototype, "create", null);
 __decorate([
+    (0, common_1.Delete)('/:id'),
+    __param(0, (0, get_seller_store_id_decorator_1.GetSellerStoreId)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], CollectionSellerController.prototype, "delete", null);
+__decorate([
     (0, common_1.Post)('/:id/add-product'),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, get_seller_store_id_decorator_1.GetSellerStoreId)()),
@@ -56,6 +73,15 @@ __decorate([
     __metadata("design:paramtypes", [add_product_dto_1.AddProductToCollectionDto, String, Object]),
     __metadata("design:returntype", Promise)
 ], CollectionSellerController.prototype, "addProductToCollection", null);
+__decorate([
+    (0, common_1.Delete)('/:id/remove-product'),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, get_seller_store_id_decorator_1.GetSellerStoreId)()),
+    __param(2, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [add_product_dto_1.AddProductToCollectionDto, String, Object]),
+    __metadata("design:returntype", Promise)
+], CollectionSellerController.prototype, "removeProductFromCollection", null);
 __decorate([
     (0, common_1.Get)(),
     __param(0, (0, get_seller_store_id_decorator_1.GetSellerStoreId)()),

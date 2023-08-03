@@ -21,15 +21,38 @@ let CollectionService = class CollectionService {
     create(data) {
         return this.collectionRepo.create(data);
     }
+    async deleteCollection(collectionId, storeId) {
+        const collection = await this.collectionRepo.findById(collectionId);
+        if (collection.storeId != storeId)
+            throw new common_1.UnauthorizedException("you don't have access to this collection");
+        return this.collectionRepo.deleteOne(collectionId);
+    }
     async addProductToCollection(data) {
         const product = await this.prodcutService.findById(data.productId);
         if (product.storeId != data.storeId) {
             throw new common_1.UnauthorizedException("you don't have access to this product");
         }
+        const collection = await this.collectionRepo.findById(data.collectionId);
+        console.log(collection.productsId);
+        if (collection.productsId.includes(data.productId))
+            throw new common_1.BadRequestException('product already added');
         return this.collectionRepo.addProductToCollection(data.collectionId, data.productId);
+    }
+    async removeProductFromCollection(data) {
+        const product = await this.prodcutService.findById(data.productId);
+        if (product.storeId != data.storeId) {
+            throw new common_1.UnauthorizedException("you don't have access to this product");
+        }
+        const collection = await this.collectionRepo.findById(data.collectionId);
+        if (!collection.productsId.includes(data.productId))
+            throw new common_1.BadRequestException('product not assigned to this collection');
+        return this.collectionRepo.removeProductFromCollection(data.collectionId, data.productId);
     }
     async findById(collectionId, storeId) {
         const collection = await this.collectionRepo.findById(collectionId);
+        if (!collection)
+            throw new common_1.NotFoundException('collection not found');
+        console.log(collection);
         if (collection.storeId != storeId) {
             throw new common_1.UnauthorizedException("you don't have access to this collection");
         }

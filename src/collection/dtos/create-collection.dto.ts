@@ -1,7 +1,16 @@
-import { IsDefined, IsString, IsNotEmpty, MaxLength } from 'class-validator';
+import {
+  IsDefined,
+  IsString,
+  IsNotEmpty,
+  MaxLength,
+  Validate,
+} from 'class-validator';
+import { UniqueCategoryName } from 'src/shared/validation/uniqueCategoryName.validator';
+import { Collection } from '../models/collection.model';
 
 export class CreateCollectionDto {
   //@Validate(UniqueCategoryName, [Category, 'name'])
+  @Validate(UniqueCategoryName, [Collection, 'name'])
   @IsDefined()
   @IsString()
   @IsNotEmpty()

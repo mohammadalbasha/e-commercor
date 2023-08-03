@@ -30,7 +30,9 @@ export declare class CollectionSellerController {
     private collectionService;
     constructor(collectionService: CollectionService);
     create(data: CreateCollectionDto, storeId: string): Promise<string>;
+    delete(storeId: string, collectionId: any): Promise<string>;
     addProductToCollection(data: AddProductToCollectionDto, storeId: string, collectionId: any): Promise<string>;
+    removeProductFromCollection(data: AddProductToCollectionDto, storeId: string, collectionId: any): Promise<string>;
     list(storeId: string): Promise<Omit<import("mongoose").Document<unknown, {}, import("../../models/collection.model").Collection & Document> & Omit<import("../../models/collection.model").Collection & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>, never>[]>;

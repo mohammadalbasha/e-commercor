@@ -17,12 +17,34 @@ export class CollectionRepository {
     return collection;
   }
 
+  async deleteOne(collectionId: string) {
+    const collection = await this.collection.findById(collectionId);
+    if (!collection) {
+      throw new NotFoundException('collection not found');
+    }
+    return this.collection.deleteOne({
+      id: collectionId,
+    });
+  }
+
   async addProductToCollection(collectionId: string, productId: string) {
     const collection = await this.collection.findById(collectionId);
     if (!collection) {
       throw new NotFoundException('collection not found');
     }
     collection.productsId.push(productId);
+    await collection.save();
+    return collection;
+  }
+
+  async removeProductFromCollection(collectionId: string, productId: string) {
+    const collection = await this.collection.findById(collectionId);
+    if (!collection) {
+      throw new NotFoundException('collection not found');
+    }
+    collection.productsId = collection.productsId.filter((item) => {
+      return item != productId;
+    });
     await collection.save();
     return collection;
   }

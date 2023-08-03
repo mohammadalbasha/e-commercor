@@ -11,9 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateCollectionDto = void 0;
 const class_validator_1 = require("class-validator");
+const uniqueCategoryName_validator_1 = require("../../shared/validation/uniqueCategoryName.validator");
+const collection_model_1 = require("../models/collection.model");
 class CreateCollectionDto {
 }
 __decorate([
+    (0, class_validator_1.Validate)(uniqueCategoryName_validator_1.UniqueCategoryName, [collection_model_1.Collection, 'name']),
     (0, class_validator_1.IsDefined)(),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),

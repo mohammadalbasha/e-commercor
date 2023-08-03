@@ -16,6 +16,8 @@ const isRef_validator_1 = require("../../shared/validation/isRef.validator");
 class AddProductToCollectionDto {
 }
 __decorate([
+    (0, class_validator_1.IsDefined)(),
+    (0, class_validator_1.IsString)(),
     (0, class_validator_1.Validate)(isRef_validator_1.IsRef, [product_model_1.Product]),
     __metadata("design:type", String)
 ], AddProductToCollectionDto.prototype, "productId", void 0);

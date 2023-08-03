@@ -25,12 +25,32 @@ let CollectionRepository = class CollectionRepository {
         const collection = await this.collection.create(data);
         return collection;
     }
+    async deleteOne(collectionId) {
+        const collection = await this.collection.findById(collectionId);
+        if (!collection) {
+            throw new common_1.NotFoundException('collection not found');
+        }
+        return this.collection.deleteOne({
+            id: collectionId,
+        });
+    }
     async addProductToCollection(collectionId, productId) {
         const collection = await this.collection.findById(collectionId);
         if (!collection) {
             throw new common_1.NotFoundException('collection not found');
         }
         collection.productsId.push(productId);
+        await collection.save();
+        return collection;
+    }
+    async removeProductFromCollection(collectionId, productId) {
+        const collection = await this.collection.findById(collectionId);
+        if (!collection) {
+            throw new common_1.NotFoundException('collection not found');
+        }
+        collection.productsId = collection.productsId.filter((item) => {
+            return item != productId;
+        });
         await collection.save();
         return collection;
     }
