@@ -20,6 +20,7 @@ export class CollectionService {
   }
   async deleteCollection(collectionId: string, storeId: string) {
     const collection = await this.collectionRepo.findById(collectionId);
+    if (!collection) throw new NotFoundException('collection not found');
     if (collection.storeId != storeId)
       throw new UnauthorizedException(
         "you don't have access to this collection",
@@ -34,7 +35,8 @@ export class CollectionService {
       throw new UnauthorizedException("you don't have access to this product");
     }
     const collection = await this.collectionRepo.findById(data.collectionId);
-    console.log(collection.productsId);
+    if (!collection) throw new NotFoundException('collection not found');
+
     if (collection.productsId.includes(data.productId))
       throw new BadRequestException('product already added');
 
@@ -50,6 +52,8 @@ export class CollectionService {
       throw new UnauthorizedException("you don't have access to this product");
     }
     const collection = await this.collectionRepo.findById(data.collectionId);
+    if (!collection) throw new NotFoundException('collection not found');
+
     if (!collection.productsId.includes(data.productId))
       throw new BadRequestException('product not assigned to this collection');
 
