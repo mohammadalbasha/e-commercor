@@ -28,6 +28,12 @@ export class Collection extends BaseModel {
   productsId: string[];
   @PropObject(Product, true)
   products: Product[];
+
+  @Prop({ default: false, required: true })
+  isSale: boolean;
+
+  @Prop({ default: 0, required: true })
+  saleValue: number;
 }
 
 export type CollectionDocument = Collection & Document;

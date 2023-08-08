@@ -50,14 +50,6 @@ export class CreateCategoryDto {
   @MaxLength(300)
   description: string;
 
-  @IsOptional()
-  @IsBoolean()
-  isSale: boolean;
-
-  @IsOptional()
-  @IsNumber()
-  sale: number;
-
   @ValidateNested()
   @IsDefined()
   // @IsObject()

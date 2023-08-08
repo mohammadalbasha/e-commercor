@@ -43,16 +43,6 @@ __decorate([
     __metadata("design:type", String)
 ], CreateCategoryDto.prototype, "description", void 0);
 __decorate([
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsBoolean)(),
-    __metadata("design:type", Boolean)
-], CreateCategoryDto.prototype, "isSale", void 0);
-__decorate([
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsNumber)(),
-    __metadata("design:type", Number)
-], CreateCategoryDto.prototype, "sale", void 0);
-__decorate([
     (0, class_validator_1.ValidateNested)(),
     (0, class_validator_1.IsDefined)(),
     (0, class_transformer_1.Type)(() => ProductProperties),

@@ -102,6 +102,9 @@ let StoreService = class StoreService {
     addMarketPlace(sellerId, data) {
         return this.storeRepo.findBySellerIdAndUpdate(sellerId, Object.assign(Object.assign({}, data), { isMarket: true, isVerifiedAsMarket: false }));
     }
+    addLogo(sellerId, data) {
+        return this.storeRepo.findBySellerIdAndUpdate(sellerId, Object.assign({}, data));
+    }
 };
 StoreService = __decorate([
     (0, common_1.Injectable)(),

@@ -40,6 +40,26 @@ export class CollectionService {
     if (collection.productsId.includes(data.productId))
       throw new BadRequestException('product already added');
 
+    if (collection.isSale) {
+      const collections = await this.collectionRepo.findByStoreId(
+        collection.storeId,
+      );
+      for (let i = 0; i < collections.length; i++) {
+        console.log(collections[i]);
+        if (
+          collections[i].isSale &&
+          collections[i].productsId.includes(data.productId)
+        )
+          throw new BadRequestException(
+            'product already added to  another sale collection',
+          );
+      }
+      await this.prodcutService.findByIdAndUpdate(data.productId, {
+        isSale: true,
+        saleValue: collection.saleValue,
+      });
+    }
+
     return this.collectionRepo.addProductToCollection(
       data.collectionId,
       data.productId,
@@ -57,6 +77,12 @@ export class CollectionService {
     if (!collection.productsId.includes(data.productId))
       throw new BadRequestException('product not assigned to this collection');
 
+    if (collection.isSale) {
+      await this.prodcutService.findByIdAndUpdate(data.productId, {
+        isSale: false,
+        saleValue: 0,
+      });
+    }
     return this.collectionRepo.removeProductFromCollection(
       data.collectionId,
       data.productId,

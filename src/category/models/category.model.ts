@@ -35,14 +35,11 @@ export class Category extends BaseModel {
   @Prop()
   description: string;
 
-  @Prop({ default: false, required: true })
-  isSale: boolean;
-
-  @Prop({ default: 0, required: true })
-  saleValue: number;
-
-  @Prop()
-  imagesIds: string[];
+  @Prop({
+    required: true,
+    default: 'https://i.ytimg.com/vi/2QvOxa_7wEw/maxresdefault.jpg',
+  })
+  image: string;
 
   @PropRef(Store)
   storeId: string;

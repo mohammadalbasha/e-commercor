@@ -33,6 +33,8 @@ export declare class Collection extends BaseModel {
     store: Store;
     productsId: string[];
     products: Product[];
+    isSale: boolean;
+    saleValue: number;
 }
 export type CollectionDocument = Collection & Document;
 export declare const CollectionSchema: import("mongoose").Schema<Collection, import("mongoose").Model<Collection, any, any, any, import("mongoose").Document<unknown, any, Collection> & Omit<Collection & {

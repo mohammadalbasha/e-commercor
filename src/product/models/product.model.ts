@@ -23,7 +23,11 @@ export class Product extends BaseModel {
   @Prop({ required: true, index: true, min: 0 })
   count: number;
 
-  @Prop({ required: true, default: '' })
+  @Prop({
+    required: true,
+    default:
+      'https://www.mountaingoatsoftware.com/uploads/blog/2016-09-06-what-is-a-product.png',
+  })
   Imagesproduct: string;
 
   @Prop({ required: true, index: true, default: false })

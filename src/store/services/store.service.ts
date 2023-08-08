@@ -9,6 +9,7 @@ import { PasswordService } from 'src/authentication/password.service';
 import { Seller, Store } from '../models/store.model';
 import { MarketDto } from '../dtos/market-store.dto';
 import { filterToMongo } from 'src/shared/mongoose/helperFunctions/filter.helper';
+import { AddLogo } from '../dtos/add-logo.dto';
 
 @Injectable()
 export class StoreService {
@@ -122,6 +123,12 @@ export class StoreService {
       ...data,
       isMarket: true,
       isVerifiedAsMarket: false,
+    });
+  }
+
+  addLogo(sellerId, data: AddLogo) {
+    return this.storeRepo.findBySellerIdAndUpdate(sellerId, {
+      ...data,
     });
   }
 }

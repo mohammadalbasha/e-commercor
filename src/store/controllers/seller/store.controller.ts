@@ -17,6 +17,7 @@ import MongooseClassSerializerInterceptor from 'src/shared/mongoose/interceptors
 import { Store } from '../../models/store.model';
 import { AuthSellerService } from 'src/authentication/sellers/services/auth-seller.service';
 import { MarketDto } from 'src/store/dtos/market-store.dto';
+import { AddLogo } from 'src/store/dtos/add-logo.dto';
 
 @UseGuards(AtSellerGuard)
 @Controller('/seller/store')
@@ -54,5 +55,10 @@ export class StoreSellerController {
     @GetCurrentUserId() sellerId: string,
   ) {
     return this.storeService.addMarketPlace(sellerId, body);
+  }
+
+  @Put('/logo')
+  addLogo(@Body() body: AddLogo, @GetCurrentUserId() sellerId: string) {
+    return this.storeService.addLogo(sellerId, body);
   }
 }

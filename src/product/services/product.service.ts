@@ -103,8 +103,8 @@ export class ProductService {
     return {
       ...product,
       categoryName: category.name,
-      categoryIsSale: category.isSale,
-      categorySaleValue: category.saleValue,
+      // categoryIsSale: category.isSale,
+      // categorySaleValue: category.saleValue,
       cardProperties: category?.cardProperties,
       productProperties: category?.productProperties,
     };
@@ -126,8 +126,8 @@ export class ProductService {
       return {
         ...item['_doc'],
         categoryName: category.name,
-        categoryIsSale: category.isSale,
-        categorySaleValue: category.saleValue,
+        // categoryIsSale: category.isSale,
+        // categorySaleValue: category.saleValue,
       };
     });
     return products;
@@ -137,7 +137,7 @@ export class ProductService {
     return this.productRepo.findByStoreId(storeId);
   }
 
-  async findByIdAndUpdate(productId: string, data: UpdateProductDto) {
+  async findByIdAndUpdate(productId: string, data: Partial<UpdateProductDto>) {
     const product = await this.productRepo.findById(productId);
     if (!product) throw new NotFoundException('product not found');
     // TODO:

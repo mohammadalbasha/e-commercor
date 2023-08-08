@@ -53,8 +53,6 @@ export declare class ProductService {
     }, never>>;
     findByIdWithStyle(productId: string): Promise<{
         categoryName: string;
-        categoryIsSale: boolean;
-        categorySaleValue: number;
         cardProperties: import("mongoose").Schema.Types.Mixed;
         productProperties: import("../../category/models/category.model").ProductProperties;
         _id: import("mongoose").Types.ObjectId;
@@ -77,13 +75,12 @@ export declare class ProductService {
         }> & Required<{
             _id: unknown;
         }>, never>>;
-        close: () => void;
         name: string;
         count: number;
         normalize: () => void;
-        isActive?: boolean;
         createdAt?: Date;
         updatedAt?: Date;
+        isActive?: boolean;
         URL: string;
         alinkColor: string;
         all: HTMLAllCollection;
@@ -140,6 +137,7 @@ export declare class ProductService {
         captureEvents: () => void;
         caretRangeFromPoint: (x: number, y: number) => Range;
         clear: () => void;
+        close: () => void;
         createAttribute: (localName: string) => Attr;
         createAttributeNS: (namespace: string, qualifiedName: string) => Attr;
         createCDATASection: (data: string) => CDATASection;
@@ -438,9 +436,9 @@ export declare class ProductService {
         evaluate: (expression: string, contextNode: Node, resolver?: XPathNSResolver, type?: number, result?: XPathResult) => XPathResult;
         storeId: string;
         store: import("../../store/models/store.model").Store;
-        price: number;
         isSale: boolean;
         saleValue: number;
+        price: number;
         Imagesproduct: string;
         tags: string[];
         categoryId: string;
@@ -458,7 +456,7 @@ export declare class ProductService {
     findByStoreId(storeId: string): Promise<Omit<import("mongoose").Document<unknown, {}, import("../models/product.model").Product & Document> & Omit<import("../models/product.model").Product & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>, never>[]>;
-    findByIdAndUpdate(productId: string, data: UpdateProductDto): Promise<import("mongoose").Document<unknown, {}, import("../models/product.model").Product & Document> & Omit<import("../models/product.model").Product & Document & {
+    findByIdAndUpdate(productId: string, data: Partial<UpdateProductDto>): Promise<import("mongoose").Document<unknown, {}, import("../models/product.model").Product & Document> & Omit<import("../models/product.model").Product & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;
     findByIdAndDelete(productId: string): Promise<import("mongoose").Document<unknown, {}, import("../models/product.model").Product & Document> & Omit<import("../models/product.model").Product & Document & {

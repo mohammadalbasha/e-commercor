@@ -54,6 +54,9 @@ export class Store extends BaseModel {
   @Prop({ required: true })
   description: string;
 
+  @Prop({ required: true, default: 'https://files.fm/u/d2gawrdge' })
+  logo: string;
+
   @Prop()
   country: string;
 

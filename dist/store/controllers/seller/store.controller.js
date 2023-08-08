@@ -22,6 +22,7 @@ const mongooseClassSerializer_interceptor_1 = require("../../../shared/mongoose/
 const store_model_1 = require("../../models/store.model");
 const auth_seller_service_1 = require("../../../authentication/sellers/services/auth-seller.service");
 const market_store_dto_1 = require("../../dtos/market-store.dto");
+const add_logo_dto_1 = require("../../dtos/add-logo.dto");
 let StoreSellerController = class StoreSellerController {
     constructor(storeService, authService) {
         this.storeService = storeService;
@@ -42,6 +43,9 @@ let StoreSellerController = class StoreSellerController {
     }
     addMarketInformation(body, sellerId) {
         return this.storeService.addMarketPlace(sellerId, body);
+    }
+    addLogo(body, sellerId) {
+        return this.storeService.addLogo(sellerId, body);
     }
 };
 __decorate([
@@ -77,6 +81,14 @@ __decorate([
     __metadata("design:paramtypes", [market_store_dto_1.MarketDto, String]),
     __metadata("design:returntype", void 0)
 ], StoreSellerController.prototype, "addMarketInformation", null);
+__decorate([
+    (0, common_1.Put)('/logo'),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, decorators_1.GetCurrentUserId)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [add_logo_dto_1.AddLogo, String]),
+    __metadata("design:returntype", void 0)
+], StoreSellerController.prototype, "addLogo", null);
 StoreSellerController = __decorate([
     (0, common_1.UseGuards)(guards_1.AtSellerGuard),
     (0, common_1.Controller)('/seller/store'),

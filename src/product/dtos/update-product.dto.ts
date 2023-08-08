@@ -24,4 +24,12 @@ export class UpdateProductDto {
   @IsOptional()
   @IsNumber()
   count: number;
+
+  @IsOptional()
+  @IsBoolean()
+  isSale: boolean;
+
+  @IsOptional()
+  @IsNumber()
+  saleValue: number;
 }

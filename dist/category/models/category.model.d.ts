@@ -10,9 +10,7 @@ export declare class Category extends BaseModel {
     private products;
     name: string;
     description: string;
-    isSale: boolean;
-    saleValue: number;
-    imagesIds: string[];
+    image: string;
     storeId: string;
     store: Store;
     productProperties: ProductProperties;

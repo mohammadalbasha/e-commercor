@@ -45,17 +45,12 @@ __decorate([
     __metadata("design:type", String)
 ], Category.prototype, "description", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: false, required: true }),
-    __metadata("design:type", Boolean)
-], Category.prototype, "isSale", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: 0, required: true }),
-    __metadata("design:type", Number)
-], Category.prototype, "saleValue", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", Array)
-], Category.prototype, "imagesIds", void 0);
+    (0, mongoose_1.Prop)({
+        required: true,
+        default: 'https://i.ytimg.com/vi/2QvOxa_7wEw/maxresdefault.jpg',
+    }),
+    __metadata("design:type", String)
+], Category.prototype, "image", void 0);
 __decorate([
     (0, PropRef_decorator_1.PropRef)(store_model_1.Store),
     __metadata("design:type", String)

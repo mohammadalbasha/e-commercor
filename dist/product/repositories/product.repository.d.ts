@@ -35,11 +35,9 @@ export declare class ProductRepository {
     findByStoreId(storeId: string): Promise<Omit<mongoose.Document<unknown, {}, Product & Document> & Omit<Product & Document & {
         _id: mongoose.Types.ObjectId;
     }, never>, never>[]>;
-    findByIdAndUpdate(id: string, data: UpdateProductDto): mongoose.Query<mongoose.Document<unknown, {}, Product & Document> & Omit<Product & Document & {
+    findByIdAndUpdate(id: string, data: Partial<UpdateProductDto>): Promise<mongoose.Document<unknown, {}, Product & Document> & Omit<Product & Document & {
         _id: mongoose.Types.ObjectId;
-    }, never>, mongoose.Document<unknown, {}, Product & Document> & Omit<Product & Document & {
-        _id: mongoose.Types.ObjectId;
-    }, never>, {}, Product & Document>;
+    }, never>>;
     findByIdAndDelete(id: string): mongoose.Query<mongoose.Document<unknown, {}, Product & Document> & Omit<Product & Document & {
         _id: mongoose.Types.ObjectId;
     }, never>, mongoose.Document<unknown, {}, Product & Document> & Omit<Product & Document & {

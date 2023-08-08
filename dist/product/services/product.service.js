@@ -85,7 +85,7 @@ let ProductService = class ProductService {
         let product = await this.productRepo.findById(productId);
         const category = await this.categroyService.findById(product.categoryId);
         product = product['_doc'];
-        return Object.assign(Object.assign({}, product), { categoryName: category.name, categoryIsSale: category.isSale, categorySaleValue: category.saleValue, cardProperties: category === null || category === void 0 ? void 0 : category.cardProperties, productProperties: category === null || category === void 0 ? void 0 : category.productProperties });
+        return Object.assign(Object.assign({}, product), { categoryName: category.name, cardProperties: category === null || category === void 0 ? void 0 : category.cardProperties, productProperties: category === null || category === void 0 ? void 0 : category.productProperties });
     }
     async find(categoryId, filters, page, limit) {
         const category = await this.categroyService.findById(categoryId);
@@ -95,7 +95,7 @@ let ProductService = class ProductService {
         }
         let products = await this.productRepo.find(categoryId, filters || {}, page, limit);
         products.items = products.items.map((item) => {
-            return Object.assign(Object.assign({}, item['_doc']), { categoryName: category.name, categoryIsSale: category.isSale, categorySaleValue: category.saleValue });
+            return Object.assign(Object.assign({}, item['_doc']), { categoryName: category.name });
         });
         return products;
     }

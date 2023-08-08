@@ -32,7 +32,10 @@ __decorate([
     __metadata("design:type", Number)
 ], Product.prototype, "count", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ required: true, default: '' }),
+    (0, mongoose_1.Prop)({
+        required: true,
+        default: 'https://www.mountaingoatsoftware.com/uploads/blog/2016-09-06-what-is-a-product.png',
+    }),
     __metadata("design:type", String)
 ], Product.prototype, "Imagesproduct", void 0);
 __decorate([

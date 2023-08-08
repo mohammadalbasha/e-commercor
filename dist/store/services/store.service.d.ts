@@ -28,6 +28,7 @@ import { StoreRepository } from '../repositories/store.repository';
 import { PasswordService } from 'src/authentication/password.service';
 import { Seller, Store } from '../models/store.model';
 import { MarketDto } from '../dtos/market-store.dto';
+import { AddLogo } from '../dtos/add-logo.dto';
 export declare class StoreService {
     private storeRepo;
     private passwordService;
@@ -77,6 +78,11 @@ export declare class StoreService {
         _id: import("mongoose").Types.ObjectId;
     }, never>, {}, Store & Document>;
     addMarketPlace(sellerId: any, data: MarketDto): import("mongoose").Query<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>, import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>, {}, Store & Document>;
+    addLogo(sellerId: any, data: AddLogo): import("mongoose").Query<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>, import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;
