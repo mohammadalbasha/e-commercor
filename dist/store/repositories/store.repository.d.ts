@@ -42,11 +42,9 @@ export declare class StoreRepository {
     }, never>, mongoose.Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: mongoose.Types.ObjectId;
     }, never>, {}, Store & Document>;
-    findBySellerIdAndUpdate(sellerId: string, data: Partial<Store>): mongoose.Query<mongoose.Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+    findBySellerIdAndUpdate(sellerId: string, data: Partial<Store>): Promise<mongoose.Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: mongoose.Types.ObjectId;
-    }, never>, mongoose.Document<unknown, {}, Store & Document> & Omit<Store & Document & {
-        _id: mongoose.Types.ObjectId;
-    }, never>, {}, Store & Document>;
+    }, never>>;
     findBySellerId(sellerId: string): Promise<mongoose.Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: mongoose.Types.ObjectId;
     }, never>>;

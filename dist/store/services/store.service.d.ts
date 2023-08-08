@@ -72,19 +72,13 @@ export declare class StoreService {
     findSellerByEmail(email: string): Promise<Seller>;
     findSellerAndUpdate(filter: Partial<Seller>, data: Partial<Seller>): Promise<void>;
     findSellerByIdAndUpdate(sellerId: string, data: Partial<Seller>): Promise<import("mongodb").UpdateResult>;
-    addLandingPage(sellerId: any, data: any): import("mongoose").Query<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+    addLandingPage(sellerId: any, data: any): Promise<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;
-    }, never>, import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+    }, never>>;
+    addMarketPlace(sellerId: any, data: MarketDto): Promise<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;
-    }, never>, {}, Store & Document>;
-    addMarketPlace(sellerId: any, data: MarketDto): import("mongoose").Query<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+    }, never>>;
+    addLogo(sellerId: any, data: AddLogo): Promise<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;
-    }, never>, import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
-        _id: import("mongoose").Types.ObjectId;
-    }, never>, {}, Store & Document>;
-    addLogo(sellerId: any, data: AddLogo): import("mongoose").Query<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
-        _id: import("mongoose").Types.ObjectId;
-    }, never>, import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
-        _id: import("mongoose").Types.ObjectId;
-    }, never>, {}, Store & Document>;
+    }, never>>;
 }

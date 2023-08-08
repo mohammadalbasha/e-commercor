@@ -66,7 +66,7 @@ export class StoreRepository {
     return this.store.findByIdAndUpdate(storeId, { ...data }, { new: true });
   }
 
-  findBySellerIdAndUpdate(sellerId: string, data: Partial<Store>) {
+  async findBySellerIdAndUpdate(sellerId: string, data: Partial<Store>) {
     return this.store.findOneAndUpdate(
       { 'seller._id': sellerId },
       { ...data },

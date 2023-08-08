@@ -37,19 +37,13 @@ export declare class StoreSellerController {
     getStore(sellerId: string): Promise<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;
-    addLandingPage(body: any, sellerId: string): import("mongoose").Query<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+    addLandingPage(body: any, sellerId: string): Promise<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;
-    }, never>, import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+    }, never>>;
+    addMarketInformation(body: MarketDto, sellerId: string): Promise<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;
-    }, never>, {}, Store & Document>;
-    addMarketInformation(body: MarketDto, sellerId: string): import("mongoose").Query<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+    }, never>>;
+    addLogo(body: AddLogo, sellerId: string): Promise<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;
-    }, never>, import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
-        _id: import("mongoose").Types.ObjectId;
-    }, never>, {}, Store & Document>;
-    addLogo(body: AddLogo, sellerId: string): import("mongoose").Query<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
-        _id: import("mongoose").Types.ObjectId;
-    }, never>, import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
-        _id: import("mongoose").Types.ObjectId;
-    }, never>, {}, Store & Document>;
+    }, never>>;
 }

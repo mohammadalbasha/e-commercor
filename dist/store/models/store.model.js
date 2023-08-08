@@ -79,7 +79,10 @@ __decorate([
     __metadata("design:type", String)
 ], Store.prototype, "description", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ required: true, default: 'https://files.fm/u/d2gawrdge' }),
+    (0, mongoose_1.Prop)({
+        required: true,
+        default: 'https://res.cloudinary.com/dn9mwwr0j/image/upload/v1691523783/photo_2023-06-22_09-37-32.png_qjdnia.jpg',
+    }),
     __metadata("design:type", String)
 ], Store.prototype, "logo", void 0);
 __decorate([

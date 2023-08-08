@@ -54,7 +54,11 @@ export class Store extends BaseModel {
   @Prop({ required: true })
   description: string;
 
-  @Prop({ required: true, default: 'https://files.fm/u/d2gawrdge' })
+  @Prop({
+    required: true,
+    default:
+      'https://res.cloudinary.com/dn9mwwr0j/image/upload/v1691523783/photo_2023-06-22_09-37-32.png_qjdnia.jpg',
+  })
   logo: string;
 
   @Prop()
