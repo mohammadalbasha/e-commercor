@@ -29,10 +29,10 @@ export class Collection extends BaseModel {
   @PropObject(Product, true)
   products: Product[];
 
-  @Prop({ default: false, required: true })
+  @Prop({ required: true, default: false })
   isSale: boolean;
 
-  @Prop({ default: 0, required: true })
+  @Prop({ required: true, default: 0 })
   saleValue: number;
 }
 

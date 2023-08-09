@@ -30,5 +30,15 @@ __decorate([
     (0, class_validator_1.MaxLength)(300),
     __metadata("design:type", String)
 ], CreateCollectionDto.prototype, "description", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsBoolean)(),
+    __metadata("design:type", Boolean)
+], CreateCollectionDto.prototype, "isSale", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsNumber)(),
+    __metadata("design:type", Number)
+], CreateCollectionDto.prototype, "saleValue", void 0);
 exports.CreateCollectionDto = CreateCollectionDto;
 //# sourceMappingURL=create-collection.dto.js.map

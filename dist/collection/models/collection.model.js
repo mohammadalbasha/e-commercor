@@ -44,11 +44,11 @@ __decorate([
     __metadata("design:type", Array)
 ], Collection.prototype, "products", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: false, required: true }),
+    (0, mongoose_1.Prop)({ required: true, default: false }),
     __metadata("design:type", Boolean)
 ], Collection.prototype, "isSale", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: 0, required: true }),
+    (0, mongoose_1.Prop)({ required: true, default: 0 }),
     __metadata("design:type", Number)
 ], Collection.prototype, "saleValue", void 0);
 Collection = __decorate([

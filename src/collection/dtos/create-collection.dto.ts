@@ -4,6 +4,9 @@ import {
   IsNotEmpty,
   MaxLength,
   Validate,
+  IsOptional,
+  IsBoolean,
+  IsNumber,
 } from 'class-validator';
 import { UniqueCategoryName } from 'src/shared/validation/uniqueCategoryName.validator';
 import { Collection } from '../models/collection.model';
@@ -28,4 +31,12 @@ export class CreateCollectionDto {
   @IsNotEmpty()
   @MaxLength(300)
   description: string;
+
+  @IsOptional()
+  @IsBoolean()
+  isSale: boolean;
+
+  @IsOptional()
+  @IsNumber()
+  saleValue: number;
 }
