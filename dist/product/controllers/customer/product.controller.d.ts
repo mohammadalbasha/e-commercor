@@ -48,7 +48,7 @@ export declare class ProductCustomerController {
         _id: import("mongoose").Types.ObjectId;
         __v?: any;
         $locals: Record<string, unknown>;
-        $op: "save" | "validate" | "remove";
+        $op: "remove" | "validate" | "save";
         $where: Record<string, unknown>;
         baseModelName?: string;
         collection: import("mongoose").Collection<import("bson").Document>;
@@ -65,10 +65,13 @@ export declare class ProductCustomerController {
         }> & Required<{
             _id: unknown;
         }>, never>>;
+        close: () => void;
         name: string;
+        count: number;
+        normalize: () => void;
+        isActive?: boolean;
         createdAt?: Date;
         updatedAt?: Date;
-        isActive?: boolean;
         URL: string;
         alinkColor: string;
         all: HTMLAllCollection;
@@ -125,7 +128,6 @@ export declare class ProductCustomerController {
         captureEvents: () => void;
         caretRangeFromPoint: (x: number, y: number) => Range;
         clear: () => void;
-        close: () => void;
         createAttribute: (localName: string) => Attr;
         createAttributeNS: (namespace: string, qualifiedName: string) => Attr;
         createCDATASection: (data: string) => CDATASection;
@@ -277,7 +279,6 @@ export declare class ProductCustomerController {
         isSameNode: (otherNode: Node) => boolean;
         lookupNamespaceURI: (prefix: string) => string;
         lookupPrefix: (namespace: string) => string;
-        normalize: () => void;
         removeChild: <T_4 extends Node>(child: T_4) => T_4;
         replaceChild: <T_5 extends Node>(node: Node, child: T_5) => T_5;
         ATTRIBUTE_NODE: number;
@@ -426,10 +427,9 @@ export declare class ProductCustomerController {
         storeId: string;
         store: Store;
         price: number;
-        count: number;
-        Imagesproduct: string;
         isSale: boolean;
         saleValue: number;
+        Imagesproduct: string;
         tags: string[];
         categoryId: string;
         category: import("../../../category/models/category.model").Category;

@@ -48,7 +48,9 @@ export class CollectionRepository {
   }
 
   async findById(collectionId: string) {
-    const collection = await this.collection.findById(collectionId);
+    const collection = await this.collection
+      .findById(collectionId)
+      .populate('products');
     return collection;
   }
 
