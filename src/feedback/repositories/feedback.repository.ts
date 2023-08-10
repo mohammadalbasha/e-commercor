@@ -22,6 +22,6 @@ export class FeedbackRepository {
       .find({
         ...filter,
       })
-      .populate('customer');
+      .populate('customer', { id: 1, firstName: 1, lastName: 1 });
   }
 }
