@@ -25,7 +25,9 @@ let FeedbackRepository = class FeedbackRepository {
         return feedback;
     }
     async findAll(filter) {
-        return this.feedback.find(Object.assign({}, filter));
+        return this.feedback
+            .find(Object.assign({}, filter))
+            .populate('customer');
     }
 };
 FeedbackRepository = __decorate([

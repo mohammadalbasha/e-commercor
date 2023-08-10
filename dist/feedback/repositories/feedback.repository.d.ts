@@ -7,7 +7,7 @@ export declare class FeedbackRepository {
     create(data: CreateFeedbackDto): Promise<mongoose.Document<unknown, {}, Feedback & Document> & Omit<Feedback & Document & {
         _id: mongoose.Types.ObjectId;
     }, never>>;
-    findAll(filter: Partial<Feedback>): Promise<(mongoose.Document<unknown, {}, Feedback & Document> & Omit<Feedback & Document & {
+    findAll(filter: Partial<Feedback>): Promise<Omit<mongoose.Document<unknown, {}, Feedback & Document> & Omit<Feedback & Document & {
         _id: mongoose.Types.ObjectId;
-    }, never>)[]>;
+    }, never>, never>[]>;
 }

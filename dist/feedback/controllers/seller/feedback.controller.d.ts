@@ -27,7 +27,7 @@ import { FeedbackService } from 'src/feedback/services/feedback.service';
 export declare class FeedbackSellerController {
     private feedbackService;
     constructor(feedbackService: FeedbackService);
-    list(productId: string): Promise<(import("mongoose").Document<unknown, {}, import("../../models/feedback.model").Feedback & Document> & Omit<import("../../models/feedback.model").Feedback & Document & {
+    list(productId: string): Promise<Omit<import("mongoose").Document<unknown, {}, import("../../models/feedback.model").Feedback & Document> & Omit<import("../../models/feedback.model").Feedback & Document & {
         _id: import("mongoose").Types.ObjectId;
-    }, never>)[]>;
+    }, never>, never>[]>;
 }

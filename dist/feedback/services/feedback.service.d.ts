@@ -31,10 +31,10 @@ export declare class FeedbackService {
     create(data: CreateFeedbackDto): Promise<import("mongoose").Document<unknown, {}, import("../models/feedback.model").Feedback & Document> & Omit<import("../models/feedback.model").Feedback & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;
-    findByProductId(productId: string): Promise<(import("mongoose").Document<unknown, {}, import("../models/feedback.model").Feedback & Document> & Omit<import("../models/feedback.model").Feedback & Document & {
+    findByProductId(productId: string): Promise<Omit<import("mongoose").Document<unknown, {}, import("../models/feedback.model").Feedback & Document> & Omit<import("../models/feedback.model").Feedback & Document & {
         _id: import("mongoose").Types.ObjectId;
-    }, never>)[]>;
-    findByCustomerId(customerId: string): Promise<(import("mongoose").Document<unknown, {}, import("../models/feedback.model").Feedback & Document> & Omit<import("../models/feedback.model").Feedback & Document & {
+    }, never>, never>[]>;
+    findByCustomerId(customerId: string): Promise<Omit<import("mongoose").Document<unknown, {}, import("../models/feedback.model").Feedback & Document> & Omit<import("../models/feedback.model").Feedback & Document & {
         _id: import("mongoose").Types.ObjectId;
-    }, never>)[]>;
+    }, never>, never>[]>;
 }

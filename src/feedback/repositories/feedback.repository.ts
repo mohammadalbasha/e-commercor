@@ -18,8 +18,10 @@ export class FeedbackRepository {
   // TODO:
   // make a filter type decorator and filter dto
   async findAll(filter: Partial<Feedback>) {
-    return this.feedback.find({
-      ...filter,
-    });
+    return this.feedback
+      .find({
+        ...filter,
+      })
+      .populate('customer');
   }
 }

@@ -29,10 +29,10 @@ export declare class FeedbackCustomerController {
     private feedbackService;
     constructor(feedbackService: FeedbackService);
     create(data: CreateFeedbackDto, storeId: string, userId: string): Promise<string>;
-    listMyFeedbacks(userId: string): Promise<(import("mongoose").Document<unknown, {}, import("../../models/feedback.model").Feedback & Document> & Omit<import("../../models/feedback.model").Feedback & Document & {
+    listMyFeedbacks(userId: string): Promise<Omit<import("mongoose").Document<unknown, {}, import("../../models/feedback.model").Feedback & Document> & Omit<import("../../models/feedback.model").Feedback & Document & {
         _id: import("mongoose").Types.ObjectId;
-    }, never>)[]>;
-    list(productId: string): Promise<(import("mongoose").Document<unknown, {}, import("../../models/feedback.model").Feedback & Document> & Omit<import("../../models/feedback.model").Feedback & Document & {
+    }, never>, never>[]>;
+    list(productId: string): Promise<Omit<import("mongoose").Document<unknown, {}, import("../../models/feedback.model").Feedback & Document> & Omit<import("../../models/feedback.model").Feedback & Document & {
         _id: import("mongoose").Types.ObjectId;
-    }, never>)[]>;
+    }, never>, never>[]>;
 }
