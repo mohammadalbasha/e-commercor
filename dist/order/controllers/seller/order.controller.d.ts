@@ -27,9 +27,9 @@ import { OrderService } from '../../services/order.service';
 export declare class OrderSellerController {
     private readonly orderService;
     constructor(orderService: OrderService);
-    list(storeId: string): import("mongoose").Query<(import("mongoose").Document<unknown, {}, import("../../models/order.model").Order & Document> & Omit<import("../../models/order.model").Order & Document & {
+    list(storeId: string): import("mongoose").Query<Omit<import("mongoose").Document<unknown, {}, import("../../models/order.model").Order & Document> & Omit<import("../../models/order.model").Order & Document & {
         _id: import("mongoose").Types.ObjectId;
-    }, never>)[], import("mongoose").Document<unknown, {}, import("../../models/order.model").Order & Document> & Omit<import("../../models/order.model").Order & Document & {
+    }, never>, never>[], import("mongoose").Document<unknown, {}, import("../../models/order.model").Order & Document> & Omit<import("../../models/order.model").Order & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>, {}, import("../../models/order.model").Order & Document>;
 }

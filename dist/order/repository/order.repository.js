@@ -29,13 +29,13 @@ let OrderRepository = class OrderRepository {
         return this.order.updateOne(filter, data);
     }
     findById(id) {
-        return this.order.findById(id);
+        return this.order.findById(id).populate('product');
     }
     listByStore(storeId) {
-        return this.order.find({ storeId: storeId });
+        return this.order.find({ storeId: storeId }).populate('product');
     }
     listByUser(userId) {
-        return this.order.find({ customerId: userId });
+        return this.order.find({ customerId: userId }).populate('product');
     }
 };
 OrderRepository = __decorate([

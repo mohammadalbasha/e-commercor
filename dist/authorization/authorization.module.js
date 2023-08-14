@@ -13,9 +13,7 @@ let AuthorizationModule = class AuthorizationModule {
 };
 AuthorizationModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            casl_module_1.CaslModule
-        ]
+        imports: [casl_module_1.CaslModule],
     })
 ], AuthorizationModule);
 exports.AuthorizationModule = AuthorizationModule;

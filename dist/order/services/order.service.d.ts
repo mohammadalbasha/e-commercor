@@ -12,14 +12,14 @@ export declare class OrderService {
     private paypalService;
     constructor(connection: mongoose.Connection, productService: ProductService, orderRepo: OrderRepository, paypalService: PaypalService);
     purchaseProduct(data: CreateOrderDto, store: Store): Promise<any>;
-    listOrdersByStore(storeId: string): mongoose.Query<(mongoose.Document<unknown, {}, Order & Document> & Omit<Order & Document & {
+    listOrdersByStore(storeId: string): mongoose.Query<Omit<mongoose.Document<unknown, {}, Order & Document> & Omit<Order & Document & {
         _id: mongoose.Types.ObjectId;
-    }, never>)[], mongoose.Document<unknown, {}, Order & Document> & Omit<Order & Document & {
+    }, never>, never>[], mongoose.Document<unknown, {}, Order & Document> & Omit<Order & Document & {
         _id: mongoose.Types.ObjectId;
     }, never>, {}, Order & Document>;
-    listOrdersByUser(userId: string): mongoose.Query<(mongoose.Document<unknown, {}, Order & Document> & Omit<Order & Document & {
+    listOrdersByUser(userId: string): mongoose.Query<Omit<mongoose.Document<unknown, {}, Order & Document> & Omit<Order & Document & {
         _id: mongoose.Types.ObjectId;
-    }, never>)[], mongoose.Document<unknown, {}, Order & Document> & Omit<Order & Document & {
+    }, never>, never>[], mongoose.Document<unknown, {}, Order & Document> & Omit<Order & Document & {
         _id: mongoose.Types.ObjectId;
     }, never>, {}, Order & Document>;
     captureOrder(storeId: string, orderId: string, token: string): Promise<any>;

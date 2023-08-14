@@ -30,9 +30,9 @@ export declare class OrderCustomerController {
     private readonly orderService;
     constructor(orderService: OrderService);
     creataOrder(data: Omit<CreateOrderDto, 'userId' | 'storeId'>, store: Store, user: any): Promise<any>;
-    listMyOrders(userId: string): import("mongoose").Query<(import("mongoose").Document<unknown, {}, import("../../models/order.model").Order & Document> & Omit<import("../../models/order.model").Order & Document & {
+    listMyOrders(userId: string): import("mongoose").Query<Omit<import("mongoose").Document<unknown, {}, import("../../models/order.model").Order & Document> & Omit<import("../../models/order.model").Order & Document & {
         _id: import("mongoose").Types.ObjectId;
-    }, never>)[], import("mongoose").Document<unknown, {}, import("../../models/order.model").Order & Document> & Omit<import("../../models/order.model").Order & Document & {
+    }, never>, never>[], import("mongoose").Document<unknown, {}, import("../../models/order.model").Order & Document> & Omit<import("../../models/order.model").Order & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>, {}, import("../../models/order.model").Order & Document>;
     captureOrder(storeId: string, orderId: string, token: string): Promise<any>;

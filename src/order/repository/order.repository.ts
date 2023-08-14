@@ -20,14 +20,14 @@ export class OrderRepository {
   }
 
   findById(id: string) {
-    return this.order.findById(id);
+    return this.order.findById(id).populate('product');
   }
 
   listByStore(storeId: string) {
-    return this.order.find({ storeId: storeId });
+    return this.order.find({ storeId: storeId }).populate('product');
   }
 
   listByUser(userId: string) {
-    return this.order.find({ customerId: userId });
+    return this.order.find({ customerId: userId }).populate('product');
   }
 }
