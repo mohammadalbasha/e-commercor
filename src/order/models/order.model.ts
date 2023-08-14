@@ -8,6 +8,7 @@ import {
   PropObject,
   PropRef,
 } from 'src/shared/models/decorators/mongoose/PropRef.decorator';
+import { BaseSchema } from 'src/shared/mongoose/base.schema';
 import { UniqueMulti } from 'src/shared/validation/uniqueMulti.validator';
 import { Store } from 'src/store/models/store.model';
 
@@ -48,4 +49,5 @@ export class Order extends BaseModel {
 }
 
 export type OrderDocument = Order & Document;
-export const OrderSchema = SchemaFactory.createForClass(Order);
+//export const OrderSchema = SchemaFactory.createForClass(Order);
+export const OrderSchema = BaseSchema(Order);

@@ -16,6 +16,7 @@ const product_model_1 = require("../../product/models/product.model");
 const common_1 = require("../../shared/constants/common");
 const base_model_1 = require("../../shared/models/base.model");
 const PropRef_decorator_1 = require("../../shared/models/decorators/mongoose/PropRef.decorator");
+const base_schema_1 = require("../../shared/mongoose/base.schema");
 const store_model_1 = require("../../store/models/store.model");
 let Order = class Order extends base_model_1.BaseModel {
 };
@@ -71,5 +72,5 @@ Order = __decorate([
     (0, mongoose_1.Schema)(common_1.defaultSchemaOptions)
 ], Order);
 exports.Order = Order;
-exports.OrderSchema = mongoose_1.SchemaFactory.createForClass(Order);
+exports.OrderSchema = (0, base_schema_1.BaseSchema)(Order);
 //# sourceMappingURL=order.model.js.map
