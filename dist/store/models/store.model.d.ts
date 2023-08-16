@@ -17,6 +17,7 @@ export declare class Store extends BaseModel {
     businessType: string;
     description: string;
     logo: string;
+    theme: mongoose.Schema.Types.Mixed;
     country: string;
     isMarket: boolean;
     marketAddress: string;

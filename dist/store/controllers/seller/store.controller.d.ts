@@ -46,4 +46,7 @@ export declare class StoreSellerController {
     addLogo(body: AddLogo, sellerId: string): Promise<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;
+    addTheme(body: any, sellerId: string): Promise<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>>;
 }

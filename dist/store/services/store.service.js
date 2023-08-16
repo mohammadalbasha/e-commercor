@@ -105,6 +105,11 @@ let StoreService = class StoreService {
     addLogo(sellerId, data) {
         return this.storeRepo.findBySellerIdAndUpdate(sellerId, Object.assign({}, data));
     }
+    addTheme(sellerId, data) {
+        return this.storeRepo.findBySellerIdAndUpdate(sellerId, {
+            theme: data,
+        });
+    }
 };
 StoreService = __decorate([
     (0, common_1.Injectable)(),

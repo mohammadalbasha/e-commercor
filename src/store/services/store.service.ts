@@ -10,6 +10,7 @@ import { Seller, Store } from '../models/store.model';
 import { MarketDto } from '../dtos/market-store.dto';
 import { filterToMongo } from 'src/shared/mongoose/helperFunctions/filter.helper';
 import { AddLogo } from '../dtos/add-logo.dto';
+import { AddTheme } from '../dtos/add-theme.dto';
 
 @Injectable()
 export class StoreService {
@@ -129,6 +130,12 @@ export class StoreService {
   addLogo(sellerId, data: AddLogo) {
     return this.storeRepo.findBySellerIdAndUpdate(sellerId, {
       ...data,
+    });
+  }
+
+  addTheme(sellerId, data: any) {
+    return this.storeRepo.findBySellerIdAndUpdate(sellerId, {
+      theme: data,
     });
   }
 }

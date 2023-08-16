@@ -61,4 +61,9 @@ export class StoreSellerController {
   addLogo(@Body() body: AddLogo, @GetCurrentUserId() sellerId: string) {
     return this.storeService.addLogo(sellerId, body);
   }
+
+  @Put('/theme')
+  addTheme(@Body() body, @GetCurrentUserId() sellerId: string) {
+    return this.storeService.addTheme(sellerId, body);
+  }
 }

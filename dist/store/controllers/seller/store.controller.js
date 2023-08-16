@@ -47,6 +47,9 @@ let StoreSellerController = class StoreSellerController {
     addLogo(body, sellerId) {
         return this.storeService.addLogo(sellerId, body);
     }
+    addTheme(body, sellerId) {
+        return this.storeService.addTheme(sellerId, body);
+    }
 };
 __decorate([
     (0, decorators_1.Public)(),
@@ -89,6 +92,14 @@ __decorate([
     __metadata("design:paramtypes", [add_logo_dto_1.AddLogo, String]),
     __metadata("design:returntype", void 0)
 ], StoreSellerController.prototype, "addLogo", null);
+__decorate([
+    (0, common_1.Put)('/theme'),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, decorators_1.GetCurrentUserId)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", void 0)
+], StoreSellerController.prototype, "addTheme", null);
 StoreSellerController = __decorate([
     (0, common_1.UseGuards)(guards_1.AtSellerGuard),
     (0, common_1.Controller)('/seller/store'),

@@ -62,6 +62,9 @@ export class Store extends BaseModel {
   logo: string;
 
   @Prop()
+  theme: mongoose.Schema.Types.Mixed;
+
+  @Prop()
   country: string;
 
   @Prop({ default: false })

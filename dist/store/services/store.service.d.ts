@@ -81,4 +81,7 @@ export declare class StoreService {
     addLogo(sellerId: any, data: AddLogo): Promise<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;
+    addTheme(sellerId: any, data: any): Promise<import("mongoose").Document<unknown, {}, Store & Document> & Omit<Store & Document & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>>;
 }
