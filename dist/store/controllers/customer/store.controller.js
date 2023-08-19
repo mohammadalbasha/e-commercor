@@ -24,6 +24,9 @@ let StoreCustomerController = class StoreCustomerController {
     getStore(storeName) {
         return this.storeService.findByName(storeName);
     }
+    getStoreById(storeId) {
+        return this.storeService.findById(storeId);
+    }
 };
 __decorate([
     (0, common_1.UseInterceptors)((0, mongooseClassSerializer_interceptor_1.default)(store_model_1.Store)),
@@ -33,6 +36,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], StoreCustomerController.prototype, "getStore", null);
+__decorate([
+    (0, common_1.Get)(':storeId/store'),
+    __param(0, (0, common_1.Param)('storeID')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], StoreCustomerController.prototype, "getStoreById", null);
 StoreCustomerController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [store_service_1.StoreService])
