@@ -37,8 +37,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], StoreCustomerController.prototype, "getStore", null);
 __decorate([
-    (0, common_1.Get)(':storeId/store'),
-    __param(0, (0, common_1.Param)('storeID')),
+    (0, common_1.Get)('/:storeId/store'),
+    __param(0, (0, common_1.Param)('storeId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)

@@ -26,8 +26,8 @@ export class StoreCustomerController {
   getStore(@Param('storeName') storeName: string) {
     return this.storeService.findByName(storeName);
   }
-  @Get(':storeId/store')
-  getStoreById(@Param('storeID') storeId) {
+  @Get('/:storeId/store')
+  getStoreById(@Param('storeId') storeId) {
     return this.storeService.findById(storeId);
   }
 }
