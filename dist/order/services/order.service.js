@@ -66,7 +66,7 @@ let OrderService = class OrderService {
         return this.orderRepo.listByStore(storeId);
     }
     listOrdersByUser(userId) {
-        return this.orderRepo.listByStore(userId);
+        return this.orderRepo.listByUser(userId);
     }
     async captureOrder(storeId, orderId, token) {
         const isCaptured = await this.paypalService.captureOrder(token);

@@ -101,7 +101,7 @@ export class OrderService {
   }
 
   listOrdersByUser(userId: string) {
-    return this.orderRepo.listByStore(userId);
+    return this.orderRepo.listByUser(userId);
   }
 
   async captureOrder(storeId: string, orderId: string, token: string) {
