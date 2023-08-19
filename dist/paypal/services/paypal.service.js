@@ -118,7 +118,6 @@ let PaypalService = class PaypalService {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${accessToken}`,
-                'PayPal-Request-Id': '7b92603e-77ed-4896-8e78-5dea2050476a',
             },
             body: JSON.stringify({
                 intent: 'CAPTURE',
