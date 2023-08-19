@@ -133,12 +133,14 @@ export class ProductRepository {
 
     // Find products with common tags
     const similarProductsByTags = await this.product.find({
+      storeId: product.storeId,
       _id: { $ne: product._id },
       tags: { $in: product.tags },
     });
     // Find products with common categories
     const similarProductsByCategories = await this.product
       .find({
+        storeId: product.storeId,
         _id: {
           $ne: productId,
           $in: collectionsProductsIds,

@@ -97,11 +97,13 @@ let ProductRepository = class ProductRepository {
             ];
         }
         const similarProductsByTags = await this.product.find({
+            storeId: product.storeId,
             _id: { $ne: product._id },
             tags: { $in: product.tags },
         });
         const similarProductsByCategories = await this.product
             .find({
+            storeId: product.storeId,
             _id: {
                 $ne: productId,
                 $in: collectionsProductsIds,
